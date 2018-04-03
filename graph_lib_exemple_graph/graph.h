@@ -235,6 +235,8 @@ class Edge
         /// Voir l'implémentation Graph::update dans le .cpp
         void pre_update();
         void post_update();
+
+        double getWeight() { return m_weight; }
 };
 
 

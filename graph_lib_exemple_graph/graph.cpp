@@ -109,9 +109,13 @@ void Edge::pre_update()
     if (!m_interface)
         return;
 
+
+
+
     /// Copier la valeur locale de la donnée m_weight vers le slider associé
     m_interface->m_slider_weight.set_value(m_weight);
 
+    m_interface->m_top_edge.modifierTaille(m_weight);
     /// Copier la valeur locale de la donnée m_weight vers le label sous le slider
     m_interface->m_label_weight.set_message( std::to_string( (int)m_weight ) );
 }
