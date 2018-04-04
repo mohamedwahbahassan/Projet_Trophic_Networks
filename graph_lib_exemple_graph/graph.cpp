@@ -50,6 +50,7 @@ void Vertex::pre_update()
     if (!m_interface)
         return;
 
+
     /// Copier la valeur locale de la donnée m_value vers le slider associé
     m_interface->m_slider_value.set_value(m_value);
 
@@ -65,9 +66,9 @@ void Vertex::post_update()
         return;
 
     /// Reprendre la valeur du slider dans la donnée m_value locale
+
     m_value = m_interface->m_slider_value.get_value();
 }
-
 
 
 /***************************************************
@@ -110,8 +111,6 @@ void Edge::pre_update()
 {
     if (!m_interface)
         return;
-
-
 
 
     /// Copier la valeur locale de la donnée m_weight vers le slider associé
@@ -265,12 +264,12 @@ void Graph::sauverFichier(int ordre)
                 SAUVEGARDE DES SOMMETS
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
-std::ofstream fsommets(fichier, std::ios::out);
-        if(fsommets)
+    std::ofstream fsommets(fichier, std::ios::out);
+    if(fsommets)
     {
         for (auto it = m_vertices.begin(); it!=m_vertices.end(); ++it)
         {
-                        fsommets << "\n";
+            fsommets << "\n";
             fsommets << it->first << " " ;
             fsommets << it->second.m_value << " ";
             fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
@@ -280,18 +279,18 @@ std::ofstream fsommets(fichier, std::ios::out);
         }
         fsommets.close();
     }
-        else
+    else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
 
 
     /***********************************************************
-                SAUVEGARDE DES ARETTES
+                SAUVEGARDE DES ARETES
     ***********************************************************/
     fichier = nomFichier+"_Arettes.txt";
-std::ofstream farettes(fichier, std::ios::out);
-        if(farettes)
+    std::ofstream farettes(fichier, std::ios::out);
+    if(farettes)
     {
         for (auto it = m_edges.begin(); it!=m_edges.end(); ++it)
         {
@@ -304,7 +303,7 @@ std::ofstream farettes(fichier, std::ios::out);
         }
         farettes.close();
     }
-        else
+    else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
@@ -376,4 +375,69 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 
 }
+
+/*************************************************
+*********** SIMULATION DE POPULATION *************
+**************************************************/
+
+/// Fonction: permet de calculer la population en temps réel en fonction de la population de départ
+
+void Graph::CalculPop()
+{
+
+    for (auto &e : m_vertices)
+    {
+
+///Calcul de la capacité de portage de l'environnement
+
+        for(int i=0; i<e.second.m_in.size(); i++)
+        {
+            e.second.m_capacite = e.second.m_capacite
+
+            /// ex: K lapin = Coeff(herbe->lapin)* N herbe :  Capacité = Poids de l'arc entrante * valeur du sommet 1 de l'arc entrante
+            + m_edges[e.second.m_in[i]].m_weight * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
+
+            std::cout << e.second.m_value << std::endl;
+            std::cout << "capacite de portage: ";
+            std::cout << e.second.m_capacite << std::endl << std::endl;
+        }
+
+       // std::cout << std::endl<< std::endl<< std::endl;
+       // std::cout << "QUANTITE CONSOMME" << std::endl;
+
+///Calcul de la quantité consommée
+
+       for(int i=0; i<e.second.m_out.size(); i++)
+
+        {
+            e.second.m_quantiteConsomme = e.second.m_quantiteConsomme
+
+            /// ex: K2 herbe= Coeff (herbe->lapin)* N lapin : Quantité consommée = Poids de l'arc sortante * valeur du sommet 2 de l'arc sortante
+             + m_edges[e.second.m_out[i]].m_weight * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
+
+            std::cout << "1: quantite consomme";
+            std::cout << e.second.m_quantiteConsomme << std::endl << std::endl;
+        }
+
+///Calcul de l'évolution de la population à partir d'un certain temps
+
+        //double PopActuelle = m_interface->m_slider_value.get_value(); ///variable intermédiaire
+        e.second.m_value = (e.second.m_value + e.second.m_value*(1-(e.second.m_value/e.second.m_capacite))) - e.second.m_quantiteConsomme;
+
+        ///Si on obtient une population négative, value=0
+
+        if(e.second.m_value < 0)
+        {
+            e.second.m_value=0;
+        }
+
+        std::cout << "valeur:";
+        std::cout << e.second.m_value << std::endl << std::endl;
+
+    }
+
+}
+
+
+
 

@@ -3,6 +3,9 @@
 
 #include "graph.h"
 
+
+
+
 int main()
 {
     int graph = 1;
@@ -14,6 +17,8 @@ int main()
 
     Graph testFichier;
     testFichier.chargerFichier(graph);
+
+    testFichier.CalculPop();
 
 
     /// Vous gardez la main sur la "boucle de jeu"

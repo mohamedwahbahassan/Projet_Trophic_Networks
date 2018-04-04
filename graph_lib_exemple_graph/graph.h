@@ -138,8 +138,10 @@ class Vertex
         /// liste des indices des arcs partant du sommet : accès aux successeurs
         std::vector<int> m_out;
 
-        /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
-        double m_value;
+        /// un exemple de donnée associée au sommet, on peut en ajouter d'autres...
+        double m_value; ///N: nombre d'individus dans la population
+        double m_capacite; /// K: capacité de portage de l'environnement
+        double m_quantiteConsomme; ///K2: quantité de N consommée par les autres espèces
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<VertexInterface> m_interface = nullptr;
@@ -153,8 +155,8 @@ class Vertex
 
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
-        Vertex (double value=0, VertexInterface *interface=nullptr) :
-            m_value(value), m_interface(interface)   {  }
+        Vertex (double value=0, VertexInterface *interface=nullptr,double capacite=0) :
+            m_value(value), m_interface(interface),m_capacite(capacite)   {  }
        // Vertex (double value=0, VertexInterface *interface=nullptr, int _x, int _y) :
          //   m_value(value), m_interface(interface),m_top_box.set_pos(_x,_y)   {  }
 
@@ -163,6 +165,7 @@ class Vertex
         /// Voir l'implémentation Graph::update dans le .cpp
         void pre_update();
         void post_update();
+
 };
 
 
@@ -210,6 +213,7 @@ class Edge
     // directement aux attributs (y compris privés)
     friend class Graph;
     friend class EdgeInterface;
+    friend class Vertex;
 
     private :
         /// indice du sommet de départ de l'arc
@@ -280,6 +284,10 @@ class GraphInterface
 
 class Graph
 {
+    friend class Vertex;
+    friend class VertexInterface;
+    friend class Edge;
+    friend class EdgeInterface;
     private :
 
         /// La "liste" des arêtes
@@ -293,7 +301,7 @@ class Graph
 
 
     public:
-
+        //std::map<int, Edge> m_edges;
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
         Graph (GraphInterface *interface=nullptr) :
@@ -314,7 +322,11 @@ class Graph
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
         void update();
+
+        ///Fonction qui calcul la population en fonction des populations des autres sommets et coefficients des autres arcs
+        void CalculPop();
 };
+
 
 
 #endif // GRAPH_H_INCLUDED
