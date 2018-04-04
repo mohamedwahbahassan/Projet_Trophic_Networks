@@ -414,7 +414,9 @@ class WidgetEdge : public Widget
         std::vector<ArrowItem> m_items;
 
         int m_color = GRISSOMBRE;
-        int m_thickness = 2;
+        int m_thicknessArrow = 2;
+        double m_thicknessLine;
+
 
         // Position relative des éventuels Widgets enfants le long de l'arc, 0 origine, 0.5 milieu, 1.0 destination
         double m_children_position = 0.5;
@@ -428,6 +430,8 @@ class WidgetEdge : public Widget
 
         void attach_from(Widget& from) { m_attach[0] = &from; }
         void attach_to(Widget& to) { m_attach[1] = &to; }
+
+        void modifierTaille (int weight);
 
         void reset_no_items() { m_items.clear(); }
         void reset_arrow() { m_items = { {ArrowItemType::Arrow, 1.0} }; }
