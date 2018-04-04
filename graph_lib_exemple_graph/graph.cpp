@@ -41,6 +41,11 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
 
     m_box_label_idx.add_child( m_label_idx );
     m_label_idx.set_message( std::to_string(idx) );
+
+    m_top_box.add_child(m_box_close);
+    m_box_close.set_dim(10,10);
+    m_box_close.set_pos(116,0);
+    m_box_close.set_bg_color(VERT);
 }
 
 
@@ -142,20 +147,27 @@ void Edge::post_update()
 /// éléments qui seront ensuite ajoutés lors de la mise ne place du Graphe
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
-    m_top_box.set_dim(795,600);
-
+    m_top_box.set_dim(1020,600);
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
 
-
     m_top_box.add_child(m_tool_box);
-    m_tool_box.set_dim(80,590);
+    m_tool_box.set_dim(100,590);
     m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
     m_tool_box.set_bg_color(BLANCBLEU);
 
     m_top_box.add_child(m_main_box);
-    m_main_box.set_dim(715,590);
+    m_main_box.set_dim(920,590);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
     m_main_box.set_bg_color(BLANCJAUNE);
+
+    m_top_box.add_child(m_Button_Save);
+    m_Button_Save.set_dim(80,40);
+    m_Button_Save.set_bg_color(ROUGE);
+    m_Button_Save.set_pos(10,10);
+
+    m_Button_Save.add_child(m_Text_Save);
+    m_Text_Save.set_pos(30,15);
+    m_Text_Save.set_message("SAVE");
 }
 
 
@@ -204,6 +216,7 @@ void Graph::chargerFichier(int ordre)
             fsommets>> picture_name;
 
             add_interfaced_vertex(idx, value, x, y, picture_name);
+
         }
         fsommets.close();
     }
@@ -265,12 +278,12 @@ void Graph::sauverFichier(int ordre)
                 SAUVEGARDE DES SOMMETS
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
-std::ofstream fsommets(fichier, std::ios::out);
-        if(fsommets)
+    std::ofstream fsommets(fichier, std::ios::out);
+    if(fsommets)
     {
         for (auto it = m_vertices.begin(); it!=m_vertices.end(); ++it)
         {
-                        fsommets << "\n";
+            fsommets << "\n";
             fsommets << it->first << " " ;
             fsommets << it->second.m_value << " ";
             fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
@@ -280,7 +293,7 @@ std::ofstream fsommets(fichier, std::ios::out);
         }
         fsommets.close();
     }
-        else
+    else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
@@ -290,8 +303,8 @@ std::ofstream fsommets(fichier, std::ios::out);
                 SAUVEGARDE DES ARETTES
     ***********************************************************/
     fichier = nomFichier+"_Arettes.txt";
-std::ofstream farettes(fichier, std::ios::out);
-        if(farettes)
+    std::ofstream farettes(fichier, std::ios::out);
+    if(farettes)
     {
         for (auto it = m_edges.begin(); it!=m_edges.end(); ++it)
         {
@@ -304,7 +317,7 @@ std::ofstream farettes(fichier, std::ios::out);
         }
         farettes.close();
     }
-        else
+    else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
@@ -326,10 +339,21 @@ void Graph::update()
     m_interface->m_top_box.update();
 
     for (auto &elt : m_vertices)
+    {
         elt.second.post_update();
+        if (elt.second.m_interface->m_box_close.get_value() == true)
+            remove_vertex(elt.first);
 
+    }
     for (auto &elt : m_edges)
         elt.second.post_update();
+
+    if (m_interface->m_Button_Save.get_value()==true)
+        {std::cout << "\non sauve";
+        m_interface->m_Button_Save.set_value(false);
+        }
+
+
 
 }
 
@@ -376,4 +400,85 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 
 }
+
+
+/// eidx index of edge to remove
+void Graph::remove_edge(int eidx)
+{
+/// référence vers le Edge à enlever
+    Edge &supr=m_edges[eidx];
+
+//std::cout << "Removing edge " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
+
+/// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
+//std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
+//std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
+//std::cout << m_edges.size() << std::endl;
+
+/// test : on a bien des éléments interfacés
+    if (m_interface && supr.m_interface)
+    {
+        m_interface->m_main_box.remove_child( supr.m_interface->m_top_edge );
+    }
+
+/// Il reste encore à virer l'arc supprimé de la liste des entrants et sortants des 2 sommets to et from !
+/// References sur les listes de edges des sommets from et to
+    std::vector<int> &from = m_vertices[supr.m_from].m_out;
+    std::vector<int> &to = m_vertices[supr.m_to].m_in;
+    from.erase( std::remove(from.begin(), from.end(), eidx ), from.end() );
+    to.erase( std::remove( to.begin(), to.end(), eidx ), to.end() );
+
+    m_edges.erase( eidx );
+
+/// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
+    /*std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
+    std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
+    std::cout << m_edges.size() << std::endl;*/
+
+}
+
+void Graph::remove_vertex(int vdx)
+{
+    ///Reference vers le sommet (vertex) a enlever
+    Vertex supr=m_vertices[vdx];
+    ///on supprime toutes les aretes liées a ce sommet
+    for (int i = supr.m_in.size() -1 ; i >= 0  ; i --)
+    {
+        remove_edge(supr.m_in[i]);
+    }
+
+    for (int i = supr.m_out.size() -1 ; i >= 0  ; i --)
+    {
+        remove_edge(supr.m_out[i]);
+    }
+    ///on supprime tous les elements interfacés
+    if (m_interface && supr.m_interface)
+    {
+        m_interface->m_main_box.remove_child( supr.m_interface->m_top_box );
+    }
+///on supprime le sommet
+    m_vertices.erase(vdx);
+}
+
+
+void Graph::add_vertex(std::string image)
+{
+    int indice = 0;
+    for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
+        indice = a->first;
+
+    add_interfaced_vertex(indice + 1 , 30, 100, 100, image);
+
+}
+
+void Graph::add_edge(int from, int to)
+{
+    int indice;
+    for (auto a=m_edges.begin() ; a != m_edges.end(); a++)
+        indice = a->first;
+    std::cout << "coucou13\n";
+    add_interfaced_edge(indice + 1,from,to,50);
+    std::cout << "coucou 14";
+}
+
 
