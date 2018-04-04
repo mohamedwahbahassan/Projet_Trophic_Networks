@@ -111,9 +111,13 @@ void Edge::pre_update()
     if (!m_interface)
         return;
 
+
+
+
     /// Copier la valeur locale de la donnée m_weight vers le slider associé
     m_interface->m_slider_weight.set_value(m_weight);
 
+    m_interface->m_top_edge.modifierTaille(m_weight);
     /// Copier la valeur locale de la donnée m_weight vers le label sous le slider
     m_interface->m_label_weight.set_message( std::to_string( (int)m_weight ) );
 }
@@ -139,7 +143,9 @@ void Edge::post_update()
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
     m_top_box.set_dim(795,600);
+
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
+
 
     m_top_box.add_child(m_tool_box);
     m_tool_box.set_dim(80,590);
@@ -163,6 +169,7 @@ Statut : fini
 ***********************************************************************/
 void Graph::chargerFichier(int ordre)
 {
+
     std::string nomFichier;
     if (ordre == 0)
     {
@@ -301,6 +308,7 @@ std::ofstream farettes(fichier, std::ios::out);
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
+
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

@@ -12,14 +12,6 @@ int main()
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
 
-    /// Un exemple de graphe
-  //  Graph g;
-  //  g.make_example();
-
-
-
-
-
     Graph testFichier;
     testFichier.chargerFichier(graph);
 
