@@ -236,7 +236,6 @@ class Edge
         void pre_update();
         void post_update();
 
-        double getWeight() { return m_weight; }
 };
 
 

@@ -193,8 +193,8 @@ void WidgetCheckBox::draw()
     }
     else
     {
-        thick_line(m_view, 0, 0,           m_view->w, m_view->h, 2, ROUGE );
-        thick_line(m_view, 0, m_view->h,    m_view->w, 0,        2, ROUGE );
+        thick_line(m_view, 0, 0,           m_view->w, m_view->h, 2, BLANC );
+        thick_line(m_view, 0, m_view->h,    m_view->w, 0,        2, BLANC );
     }
 
 }
