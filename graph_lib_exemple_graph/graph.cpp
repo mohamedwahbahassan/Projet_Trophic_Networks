@@ -1,4 +1,6 @@
 #include "graph.h"
+#include <fstream>
+#include <iostream>
 
 /***************************************************
                     VERTEX
@@ -14,7 +16,7 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
 
     // Le slider de réglage de valeur
     m_top_box.add_child( m_slider_value );
-    m_slider_value.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_value.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_value.set_dim(20,80);
     m_slider_value.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
 
@@ -92,7 +94,7 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
     // Le slider de réglage de valeur
     m_box_edge.add_child( m_slider_weight );
-    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_weight.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_weight.set_dim(16,40);
     m_slider_weight.set_gravity_y(grman::GravityY::Up);
 
@@ -141,7 +143,11 @@ void Edge::post_update()
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
     m_top_box.set_dim(795,600);
+<<<<<<< HEAD
     m_top_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+=======
+    m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
+>>>>>>> 9e2a57b805540c9699034720fae8726d27f899d7
 
     m_top_box.add_child(m_tool_box);
     m_tool_box.set_dim(80,590);
@@ -155,13 +161,17 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 }
 
 
-/// Méthode spéciale qui construit un graphe arbitraire (démo)
-/// Cette méthode est à enlever et remplacer par un système
-/// de chargement de fichiers par exemple.
-/// Bien sûr on ne veut pas que vos graphes soient construits
-/// "à la main" dans le code comme ça.
-void Graph::make_example()
+
+
+/************************************************************************
+Type : Méthode
+Utilité : charge les sommets et les arettes a partir d'un fichier
+Créateur :Léo
+Statut : fini
+***********************************************************************/
+void Graph::chargerFichier(int ordre)
 {
+<<<<<<< HEAD
     m_interface = std::make_shared<GraphInterface>(50, 0, 800, 600);
     // La ligne précédente est en gros équivalente à :
     // m_interface = new GraphInterface(50, 0, 750, 600);
@@ -189,6 +199,146 @@ void Graph::make_example()
     add_interfaced_edge(7, 2, 0, 100.0);
     add_interfaced_edge(8, 5, 2, 20.0);
     add_interfaced_edge(9, 3, 7, 80.0);
+=======
+    std::string nomFichier;
+    if (ordre == 0)
+    {
+        std::cout << "quel est le nom de votre fichier : ";
+        std::cin >> nomFichier;
+    }
+    else if (ordre == 1)
+        nomFichier = "graph1";
+    else if (ordre == 2)
+        nomFichier = "patate";
+
+    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+    nomFichier = "fichier/" + nomFichier;
+    std::string fichier;
+    int idx,x,y,vert1,vert2;
+    double value;
+    std::string picture_name;
+
+    /***********************************************************
+                CHARGEMENT DES SOMMETS
+    ***********************************************************/
+    fichier = nomFichier+"_Sommets.txt";
+    std::ifstream fsommets (fichier, std::ios::in);
+    if(fsommets)
+    {
+        while(!fsommets.eof())
+        {
+            fsommets>>idx;
+            fsommets>>value;
+            fsommets>>x;
+            fsommets>>y;
+            fsommets>> picture_name;
+
+            add_interfaced_vertex(idx, value, x, y, picture_name);
+        }
+        fsommets.close();
+    }
+    else
+    {
+        std::cout << "impossible de ouvrir le fichier" << fichier << std::endl;
+    }
+    /***********************************************************
+                CHARGEMENT DES ARETTES
+    ***********************************************************/
+    fichier = nomFichier+"_Arettes.txt"; //modif du nom de l'appel fichier
+    std::ifstream farettes (fichier, std::ios::in);
+    if(farettes)
+    {
+        while(!farettes.eof())
+        {
+            farettes>>idx;
+            farettes>>vert1;
+            farettes>>vert2;
+            farettes>>value;
+
+            add_interfaced_edge(idx, vert1, vert2, value);
+        }
+        farettes.close();
+    }
+    else
+    {
+        std::cout << "impossible de ouvrir le fichier" << fichier << std::endl;
+    }
+}
+
+
+
+/************************************************************************
+Type : Méthode
+Utilité : sauve les sommets et les arettes dans un fichier
+Créateur :Léo
+Statut : fini
+***********************************************************************/
+void Graph::sauverFichier(int ordre)
+{
+
+    std::string nomFichier;
+    if (ordre == 0)
+    {
+        std::cout << "quel est le nom de votre fichier : ";
+        std::cin >> nomFichier;
+    }
+    else if (ordre == 1)
+        nomFichier = "graph1";
+    else if (ordre == 2)
+        nomFichier = "patate";
+
+    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+    nomFichier = "fichier/" + nomFichier;
+    std::string fichier;
+
+    /***********************************************************
+                SAUVEGARDE DES SOMMETS
+    ***********************************************************/
+    fichier = nomFichier+"_Sommets.txt";
+std::ofstream fsommets(fichier, std::ios::out);
+        if(fsommets)
+    {
+        for (auto it = m_vertices.begin(); it!=m_vertices.end(); ++it)
+        {
+                        fsommets << "\n";
+            fsommets << it->first << " " ;
+            fsommets << it->second.m_value << " ";
+            fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
+            fsommets << it->second.m_interface->m_top_box.get_posy() +2 << " ";
+            fsommets << it->second.m_interface->m_img.get_pic_name();
+
+        }
+        fsommets.close();
+    }
+        else
+    {
+        std::cout << "impossible de ouvrir le fichier" << std::endl;
+    }
+
+
+    /***********************************************************
+                SAUVEGARDE DES ARETTES
+    ***********************************************************/
+    fichier = nomFichier+"_Arettes.txt";
+std::ofstream farettes(fichier, std::ios::out);
+        if(farettes)
+    {
+        for (auto it = m_edges.begin(); it!=m_edges.end(); ++it)
+        {
+            farettes << "\n";
+            farettes << it->first << " " ;
+            farettes << it->second.m_from << " ";
+            farettes << it->second.m_to << " ";
+            farettes << it->second.m_weight;
+
+        }
+        farettes.close();
+    }
+        else
+    {
+        std::cout << "impossible de ouvrir le fichier" << std::endl;
+    }
+>>>>>>> 9e2a57b805540c9699034720fae8726d27f899d7
 }
 
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
@@ -247,5 +397,13 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
     m_edges[idx] = Edge(weight, ei);
+
+    m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
+
+    m_vertices[id_vert1].m_out.push_back(idx);
+    m_vertices[id_vert2].m_in.push_back(idx);
+
+
 }
 

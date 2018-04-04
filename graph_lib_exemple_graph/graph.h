@@ -154,7 +154,9 @@ class Vertex
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
         Vertex (double value=0, VertexInterface *interface=nullptr) :
-            m_value(value), m_interface(interface)  {  }
+            m_value(value), m_interface(interface)   {  }
+       // Vertex (double value=0, VertexInterface *interface=nullptr, int _x, int _y) :
+         //   m_value(value), m_interface(interface),m_top_box.set_pos(_x,_y)   {  }
 
         /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
         /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
@@ -305,6 +307,9 @@ class Graph
         /// Cette méthode est à enlever et remplacer par un système
         /// de chargement de fichiers par exemple.
         void make_example();
+
+        void chargerFichier(int ordre);
+        void sauverFichier(int ordre);
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

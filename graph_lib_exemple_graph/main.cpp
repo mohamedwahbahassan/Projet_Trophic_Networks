@@ -1,10 +1,11 @@
 #include "grman/grman.h"
-#include <iostream>
+
 
 #include "graph.h"
 
 int main()
 {
+    int graph = 1;
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
 
@@ -12,8 +13,15 @@ int main()
     grman::set_pictures_path("pics");
 
     /// Un exemple de graphe
-    Graph g;
-    g.make_example();
+  //  Graph g;
+  //  g.make_example();
+
+
+
+
+
+    Graph testFichier;
+    testFichier.chargerFichier(graph);
 
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -21,11 +29,13 @@ int main()
     while ( !key[KEY_ESC] )
     {
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
-        g.update();
+        testFichier.update();
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
     }
+
+    testFichier.sauverFichier(graph);
 
     grman::fermer_allegro();
 
