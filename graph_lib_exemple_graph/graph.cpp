@@ -211,6 +211,7 @@ void Graph::chargerFichier(int ordre)
     {
         std::cout << "impossible de ouvrir le fichier" << fichier << std::endl;
     }
+
     /***********************************************************
                 CHARGEMENT DES ARETTES
     ***********************************************************/
@@ -265,12 +266,12 @@ void Graph::sauverFichier(int ordre)
                 SAUVEGARDE DES SOMMETS
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
-std::ofstream fsommets(fichier, std::ios::out);
-        if(fsommets)
+    std::ofstream fsommets(fichier, std::ios::out);
+    if(fsommets)
     {
         for (auto it = m_vertices.begin(); it!=m_vertices.end(); ++it)
         {
-                        fsommets << "\n";
+            fsommets << "\n";
             fsommets << it->first << " " ;
             fsommets << it->second.m_value << " ";
             fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
@@ -280,7 +281,7 @@ std::ofstream fsommets(fichier, std::ios::out);
         }
         fsommets.close();
     }
-        else
+    else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
@@ -290,8 +291,8 @@ std::ofstream fsommets(fichier, std::ios::out);
                 SAUVEGARDE DES ARETTES
     ***********************************************************/
     fichier = nomFichier+"_Arettes.txt";
-std::ofstream farettes(fichier, std::ios::out);
-        if(farettes)
+    std::ofstream farettes(fichier, std::ios::out);
+    if(farettes)
     {
         for (auto it = m_edges.begin(); it!=m_edges.end(); ++it)
         {
@@ -304,7 +305,7 @@ std::ofstream farettes(fichier, std::ios::out);
         }
         farettes.close();
     }
-        else
+    else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
     }
@@ -377,3 +378,62 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 }
 
+void Graph::renouvellement_ordre()
+{
+    m_ordre=0;
+
+    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+    {
+        m_ordre++;
+    }
+    // std::cout << m_ordre << std::endl;
+}
+
+
+/// Tableau d'adjance remlpi à partir des maps de sommets et d'arrêtes, modifiable en cours d'execution du code
+void Graph::remplir_tab_adj()
+{
+    int i=0, j=0;
+    /// 1er parcours du map de sommets
+    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+    {
+        j=0;
+        /// alloué le tableau d'adjance
+        m_tab_adj.resize(m_ordre);
+        /// 2eme parcours du map de sommets
+        for(auto im=m_vertices.begin(); im!=m_vertices.end(); im++)
+        {
+            /// alloué le tableau d'adjance d'indice i
+            m_tab_adj[i].resize(m_ordre,0);
+            /// si le sommet de partant n'est pas le même que celui d'arrivée
+            if(i!=j)
+            {
+                /// on parcours le tableau d'arêtes
+                for (int k=0; k<m_edges.size(); k++)
+                {
+                    /// si on trouve une arête qui a le même sommet partant que i et le même sommet entrant que j alors notre tableau d'adjance[i][j] = 1
+                    if(m_edges[k].m_from == i  && m_edges[k].m_to==j)
+                    {
+                        m_tab_adj[i][j]=1;
+                        k=m_edges.size();
+                    }
+                    /// sinon tableau d'adjance [i][j]=0
+                    else
+                    {
+                        m_tab_adj[i][j]=0;
+                    }
+                }
+            }
+            /// sinon si i = j alors tableau d'adjance = 1 car un sommet est forcément adjacent à lui même
+            else
+            {
+                m_tab_adj[i][j]=1;
+            }
+            /// affichage du tableau d'adjance en console POUR TESTER !!!!
+            std::cout << m_tab_adj[i][j] << " ";
+            j++;
+        }
+        std::cout << std::endl;
+        i++;
+    }
+}

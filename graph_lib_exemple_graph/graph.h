@@ -291,6 +291,14 @@ class Graph
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
 
+        /// le nombre de sommets
+        int m_ordre=0;
+
+        /// un tableau d'adjacece
+        std::vector<std::vector<int>> m_tab_adj;
+
+
+
 
     public:
 
@@ -310,6 +318,15 @@ class Graph
 
         void chargerFichier(int ordre);
         void sauverFichier(int ordre);
+
+
+
+        ///methode pour remplir le tableau d'adjaence
+        void remplir_tab_adj();
+
+
+        /// methode pour avoir le nombre de sommets en temps réel
+        void renouvellement_ordre();
 
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
