@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+﻿
 0 30 200 100 clown1.jpg
 1 60 400 100 clown2.jpg
 2 50.0 100 300 clown3.jpg
@@ -7,14 +7,3 @@
 5 0.0 100 450 clown6.jpg
 6  0.0 300 450 clown7.jpg
 7  0.0 500 450 clown8.jpg
-=======
-
-0 30 36 66 clown1.jpg
-1 28.5714 561 36 clown2.jpg
-2 50 135 298 clown3.jpg
-3 54.2857 342 285 clown4.jpg
-4 100 575 268 clown5.jpg
-5 0 72 449 clown6.jpg
-6 0 305 483 clown7.jpg
-7 0 568 467 clown8.jpg
->>>>>>> ft_connexité

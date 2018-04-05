@@ -402,7 +402,6 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 }
 
-<<<<<<< HEAD
 
 /// eidx index of edge to remove
 void Graph::remove_edge(int eidx)
@@ -483,8 +482,6 @@ void Graph::add_edge(int from, int to)
     std::cout << "coucou 14";
 }
 
-
-=======
 void Graph::renouvellement_ordre()
 {
     m_ordre=0;
@@ -544,4 +541,3 @@ void Graph::remplir_tab_adj()
         i++;
     }
 }
->>>>>>> ft_connexité
