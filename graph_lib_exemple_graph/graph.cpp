@@ -224,6 +224,7 @@ void Graph::chargerFichier(int ordre)
     {
         std::cout << "impossible de ouvrir le fichier" << fichier << std::endl;
     }
+
     /***********************************************************
                 CHARGEMENT DES ARETTES
     ***********************************************************/
@@ -401,6 +402,7 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 }
 
+<<<<<<< HEAD
 
 /// eidx index of edge to remove
 void Graph::remove_edge(int eidx)
@@ -482,3 +484,64 @@ void Graph::add_edge(int from, int to)
 }
 
 
+=======
+void Graph::renouvellement_ordre()
+{
+    m_ordre=0;
+
+    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+    {
+        m_ordre++;
+    }
+    // std::cout << m_ordre << std::endl;
+}
+
+
+/// Tableau d'adjance remlpi ‡ partir des maps de sommets et d'arrÍtes, modifiable en cours d'execution du code
+void Graph::remplir_tab_adj()
+{
+    int i=0, j=0;
+    /// 1er parcours du map de sommets
+    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+    {
+        j=0;
+        /// allouÈ le tableau d'adjance
+        m_tab_adj.resize(m_ordre);
+        /// 2eme parcours du map de sommets
+        for(auto im=m_vertices.begin(); im!=m_vertices.end(); im++)
+        {
+            /// allouÈ le tableau d'adjance d'indice i
+            m_tab_adj[i].resize(m_ordre,0);
+            /// si le sommet de partant n'est pas le mÍme que celui d'arrivÈe
+            if(i!=j)
+            {
+                /// on parcours le tableau d'arÍtes
+                for (int k=0; k<m_edges.size(); k++)
+                {
+                    /// si on trouve une arÍte qui a le mÍme sommet partant que i et le mÍme sommet entrant que j alors notre tableau d'adjance[i][j] = 1
+                    if(m_edges[k].m_from == i  && m_edges[k].m_to==j)
+                    {
+                        m_tab_adj[i][j]=1;
+                        k=m_edges.size();
+                    }
+                    /// sinon tableau d'adjance [i][j]=0
+                    else
+                    {
+                        m_tab_adj[i][j]=0;
+                    }
+                }
+            }
+            /// sinon si i = j alors tableau d'adjance = 1 car un sommet est forcÈment adjacent ‡ lui mÍme
+            else
+            {
+                m_tab_adj[i][j]=1;
+            }
+            /// affichage du tableau d'adjance en console POUR TESTER !!!!
+            std::cout << m_tab_adj[i][j] << " ";
+            j++;
+        }
+        std::cout << std::endl;
+        i++;
+    }
+}
+>>>>>>> ft_connexit√©

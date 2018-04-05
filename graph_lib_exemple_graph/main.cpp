@@ -14,6 +14,8 @@ int main()
 
     Graph testFichier;
     testFichier.chargerFichier(graph);
+    testFichier.renouvellement_ordre();
+    testFichier.remplir_tab_adj();
 
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -22,6 +24,9 @@ int main()
     {
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
+
+
+       testFichier.renouvellement_ordre();
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
