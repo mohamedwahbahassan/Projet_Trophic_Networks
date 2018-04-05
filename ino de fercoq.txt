@@ -1,0 +1,75 @@
+
+Information pour le projet d'informatique !
+M. Fercoq m'a fais parvenir ceci suite à un échange par mail:
+
+Tout d'abord un errata : compléter à la FIN de Graph::add_interfaced_edge
+
+/// OOOPS ! Prendre en compte l'arc ajouté dans la topologie du graphe !
+m_edges[idx].m_from = id_vert1;
+m_edges[idx].m_to = id_vert2;
+
+m_vertices[id_vert1].m_out.push_back(idx);
+m_vertices[id_vert2].m_in.push_back(idx);
+
+Je me suis fait avoir parce qu'à l'interface ça paraissait bien.
+CECI explique que des étudiants ce sont plaints d'avoir des indices de sommets m_from et m_to bizarres sur les Edge (de fait ils n'étaient pas initialiser)
+La solution donnée ici est un PATCH de fortune !!!! il serait préférable de revoir le prototype de la méthode (ce qui implique d'aller modifier ailleurs...)!
+
+D'autre part, la suppression d'un arc est effectivement loin d'être triviale, je propose le code ci-après qui montre quoi faire (et quoi ne pas faire) !
+Il n'est pas exclu qu'il subsiste des problèmes....
+
+Pour effacer un sommet il conviendra d'effacer d'abord les arcs qui le relient aux autres
+
+/// eidx index of edge to remove
+void Graph::test_remove_edge(int eidx)
+{
+/// référence vers le Edge à enlever
+Edge &remed=m_edges.at(eidx);
+
+std::cout << "Removing edge " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
+
+/// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
+std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
+std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
+std::cout << m_edges.size() << std::endl;
+
+/// test : on a bien des éléments interfacés
+if (m_interface && remed.m_interface)
+{
+/// Ne pas oublier qu'on a fait ça à l'ajout de l'arc :
+/* EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]); */
+/* m_interface->m_main_box.add_child(ei->m_top_edge); */
+/* m_edges[idx] = Edge(weight, ei); */
+/// Le new EdgeInterface ne nécessite pas de delete car on a un shared_ptr
+/// Le Edge ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
+/// mais il faut bien enlever le conteneur d'interface m_top_edge de l'arc de la main_box du graphe
+m_interface->m_main_box.remove_child( remed.m_interface->m_top_edge );
+}
+
+/// Il reste encore à virer l'arc supprimé de la liste des entrants et sortants des 2 sommets to et from !
+/// References sur les listes de edges des sommets from et to
+std::vector<int> &vefrom = m_vertices[remed.m_from].m_out;
+std::vector<int> &veto = m_vertices[remed.m_to].m_in;
+vefrom.erase( std::remove( vefrom.begin(), vefrom.end(), eidx ), vefrom.end() );
+veto.erase( std::remove( veto.begin(), veto.end(), eidx ), veto.end() );
+
+/// Le Edge ne nécessite pas non plus de delete car on n'a pas fait de new (sémantique par valeur)
+/// Il suffit donc de supprimer l'entrée de la map pour supprimer à la fois l'Edge et le EdgeInterface
+/// mais malheureusement ceci n'enlevait pas automatiquement l'interface top_edge en tant que child de main_box !
+m_edges.erase( eidx );
+
+/// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
+std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
+std::cout << m_vertices[remed.m_to].m_in.size() << " " << m_vertices[remed.m_to].m_out.size() << std::endl;
+std::cout << m_edges.size() << std::endl;
+
+}
+
+Voilà, j'espère que cela va vous aider, pensez bien sur à adapter et s'inspirer de ce code et non le copier/coller!
+
+Bon courage :)
+
+PS: Graph et InterfaceGraph ne sont pas dépendant: 
+"Graph ne dépend pas de l'interface mais pour avoir un graph sans interface il faut le construire sans interface dès le départ !! (code à faire et non fourni)"
+
+-> Si les shared_ptr m_interface sont laissés à nullptr (valeur par défaut) alors tout se comporte comme un graphe sans interface.

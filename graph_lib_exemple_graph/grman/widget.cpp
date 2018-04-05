@@ -186,16 +186,18 @@ void WidgetText::set_message(std::string message)
 
 void WidgetCheckBox::draw()
 {
-    if (m_value)
+    /**     if (m_value)
     {
-        thick_line(m_view, m_view->w/4, m_view->h/4,   m_view->w/2, m_view->h-3, 2, VERT );
-        thick_line(m_view, m_view->w-3, 0,            m_view->w/2, m_view->h-3, 2, VERT );
+        thick_line(m_view, m_view->w/4, m_view->h/4,   m_view->w/2, m_view->h-3, 1, VERT );
+        thick_line(m_view, m_view->w-3, 0,            m_view->w/2, m_view->h-3, 1, VERT );
     }
-    else
-    {
-        thick_line(m_view, 0, 0,           m_view->w, m_view->h, 2, ROUGE );
-        thick_line(m_view, 0, m_view->h,    m_view->w, 0,        2, ROUGE );
-    }
+     *
+     */
+
+
+        thick_line(m_view, 0, 0,           m_view->w, m_view->h, 1, BLANC );
+        thick_line(m_view, 0, m_view->h,    m_view->w, 0,        1, BLANC );
+
 
 }
 
@@ -359,7 +361,7 @@ void WidgetEdge::draw()
     p[1] = m_attach[1]->get_abs_frame().intersect(-vec_dir);
 
     // Dessin du lien cadre à cadre
-    thick_line(page, p[0].x, p[0].y, p[1].x, p[1].y, m_thickness , m_color);
+    thick_line(page, p[0].x, p[0].y, p[1].x, p[1].y, m_thicknessLine , m_color);
 
     // Calcul du nouveau vecteur cadre à cadre
     vec_dir = p[1] - p[0];
@@ -392,8 +394,8 @@ void WidgetEdge::draw()
             /// Pointe de flèche
             if (itm.m_type == ArrowItemType::Arrow)
             {
-                thick_line(page, head.x, head.y, ap1.x, ap1.y, m_thickness, m_color);
-                thick_line(page, head.x, head.y, ap2.x, ap2.y, m_thickness, m_color);
+                thick_line(page, head.x, head.y, ap1.x, ap1.y, m_thicknessLine, m_color);
+                thick_line(page, head.x, head.y, ap2.x, ap2.y, m_thicknessLine, m_color);
             }
 
             /// Triangle
@@ -404,6 +406,13 @@ void WidgetEdge::draw()
 
 }
 
+
+
+
+void  WidgetEdge::modifierTaille(int weight)
+{
+    m_thicknessLine = (weight+10)/20;
+}
 
 
 }
