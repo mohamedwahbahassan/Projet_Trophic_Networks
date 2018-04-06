@@ -1,9 +1,8 @@
 
-0 100 11 3 clown1.jpg
-1 85.7143 359 75 clown2.jpg
-2 17.1429 23 239 clown3.jpg
-3 0 164 326 clown4.jpg
-4 52.8571 541 243 clown5.jpg
-5 0 45 428 clown6.jpg
-6 0 261 453 clown7.jpg
-7 0 528 427 clown8.jpg
+0 0 257 487 desert/vegetaux.jpg
+1 37.1429 26 353 desert/dromadaire.jpg
+2 30 526 200 desert/gazelle.jpg
+3 0 285 209 desert/adax.jpg
+4 37.1429 70 212 desert/fourmi.jpg
+5 30 382 18 desert/guepard.jpg
+6 30 58 31 desert/scorpion.jpg
