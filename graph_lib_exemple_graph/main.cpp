@@ -14,8 +14,12 @@ int main()
 
     Graph testFichier;
     testFichier.chargerFichier(graph);
-    testFichier.renouvellement_ordre();
     testFichier.remplir_tab_adj();
+
+    //testFichier.uneComposanteFortementConnexe(7);
+    testFichier.toutesLesComposantesFortementConnexes();
+
+    testFichier.affichageTableauForteConnexite();
 
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -26,12 +30,10 @@ int main()
         testFichier.update();
 
 
-       testFichier.renouvellement_ordre();
-
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
     }
-    //testFichier.add_vertex("clown1.jpg");
+    // testFichier.add_vertex("clown1.jpg");
     //testFichier.remove_vertex(3);
     //testFichier.add_edge(0,7);
     //testFichier.remove_edge(7);
