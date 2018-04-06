@@ -34,13 +34,13 @@ int main()
     Graph testFichier;
     testFichier.chargerFichier(graph);
     testFichier.ordredebase();
-   /* testFichier.remplir_tab_adj();
+    testFichier.remplir_tab_adj();
 
     testFichier.toutesLesComposantesFortementConnexes();
     testFichier.affichageTableauForteConnexite();
 
     testFichier.affichageForteConnexiteInterface();
-    */
+
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
