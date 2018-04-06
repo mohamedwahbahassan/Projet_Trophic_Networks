@@ -262,6 +262,7 @@ void Graph::WraperBoutons()
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
 void Graph::update()
 {
+    int indice = -1;
     if (!m_interface)
         return;
 
@@ -294,45 +295,30 @@ void Graph::update()
     {
         if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
         {
-            remove_edge(elt->first);
-            elt = m_edges.end();
+            indice = elt->first;
         }
     }
 
-     for (auto &elt : m_vertices)
+    if(indice != -1)
+    {
+        remove_edge(indice);
+        indice = -1;
+    }
+
+
+    for (auto &elt : m_vertices)
     {
         elt.second.post_update();
         if (elt.second.m_interface->m_box_close.get_value() == true)
         {
-
-            remove_vertex(elt.first);
-           /* remplir_tab_adj();
-            std::cout << "nouveau tableau" << std::endl;
-            toutesLesComposantesFortementConnexes();
-            affichageTableauForteConnexite();*/
-
-
+            indice = elt.first;
         }
-
-
     }
-
-    /*for (auto elt = m_vertices.begin() ; elt != m_vertices.end() ; ++elt)
+    if (indice != -1)
     {
-
-        if (elt->second.m_interface->m_box_close.get_value() == true)
-        {
-            remove_vertex(elt->first);
-            remplir_tab_adj();
-            std::cout << "nouveau tableau" << std::endl;
-            toutesLesComposantesFortementConnexes();
-            affichageTableauForteConnexite();
-            elt = m_vertices.end();
-        }
-    }*/
-
-
-
+        remove_vertex(indice);
+        indice = -1;
+    }
 
 }
 
