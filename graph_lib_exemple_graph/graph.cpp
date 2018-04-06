@@ -57,8 +57,9 @@ void Vertex::pre_update()
     if (!m_interface)
         return;
 
+
     /// Copier la valeur locale de la donnée m_value vers le slider associé
-    //m_interface->m_slider_value.set_value(m_value);
+    m_interface->m_slider_value.set_value(m_value);
 
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
     m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
@@ -72,9 +73,9 @@ void Vertex::post_update()
         return;
 
     /// Reprendre la valeur du slider dans la donnée m_value locale
+
     m_value = m_interface->m_slider_value.get_value();
 }
-
 
 
 /***************************************************
@@ -340,15 +341,18 @@ void Graph::chargerFichier(int ordre)
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
-        nomFichier = "graph2";
+
+        nomFichier = "desert";
     else if (ordre == 2)
-        nomFichier = "patate";
+        nomFichier = "banquise";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
     std::string fichier;
     int idx,x,y,vert1,vert2;
     double value;
+    ///add by jojo
+    float r,c;
     std::string picture_name;
 
     /***********************************************************
@@ -364,10 +368,20 @@ void Graph::chargerFichier(int ordre)
             fsommets>>value;
             fsommets>>x;
             fsommets>>y;
+
+            std::cout << y << "\n";
+
+            fsommets>> r; /// Rythme Croissance
+            fsommets>> c; ///Coeff Pondéré
+
+                      ///add by jojo
+            std::cout << r << "\n";
+            std::cout << c << "\n";
+
             fsommets>> picture_name;
             std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
 
-            add_interfaced_vertex(idx, value, x, y, picture_name);
+            add_interfaced_vertex(idx, value, x, y, picture_name,idx,r,c); ///Changed by jojo
 
         }
         fsommets.close();
@@ -380,7 +394,7 @@ void Graph::chargerFichier(int ordre)
     /***********************************************************
                 CHARGEMENT DES ARETTES
     ***********************************************************/
-    fichier = nomFichier+"_Arettes.txt"; //modif du nom de l'appel fichier
+    fichier = nomFichier+"_Aretes.txt"; //modif du nom de l'appel fichier
     std::ifstream farettes (fichier, std::ios::in);
     if(farettes)
     {
@@ -419,9 +433,9 @@ void Graph::sauverFichier(int ordre)
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
-        nomFichier = "graph1";
+        nomFichier = "desert";
     else if (ordre == 2)
-        nomFichier = "patate";
+        nomFichier = "banquise";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
@@ -441,8 +455,15 @@ void Graph::sauverFichier(int ordre)
             fsommets << it->second.m_value << " ";
             fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
             fsommets << it->second.m_interface->m_top_box.get_posy() +2 << " ";
-            fsommets << it->second.m_interface->m_img.get_pic_name();
 
+            std::cout << "\n rythme " << it->second.m_rythmeCroissance;
+
+            std::cout << "\n coeff " << it->second.m_coeffPondere;
+
+            fsommets << it->second.m_rythmeCroissance << " ";
+            fsommets << it->second.m_coeffPondere << " ";
+
+            fsommets << it->second.m_interface->m_img.get_pic_name();
         }
         fsommets.close();
     }
@@ -453,9 +474,9 @@ void Graph::sauverFichier(int ordre)
 
 
     /***********************************************************
-                SAUVEGARDE DES ARETTES
+                SAUVEGARDE DES ARETES
     ***********************************************************/
-    fichier = nomFichier+"_Arettes.txt";
+    fichier = nomFichier+"_Aretes.txt";
     std::ofstream farettes(fichier, std::ios::out);
     if(farettes)
     {
@@ -480,7 +501,7 @@ void Graph::sauverFichier(int ordre)
 
 
 /// Aide à l'ajout de sommets interfacés
-void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx )
+void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx, float r, float c)
 {
     if ( m_vertices.find(idx)!=m_vertices.end() )
     {
@@ -492,12 +513,14 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     // Ajout de la top box de l'interface de sommet
     m_interface->m_main_box.add_child(vi->m_top_box);
     // On peut ajouter directement des vertices dans la map avec la notation crochet :
-    m_vertices[idx] = Vertex(value, vi);
-
 
     ///
     remplir_tab_adj();
     std::cout << "nouveau tableau" << std::endl;
+    std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
+    m_vertices[idx] = Vertex(value, vi, r, c);
+    std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
+
 }
 
 /// Aide à l'ajout d'arcs interfacés
@@ -527,6 +550,7 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 
 }
+
 
 
 /// eidx index of edge to remove
@@ -807,3 +831,87 @@ void Graph::affichageTableauForteConnexite()
         std::cout << std::endl;
     }
 }
+
+/*************************************************
+*********** SIMULATION DE POPULATION *************
+**************************************************/
+
+/// Fonction: permet de calculer la population en temps réel en fonction de la population de départ
+
+void Graph::CalculPop()
+{
+
+    m_vertices[0].m_rythmeCroissance= 1;
+    m_vertices[1].m_rythmeCroissance= 0.5;
+    m_vertices[2].m_rythmeCroissance= 0.1;
+
+    for (auto &e : m_vertices)
+    {
+        std::cout << "SOMMET" << std::endl;
+        std::cout << "valeur initiale" << e.second.m_value<< std::endl;
+
+///Calcul de la capacité de portage de l'environnement
+
+        for(unsigned int i=0; i<e.second.m_in.size(); i++)
+        {
+            std::cout << "poids des arcs entrant" << std::endl;
+            std::cout << (m_edges[e.second.m_in[i]].m_weight)/100 << std::endl;
+            std::cout << "valeur des sommet desquelles partent l'arc:" << std::endl;
+            std::cout << m_vertices[m_edges[e.second.m_in[i]].m_from].m_value << std::endl;
+
+            e.second.m_capacite = e.second.m_capacite
+
+            /// ex: K lapin = Coeff(herbe->lapin)* N herbe :  Capacité = Poids de l'arc entrante * valeur du sommet 1 de l'arc entrante
+            + (m_edges[e.second.m_in[i]].m_weight) * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
+
+        }
+
+
+///Calcul de la quantité consommée
+
+       for(unsigned int i=0; i<e.second.m_out.size(); i++)
+
+        {
+            std::cout << "Poids des arcs sortant" << std::endl;
+            std::cout << (m_edges[e.second.m_out[i]].m_weight)/100 << std::endl;
+            std::cout << "valeur des sommet vers lesquelles poitent l'arc:" << std::endl;
+            std::cout << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << std::endl;
+
+            e.second.m_quantiteConsomme = e.second.m_quantiteConsomme
+
+            /// ex: K2 herbe= Coeff (herbe->lapin)* N lapin : Quantité consommée = Poids de l'arc sortante * valeur du sommet 2 de l'arc sortante
+             + (m_edges[e.second.m_out[i]].m_weight)/100 * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
+        }
+
+///Calcul de l'évolution de la population à partir d'un certain temps
+
+        if(e.second.m_capacite!=0)
+        {
+         e.second.m_value = e.second.m_value
+         + e.second.m_rythmeCroissance * e.second.m_value * (1-(e.second.m_value/e.second.m_capacite)) ///R * N (1 - N/K)
+         - e.second.m_quantiteConsomme * e.second.m_coeffPondere; ///R2*CoeffPondere
+
+        }
+        else
+        {
+            ///Si la capacité de portage de l'environnement est égale à 0, l'espèce meurt
+
+            std::cout << "division par 0, l'espèce meurt de toute maniere" << std::endl;
+            //e.second.m_value = 0;
+        }
+
+        ///Si on obtient une population négative, value=0
+
+        if(e.second.m_value < 0)
+        {
+            e.second.m_value=0;
+        }
+        std::cout << "1: capacite: " << e.second.m_capacite << std::endl;
+        std::cout << "2: quantite consomme: " << e.second.m_quantiteConsomme<< std::endl;
+        std::cout << "3:nouvelle valeur:" <<e.second.m_value << std::endl;
+        std::cout << std::endl << std::endl;
+
+    }
+
+}
+
