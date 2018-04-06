@@ -1,4 +1,4 @@
-﻿0 30 200 100 clown1.jpg
+﻿﻿0 30 200 100 clown1.jpg
 1 60 400 100 clown2.jpg
 2 50.0 100 300 clown3.jpg
 3 100.0 300 300 clown4.jpg

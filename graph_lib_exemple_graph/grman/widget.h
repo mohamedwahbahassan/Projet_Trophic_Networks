@@ -61,9 +61,9 @@ class Widget
 
         int m_bg_color = -1;
 
-        int m_border_color = GRISSOMBRE;
-        int m_border_color_over = VIOLETSOMBRE;
-        int m_border_color_focus = ORANGESOMBRE;
+        int m_border_color = GRISCLAIR;
+        int m_border_color_over = BLANC;
+        int m_border_color_focus = ROUGE;
 
         int m_border = 1;
         int m_margin = 1;
@@ -139,14 +139,11 @@ class Widget
         Coords get_pos() { return Coords(get_posx(), get_posy()); }
 
 
-        void set_gravity_xy(GravityX gx, GravityY gy)
-            { m_gravity_x=gx; m_gravity_y=gy; reframe(); }
+        void set_gravity_xy(GravityX gx, GravityY gy){ m_gravity_x=gx; m_gravity_y=gy; reframe(); }
 
-        void set_gravity_x(GravityX gx)
-            { m_gravity_x=gx; reframe(); }
+        void set_gravity_x(GravityX gx){ m_gravity_x=gx; reframe(); }
 
-        void set_gravity_y(GravityY gy)
-            { m_gravity_y=gy; reframe(); }
+        void set_gravity_y(GravityY gy){ m_gravity_y=gy; reframe(); }
 
         void set_margin(int margin) { m_margin=margin; reframe(); }
         void set_border(int border) { m_border=border; reframe(); }
@@ -154,10 +151,8 @@ class Widget
         //void set_(int ) { m_=; }
 
         // Usage "interne"
-        Frame get_parent_frame()
-            { return m_parent ? m_parent->m_frame : page_frame; }
-        Frame get_parent_abs_frame()
-            { return m_parent ? m_parent->m_abs_frame : page_frame; }
+        Frame get_parent_frame(){ return m_parent ? m_parent->m_frame : page_frame; }
+        Frame get_parent_abs_frame(){ return m_parent ? m_parent->m_abs_frame : page_frame; }
 
         void reset_posx(int x) { m_frame.pos.x = x+get_parent_bp(); }
         void reset_posy(int y) { m_frame.pos.y = y+get_parent_bp(); }
@@ -188,6 +183,9 @@ class Widget
         /// Les accesseurs de "styles" sont à compléter...
         void set_bg_color(int bgc) { m_bg_color = bgc; }
         int get_border_color() { return is_gui_focus() ? m_border_color_focus : is_gui_over() ? m_border_color_over : m_border_color; }
+
+        void set_border_color(int color) {m_border_color = color;m_border_color_over = color;m_border_color_focus = color;}
+        void set_border_color_notouch(int color) {m_border_color = color;}
 
         Widget(const Widget&) = delete;
         Widget & operator=(const Widget&) = delete;
@@ -415,7 +413,7 @@ class WidgetEdge : public Widget
         // Elements de décoration : pointes de flèches, rond etc...
         std::vector<ArrowItem> m_items;
 
-        int m_color = GRISSOMBRE;
+        int m_color = NOIR;
         int m_thicknessArrow = 2;
         double m_thicknessLine;
 

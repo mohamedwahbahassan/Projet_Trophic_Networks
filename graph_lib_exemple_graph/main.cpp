@@ -1,7 +1,19 @@
 #include "grman/grman.h"
-
-
 #include "graph.h"
+#include "utilitaire.h"
+
+
+
+
+
+
+void MenuPrincipal()
+{
+
+}
+
+
+
 
 int main()
 {
@@ -12,6 +24,8 @@ int main()
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
 
+    MenuPrincipal();
+
     Graph testFichier;
     testFichier.chargerFichier(graph);
     testFichier.remplir_tab_adj();
@@ -20,7 +34,6 @@ int main()
     testFichier.toutesLesComposantesFortementConnexes();
 
     testFichier.affichageTableauForteConnexite();
-
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
@@ -38,8 +51,6 @@ int main()
     //testFichier.add_edge(0,7);
     //testFichier.remove_edge(7);
 
-
-
     //testFichier.sauverFichier(graph);
 
     grman::fermer_allegro();
@@ -47,5 +58,21 @@ int main()
     return 0;
 }
 END_OF_MAIN();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
