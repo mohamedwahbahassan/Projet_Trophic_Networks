@@ -44,6 +44,10 @@ int main()
     //testFichier.add_edge(0,7);
     //testFichier.remove_edge(7);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ecb6c43274334c6a1e42913b0c1fb05de869f6fe
 
     //testFichier.sauverFichier(graph);
 
