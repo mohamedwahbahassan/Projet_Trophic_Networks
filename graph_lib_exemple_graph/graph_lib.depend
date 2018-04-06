@@ -54,7 +54,7 @@
 	<iostream>
 	"graph.h"
 
-1523042882 D
+1523037894 D
 	"grman.h"
 	<iostream>
 	<string>
@@ -172,10 +172,42 @@
 	"grman/grman.h"
 	"graph.h"
 
-1523044331 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
+1523048383 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
+
+1523037894 fortementConnexe
+	"graph.h"
+	<fstream>
+	<iostream>
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+	"grman/grman.h"
+	"graph.h"
+	"utilitaire.h"
+	<time.h>
 
 1523040691 evolution
 	"graph.h"
@@ -276,7 +308,7 @@
 
 1522841579 
 
-1523043597 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\graph.h
+1523044649 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
@@ -297,7 +329,7 @@
 	<cmath>
 	<cmath>
 
-1523043597 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
+1523044648 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
 	"grman.h"
 	<iostream>
 	<string>
@@ -327,7 +359,7 @@
 1523043597 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1523044331 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
+1523046817 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
 	"grman/grman.h"
 	"graph.h"
 	"utilitaire.h"

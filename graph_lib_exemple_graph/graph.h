@@ -148,6 +148,8 @@ private :
     float m_rythmeCroissance; ///r: rythme de croissance differente pour chaque population
     float m_coeffPondere; /// ar le modèle proposé n'est pas étalonné sur des échelles homogènes
 
+
+
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<VertexInterface> m_interface = nullptr;
 
@@ -346,6 +348,8 @@ private :
     /// tableau de forte connexe
     std::vector<std::vector<int>> m_tab_forte_connexite;
 
+    int m_ordre;
+
 
 
 
@@ -381,6 +385,11 @@ public:
     void toutesLesComposantesFortementConnexes();
     void affichageTableauForteConnexite();
 
+    void affichageForteConnexiteInterface();
+
+
+    ///
+    void ordredebase();
 
     /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
     void update();

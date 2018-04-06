@@ -360,7 +360,8 @@ class WidgetBox : public Widget
 
 
     public :
-
+/// MOOOOOOOOOOOOOOOMOOOOOOOOOOOOOOO
+        void set_border_color(int color) {m_border_color=color;}
         virtual void interact_focus();
         virtual bool captures_focus() { return true; }
         void set_moveable(bool moveable=true) { m_moveable = moveable; }

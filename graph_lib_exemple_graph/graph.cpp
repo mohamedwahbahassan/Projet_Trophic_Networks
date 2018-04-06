@@ -13,7 +13,12 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
     m_top_box.set_pos(x, y);
     m_top_box.set_dim(130, 100);
     m_top_box.set_moveable();
+
     //m_top_box.set_border_color(ROUGE);
+
+    // m_top_box.set_border_color(VERT);
+
+
     // Le slider de réglage de valeur
     m_top_box.add_child( m_slider_value );
     m_slider_value.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
@@ -63,6 +68,7 @@ void Vertex::pre_update()
 
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
     m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
+
 }
 
 
@@ -75,6 +81,8 @@ void Vertex::post_update()
     /// Reprendre la valeur du slider dans la donnée m_value locale
 
     m_value = m_interface->m_slider_value.get_value();
+
+
 }
 
 
@@ -263,12 +271,16 @@ void Graph::WraperBoutons()
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
 void Graph::update()
 {
+
+ //   std::cout << "coucocu leo 2\n";
+
     int indice = -1;
+    int ok =0;
     if (!m_interface)
         return;
 
 
-
+   // std::cout << "coucocu leo 3\n";
     WraperBoutons();
 
     for (auto &elt : m_vertices)
@@ -276,7 +288,6 @@ void Graph::update()
 
     for (auto &elt : m_edges)
         elt.second.pre_update();
-
 
 
     m_interface->m_top_box.update(); /// a placer au milieu
@@ -294,11 +305,15 @@ void Graph::update()
 
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
+
+     //   std::cout << "coucocu leo 4 " << elt->first << std::endl;
         if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
         {
+       //     std::cout << "coucocu leo 5\n";
             indice = elt->first;
         }
     }
+
 
     if(indice != -1)
     {
@@ -313,13 +328,37 @@ void Graph::update()
         if (elt.second.m_interface->m_box_close.get_value() == true)
         {
             indice = elt.first;
+            ok=1;
         }
     }
     if (indice != -1)
     {
         remove_vertex(indice);
+
+
+        // std::cout << "couccou leo" << std::endl;
+
         indice = -1;
     }
+    if(ok == 1)
+    {
+        for( auto &elt : m_vertices)
+        {
+            remplir_tab_adj();
+         //   std::cout << "coucocu leo \n";
+            /*
+            toutesLesComposantesFortementConnexes();
+            affichageTableauForteConnexite();
+            affichageForteConnexiteInterface();
+            std::cout << "momo" << std::endl;
+            */
+
+        }
+
+        ok=0;
+
+    }
+
 
 }
 
@@ -372,14 +411,14 @@ void Graph::chargerFichier(int ordre)
             fsommets>>x;
             fsommets>>y;
 
-            std::cout << y << "\n";
+            //std::cout << y << "\n";
 
             fsommets>> r; /// Rythme Croissance
             fsommets>> c; ///Coeff Pondéré
 
-                      ///add by jojo
-            std::cout << r << "\n";
-            std::cout << c << "\n";
+            ///add by jojo
+            //std::cout << r << "\n";
+            //std::cout << c << "\n";
 
             fsommets>> picture_name;
             std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
@@ -437,6 +476,7 @@ void Graph::sauverFichier(int ordre)
     }
     else if (ordre == 1)
         nomFichier = "banquise";
+
     else if (ordre == 2)
         nomFichier = "desert";
 
@@ -459,9 +499,9 @@ void Graph::sauverFichier(int ordre)
             fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
             fsommets << it->second.m_interface->m_top_box.get_posy() +2 << " ";
 
-            std::cout << "\n rythme " << it->second.m_rythmeCroissance;
+            //std::cout << "\n rythme " << it->second.m_rythmeCroissance;
 
-            std::cout << "\n coeff " << it->second.m_coeffPondere;
+            //std::cout << "\n coeff " << it->second.m_coeffPondere;
 
             fsommets << it->second.m_rythmeCroissance << " ";
             fsommets << it->second.m_coeffPondere << " ";
@@ -517,9 +557,10 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     m_interface->m_main_box.add_child(vi->m_top_box);
     // On peut ajouter directement des vertices dans la map avec la notation crochet :
 
+
     ///
-    remplir_tab_adj();
-    std::cout << "nouveau tableau" << std::endl;
+//   remplir_tab_adj();
+    // std::cout << "nouveau tableau" << std::endl;
     std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
     m_vertices[idx] = Vertex(value, vi, r, c);
     std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
@@ -635,20 +676,29 @@ void Graph::add_edge(int from, int to)
     add_interfaced_edge(indice + 1,from,to,50);
     std::cout << "coucou 14";
 }
-
-
 /// Tableau d'adjance remlpi à partir des maps de sommets et d'arrêtes, modifiable en cours d'execution du code
 void Graph::remplir_tab_adj()
 {
     int i=0, j=0;
+    std::cout << "ordre est " << m_ordre << std::endl;
+    bool ok = true;
 
-    m_tab_adj.resize(m_vertices.size());
+    m_tab_adj.resize(m_ordre);
+    for(i=0; i<m_ordre; i++)
+    {
+        m_tab_adj[i].resize(m_ordre,0);
+        for(j=0; j<m_ordre; j++)
+        {
+            m_tab_adj[i][j]=0;
+        }
+    }
+
     /// 1er parcours du map de sommets
+    i=0;
     for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
     {
         j=0;
         /// alloué le tableau d'adjance
-        m_tab_adj[i].resize(m_vertices.size(),0);
         /// 2eme parcours du map de sommets
         for(auto im=m_vertices.begin(); im!=m_vertices.end(); im++)
         {
@@ -657,37 +707,47 @@ void Graph::remplir_tab_adj()
             /// si le sommet de partant n'est pas le même que celui d'arrivée
             if(i!=j)
             {
+
                 /// on parcours le tableau d'arêtes
-                for (int k=0; k<m_edges.size(); k++)
+                for (auto k=m_edges.end(); k!=m_edges.begin(); k--)
                 {
-                    /// si on trouve une arête qui a le même sommet partant que i et le même sommet entrant que j alors notre tableau d'adjance[i][j] = 1
-                    if(m_edges[k].m_from == it->first  && m_edges[k].m_to==im ->first)
-                    {
-                        m_tab_adj[i][j]=1;
-                        k=m_edges.size();
-                    }
-                    /// sinon tableau d'adjance [i][j]=0
-                    else
-                    {
-                        m_tab_adj[i][j]=0;
-                    }
+
+                        /// si on trouve une arête qui a le même sommet partant que i et le même sommet entrant que j alors notre tableau d'adjance[i][j] = 1
+                        if(k->second.m_from == it->first  && k->second.m_to==im ->first)
+                        {
+                            m_tab_adj[it->first][im->first]=1;
+                           // k=m_edges.begin();
+                        }
+                        else
+                        {
+                            m_tab_adj[it->first][im->first]=0;
+
+                        }
+
+
                 }
             }
             /// sinon si i = j alors tableau d'adjance = 1 car un sommet est forcément adjacent à lui même
             else
             {
-                m_tab_adj[i][j]=1;
+                m_tab_adj[it->first][im->first]=1;
             }
-
-
-
-            /// affichage du tableau d'adjance en console POUR TESTER !!!!
-            std::cout << m_tab_adj[i][j] << " ";
             j++;
         }
-        std::cout << std::endl;
         i++;
     }
+
+    for(i=0; i<m_ordre; i++)
+    {
+        for(j=0; j<m_ordre; j++)
+        {
+            std::cout<< m_tab_adj[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+
+
 }
 
 std::vector <int> Graph::uneComposanteFortementConnexe(int s)
@@ -703,12 +763,12 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
     int i;
 
 
-    c1.resize(m_vertices.size());
-    c2.resize(m_vertices.size());
-    c.resize(m_vertices.size());
-    marques.resize(m_vertices.size());
+    c1.resize(m_ordre);
+    c2.resize(m_ordre);
+    c.resize(m_ordre);
+    marques.resize(m_ordre);
 
-    for(i=0; i<m_vertices.size(); i++)
+    for(i=0; i<m_ordre; i++)
     {
         c1[i]=0;
         c2[i] =0;
@@ -723,12 +783,12 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
     {
         ajoute =0;
 
-        for(x=0; x<m_vertices.size(); x++)
+        for(x=0; x<m_ordre; x++)
         {
             if(!marques[x] && c1[x])
             {
                 marques[x]=1;
-                for(y=0; y<m_vertices.size(); y++)
+                for(y=0; y<m_ordre; y++)
                 {
                     if(m_tab_adj[x][y]&& !marques[y])
                     {
@@ -741,20 +801,20 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
         }
     }
     ajoute = 1;
-    for(x=0; x<m_vertices.size(); x++)
+    for(x=0; x<m_ordre; x++)
     {
         marques[x]=0;
     }
     while(ajoute)
     {
         ajoute=0;
-        for (x=0; x<m_vertices.size(); x++)
+        for (x=0; x<m_ordre; x++)
         {
 
             if(!marques[x] && c2[x])
             {
                 marques[x]=1;
-                for(y=0; y<m_vertices.size(); y++)
+                for(y=0; y<m_ordre; y++)
                 {
                     if(m_tab_adj[y][x] && !marques[y])
                     {
@@ -773,15 +833,11 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
 
 
 
-    for(x=0; x<m_vertices.size(); x++)
+    for(x=0; x<m_ordre; x++)
     {
         c[x]= c1[x] & c2[x];
     }
 
-    /* for(x=0; x<m_vertices.size(); x++)
-     {
-         std::cout << c[x] << std::endl;
-     }*/
     return c;
 
 }
@@ -792,24 +848,24 @@ void Graph::toutesLesComposantesFortementConnexes()
     std::vector<int> marque; /// tableau dynamique indiquant si les sommets sont marqués ou non
     int x,y;  /// numéros de sommets intermédiaires des composantes connexes
 
-    std::cout << "l'ordre est " << m_vertices.size() << std::endl;
-    marque.resize(m_vertices.size());
-    tabc.resize(m_vertices.size());
-    for(x=0; x<m_vertices.size(); x++)
+    std::cout << "l'ordre est " << m_ordre << std::endl;
+    marque.resize(m_ordre);
+    tabc.resize(m_ordre);
+    for(x=0; x<m_ordre; x++)
     {
         marque[x]=0;
-        tabc[x].resize(m_vertices.size());
-        for(y=0; y<m_vertices.size(); y++)
+        tabc[x].resize(m_ordre);
+        for(y=0; y<m_ordre; y++)
         {
             tabc[x][y]=0;
         }
     }
 
-    for(x=0; x<m_vertices.size(); x++)
+    for(x=0; x<m_ordre; x++)
     {
         tabc[x]=uneComposanteFortementConnexe(x);
         marque[x]=1;
-        for(y=0; y<m_vertices.size(); y++)
+        for(y=0; y<m_ordre; y++)
         {
             if(tabc[x][y] && !marque[y])
             {
@@ -825,15 +881,16 @@ void Graph::toutesLesComposantesFortementConnexes()
 void Graph::affichageTableauForteConnexite()
 {
     std::cout << " Tableau de forte connexité" << std::endl;
-    for(int i=0; i<m_vertices.size(); i++)
+    for(int i=0; i<m_ordre; i++)
     {
-        for(int j=0; j<m_vertices.size(); j++)
+        for(int j=0; j<m_ordre; j++)
         {
             std::cout << m_tab_forte_connexite[i][j] << " ";
         }
         std::cout << std::endl;
     }
 }
+
 
 /*************************************************
 *********** SIMULATION DE POPULATION *************
@@ -856,17 +913,17 @@ void Graph::CalculPop()
 
         for(unsigned int i=0; i<e.second.m_in.size(); i++)
         {
-           // std::cout << "poids des arcs entrant" << std::endl;
-           // std::cout << (m_edges[e.second.m_in[i]].m_weight)/100 << std::endl;
-           // std::cout << "valeur des sommet desquelles partent l'arc:" << std::endl;
-           // std::cout << m_vertices[m_edges[e.second.m_in[i]].m_from].m_value << std::endl;
+            // std::cout << "poids des arcs entrant" << std::endl;
+            // std::cout << (m_edges[e.second.m_in[i]].m_weight)/100 << std::endl;
+            // std::cout << "valeur des sommet desquelles partent l'arc:" << std::endl;
+            // std::cout << m_vertices[m_edges[e.second.m_in[i]].m_from].m_value << std::endl;
 
-           double capaciteinit= e.second.m_capacite ;
+            double capaciteinit= e.second.m_capacite ;
 
             e.second.m_capacite = e.second.m_capacite
 
-            /// ex: K lapin = Coeff(herbe->lapin)* N herbe :  Capacité = Poids de l'arc entrante * valeur du sommet 1 de l'arc entrante
-            + (m_edges[e.second.m_in[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
+                                  /// ex: K lapin = Coeff(herbe->lapin)* N herbe :  Capacité = Poids de l'arc entrante * valeur du sommet 1 de l'arc entrante
+                                  + (m_edges[e.second.m_in[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
 
             std::cout << "capacite de portage = " << capaciteinit << "+" << (m_edges[e.second.m_in[i]].m_weight)/10 << "*"<< m_vertices[m_edges[e.second.m_in[i]].m_from].m_value<< "=" << e.second.m_capacite<< std::endl;
 
@@ -875,7 +932,7 @@ void Graph::CalculPop()
 
 ///Calcul de la quantité consommée
 
-       for(unsigned int i=0; i<e.second.m_out.size(); i++)
+        for(unsigned int i=0; i<e.second.m_out.size(); i++)
 
         {
             /*std::cout << "Poids des arcs sortant" << std::endl;
@@ -886,8 +943,8 @@ void Graph::CalculPop()
             double quantiteinit =e.second.m_quantiteConsomme;
             e.second.m_quantiteConsomme = e.second.m_quantiteConsomme
 
-            /// ex: K2 herbe= Coeff (herbe->lapin)* N lapin : Quantité consommée = Poids de l'arc sortante * valeur du sommet 2 de l'arc sortante
-             + (m_edges[e.second.m_out[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
+                                          /// ex: K2 herbe= Coeff (herbe->lapin)* N lapin : Quantité consommée = Poids de l'arc sortante * valeur du sommet 2 de l'arc sortante
+                                          + (m_edges[e.second.m_out[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
 
             std::cout << "quantite consomme=" << quantiteinit << "+" << (m_edges[e.second.m_out[i]].m_weight)/10 << "*" << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << "=" << e.second.m_quantiteConsomme << std::endl;
         }
@@ -899,9 +956,9 @@ void Graph::CalculPop()
         if(e.second.m_capacite!=0)
         {
 
-         e.second.m_value = e.second.m_value
-         + e.second.m_rythmeCroissance * e.second.m_value * (1-(e.second.m_value/e.second.m_capacite)) ///R * N (1 - N/K)
-         - e.second.m_quantiteConsomme * e.second.m_coeffPondere; ///R2*CoeffPondere
+            e.second.m_value = e.second.m_value
+                               + e.second.m_rythmeCroissance * e.second.m_value * (1-(e.second.m_value/e.second.m_capacite)) ///R * N (1 - N/K)
+                               - e.second.m_quantiteConsomme * e.second.m_coeffPondere; ///R2*CoeffPondere
 
         }
         else
@@ -919,7 +976,7 @@ void Graph::CalculPop()
             e.second.m_value=0;
         }
         std::cout << "\ncalcul nouvelle valeur:" << valueinit << "+" << e.second.m_rythmeCroissance << "*" << valueinit << "*"
-        << "(1-" << valueinit << "/" << e.second.m_capacite<<")" <<"-" << e.second.m_quantiteConsomme << "*" << e.second.m_coeffPondere<< "=" << e.second.m_value << std::endl;
+                  << "(1-" << valueinit << "/" << e.second.m_capacite<<")" <<"-" << e.second.m_quantiteConsomme << "*" << e.second.m_coeffPondere<< "=" << e.second.m_value << std::endl;
         std::cout << "1: capacite: " << e.second.m_capacite << std::endl;
         std::cout << "2: quantite consomme: " << e.second.m_quantiteConsomme<< std::endl;
         std::cout << "3:nouvelle valeur:" <<e.second.m_value << std::endl;
@@ -927,5 +984,38 @@ void Graph::CalculPop()
 
     }
 
+}
+
+
+void Graph::affichageForteConnexiteInterface()
+{
+    int i,j;
+    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+    {
+        it -> second.m_interface->m_top_box.set_border_color(VERT);
+    }
+
+
+    for(int i=0; i<m_ordre-1; i++)
+    {
+        for(j=i+1; j<m_ordre; j++)
+        {
+            if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
+            {
+                m_vertices[i].m_interface->m_top_box.set_border_color(ROUGE);
+                m_vertices[j].m_interface->m_top_box.set_border_color(ROUGE);
+            }
+
+        }
+
+
+    }
+}
+
+
+void Graph::ordredebase()
+{
+    m_ordre = m_vertices.size();
+    std::cout << "ordre est " << m_ordre << std::endl;
 }
 
