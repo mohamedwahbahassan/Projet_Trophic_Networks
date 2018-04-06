@@ -4,9 +4,6 @@
 
 
 
-
-
-
 /// eidx index of edge to remove
 void Graph::remove_edge(int eidx)
 {
@@ -86,7 +83,6 @@ void Graph::add_edge(int from, int to)
     add_interfaced_edge(indice + 1,from,to,50);
     std::cout << "coucou 14";
 }
-
 
 
 

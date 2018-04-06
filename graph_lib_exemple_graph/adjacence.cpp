@@ -39,26 +39,22 @@ void Graph::remplir_tab_adj()
             /// si le sommet de partant n'est pas le même que celui d'arrivée
             if(i!=j)
             {
-
-                /// on parcours le tableau d'arêtes
-                for (auto k=m_edges.end(); k!=m_edges.begin(); k--)
+                for(int n=0; n<it->second.m_out.size(); n++)
                 {
-
-                        /// si on trouve une arête qui a le même sommet partant que i et le même sommet entrant que j alors notre tableau d'adjance[i][j] = 1
-                        if(k->second.m_from == it->first  && k->second.m_to==im ->first)
+                    for (int g=0; g<im->second.m_in.size(); g++)
+                    {
+                        if(it->second.m_out[n]==im->second.m_in[g])
                         {
                             m_tab_adj[it->first][im->first]=1;
-                           // k=m_edges.begin();
-                        }
-                        else
-                        {
-                            m_tab_adj[it->first][im->first]=0;
+                            n=it->second.m_out.size();
+                            g=im->second.m_in.size();
 
                         }
-
-
+                    }
                 }
+
             }
+
             /// sinon si i = j alors tableau d'adjance = 1 car un sommet est forcément adjacent à lui même
             else
             {
@@ -81,6 +77,9 @@ void Graph::remplir_tab_adj()
 
 
 }
+
+
+
 
 std::vector <int> Graph::uneComposanteFortementConnexe(int s)
 {

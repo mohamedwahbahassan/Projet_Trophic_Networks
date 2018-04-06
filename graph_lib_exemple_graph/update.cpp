@@ -81,15 +81,11 @@ void Edge::post_update()
 void Graph::update()
 {
 
- //   std::cout << "coucocu leo 2\n";
 
     int indice = -1;
-    int ok =0;
     if (!m_interface)
         return;
 
-
-   // std::cout << "coucocu leo 3\n";
     WraperBoutons();
 
     for (auto &elt : m_vertices)
@@ -102,10 +98,6 @@ void Graph::update()
     m_interface->m_top_box.update(); /// a placer au milieu
 
 
-    /*   for (auto &elt : m_vertices)
-           elt.second.post_update();*/
-
-
 
 
     for (auto &elt : m_edges)
@@ -115,10 +107,8 @@ void Graph::update()
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
 
-     //   std::cout << "coucocu leo 4 " << elt->first << std::endl;
         if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
         {
-       //     std::cout << "coucocu leo 5\n";
             indice = elt->first;
         }
     }
@@ -137,7 +127,7 @@ void Graph::update()
         if (elt.second.m_interface->m_box_close.get_value() == true)
         {
             indice = elt.first;
-            ok=1;
+
         }
     }
     if (indice != -1)
@@ -149,24 +139,14 @@ void Graph::update()
 
         indice = -1;
     }
-    if(ok == 1)
-    {
-        for( auto &elt : m_vertices)
-        {
-            //remplir_tab_adj();
-         //   std::cout << "coucocu leo \n";
-            /*
-            toutesLesComposantesFortementConnexes();
-            affichageTableauForteConnexite();
-            affichageForteConnexiteInterface();
-            std::cout << "momo" << std::endl;
-            */
 
-        }
+    remplir_tab_adj();
 
-        ok=0;
+    toutesLesComposantesFortementConnexes();
+    affichageTableauForteConnexite();
+    affichageForteConnexiteInterface();
 
-    }
+
 
 
 }
