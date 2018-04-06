@@ -344,7 +344,7 @@ void Graph::update()
     {
         for( auto &elt : m_vertices)
         {
-            remplir_tab_adj();
+            //remplir_tab_adj();
          //   std::cout << "coucocu leo \n";
             /*
             toutesLesComposantesFortementConnexes();
