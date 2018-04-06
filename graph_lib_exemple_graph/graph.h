@@ -201,6 +201,7 @@ class EdgeInterface
         //box de fermeture de arete
         grman::WidgetCheckBox m_box_Edge_close;
 
+
     public :
 
         // Le constructeur met en place les éléments de l'interface
@@ -286,6 +287,15 @@ class GraphInterface
 
         grman::WidgetButton m_Button_Supr_Arette;
         grman::WidgetText m_Text_Supr_arette;
+
+        grman::WidgetButton m_Button_Vit_Evolution;
+        grman::WidgetText m_Text_Vit_Evolution;
+        grman::WidgetButton m_Button_Vit_Evolution_plus;
+        grman::WidgetText m_Text_Vit_Evolution_plus;
+        grman::WidgetButton m_Button_Vit_Evolution_moins;
+        grman::WidgetText m_Text_Vit_Evolution_moins;
+
+
 
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)

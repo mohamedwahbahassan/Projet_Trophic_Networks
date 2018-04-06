@@ -13,12 +13,13 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
     m_top_box.set_pos(x, y);
     m_top_box.set_dim(130, 100);
     m_top_box.set_moveable();
-
+    //m_top_box.set_border_color(ROUGE);
     // Le slider de réglage de valeur
     m_top_box.add_child( m_slider_value );
     m_slider_value.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
     m_slider_value.set_dim(20,80);
     m_slider_value.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
+    m_slider_value.set_border_color_notouch(NOIR);
 
     // Label de visualisation de valeur
     m_top_box.add_child( m_label_value );
@@ -203,6 +204,38 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
     m_Text_Supr_arette.set_pos(1,15);
     m_Text_Supr_arette.set_message("SUPR ARETTE");
+
+
+    /**********************************************
+            BOUTON GESTION VITESSE EVOLUTION
+    **********************************************/
+    m_top_box.add_child(m_Button_Vit_Evolution); //bouton
+    m_Button_Vit_Evolution.set_dim(80,80);
+    m_Button_Vit_Evolution.set_bg_color(BLANC);
+    m_Button_Vit_Evolution.set_pos(9,200);
+    m_Button_Vit_Evolution.add_child(m_Text_Vit_Evolution);//text du bouton save
+
+    m_Text_Vit_Evolution.set_pos(3,15);
+    m_Text_Vit_Evolution.set_message("EVOLUTION");
+
+        m_Button_Vit_Evolution.add_child(m_Button_Vit_Evolution_plus); //bouton
+    m_Button_Vit_Evolution_plus.set_dim(20,20);
+    m_Button_Vit_Evolution_plus.set_bg_color(VERT);
+    m_Button_Vit_Evolution_plus.set_pos(40,40);
+    m_Button_Vit_Evolution_plus.add_child(m_Text_Vit_Evolution_plus);//text du bouton save
+
+    m_Text_Vit_Evolution_plus.set_pos(0,0);
+    m_Text_Vit_Evolution_plus.set_message("+");
+
+        m_Button_Vit_Evolution.add_child(m_Button_Vit_Evolution_moins); //bouton
+    m_Button_Vit_Evolution_moins.set_dim(20,20);
+    m_Button_Vit_Evolution_moins.set_bg_color(ROUGE);
+    m_Button_Vit_Evolution_moins.set_pos(10,40);
+    m_Button_Vit_Evolution_moins.add_child(m_Text_Vit_Evolution_moins);//text du bouton save
+
+    m_Text_Vit_Evolution_moins.set_pos(0,0);
+    m_Text_Vit_Evolution_moins.set_message("-");
+
 }
 
 void Graph::WraperBoutons()
@@ -255,15 +288,12 @@ void Graph::update()
         elt.second.post_update();
 
 
-
-
-
-    for (auto &elt : m_edges)
+    for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
-        if (elt.second.m_interface->m_box_Edge_close.get_value() == true)
+        if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
         {
-            remove_edge(elt.first);
-            &elt = m_edges.end();
+            remove_edge(elt->first);
+            elt = m_edges.end();
         }
     }
     for (auto elt = m_vertices.begin() ; elt != m_vertices.end() ; ++elt)
