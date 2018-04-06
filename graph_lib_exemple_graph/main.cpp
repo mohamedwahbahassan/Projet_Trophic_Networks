@@ -1,7 +1,19 @@
 #include "grman/grman.h"
-
-
 #include "graph.h"
+#include "utilitaire.h"
+
+
+
+
+
+
+void MenuPrincipal()
+{
+
+}
+
+
+
 
 int main()
 {
@@ -12,9 +24,10 @@ int main()
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
 
+    MenuPrincipal();
+
     Graph testFichier;
     testFichier.chargerFichier(graph);
-
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
@@ -31,7 +44,10 @@ int main()
     //testFichier.add_edge(0,7);
     //testFichier.remove_edge(7);
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> ecb6c43274334c6a1e42913b0c1fb05de869f6fe
 
     //testFichier.sauverFichier(graph);
 
@@ -40,5 +56,21 @@ int main()
     return 0;
 }
 END_OF_MAIN();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
