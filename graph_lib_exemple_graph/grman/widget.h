@@ -139,14 +139,11 @@ class Widget
         Coords get_pos() { return Coords(get_posx(), get_posy()); }
 
 
-        void set_gravity_xy(GravityX gx, GravityY gy)
-            { m_gravity_x=gx; m_gravity_y=gy; reframe(); }
+        void set_gravity_xy(GravityX gx, GravityY gy){ m_gravity_x=gx; m_gravity_y=gy; reframe(); }
 
-        void set_gravity_x(GravityX gx)
-            { m_gravity_x=gx; reframe(); }
+        void set_gravity_x(GravityX gx){ m_gravity_x=gx; reframe(); }
 
-        void set_gravity_y(GravityY gy)
-            { m_gravity_y=gy; reframe(); }
+        void set_gravity_y(GravityY gy){ m_gravity_y=gy; reframe(); }
 
         void set_margin(int margin) { m_margin=margin; reframe(); }
         void set_border(int border) { m_border=border; reframe(); }
@@ -154,10 +151,8 @@ class Widget
         //void set_(int ) { m_=; }
 
         // Usage "interne"
-        Frame get_parent_frame()
-            { return m_parent ? m_parent->m_frame : page_frame; }
-        Frame get_parent_abs_frame()
-            { return m_parent ? m_parent->m_abs_frame : page_frame; }
+        Frame get_parent_frame(){ return m_parent ? m_parent->m_frame : page_frame; }
+        Frame get_parent_abs_frame(){ return m_parent ? m_parent->m_abs_frame : page_frame; }
 
         void reset_posx(int x) { m_frame.pos.x = x+get_parent_bp(); }
         void reset_posy(int y) { m_frame.pos.y = y+get_parent_bp(); }

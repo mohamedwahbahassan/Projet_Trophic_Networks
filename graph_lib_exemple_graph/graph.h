@@ -266,17 +266,17 @@ class GraphInterface
         /// Les widgets de l'interface. N'oubliez pas qu'il ne suffit pas de déclarer
         /// ici un widget pour qu'il apparaisse, il faut aussi le mettre en place et
         /// le paramétrer ( voir l'implémentation du constructeur dans le .cpp )
-
+        //image de fond
+        grman::WidgetImage m_imgP;
         /// La boite qui contient toute l'interface d'un graphe
         grman::WidgetBox m_top_box;
+
 
         /// Dans cette boite seront ajoutés les (interfaces des) sommets et des arcs...
         grman::WidgetBox m_main_box;
 
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
-        //image de fond
-        grman::WidgetImage m_imgP;
 
 
         /*******************************
