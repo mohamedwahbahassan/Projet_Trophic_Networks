@@ -54,7 +54,7 @@
 	<iostream>
 	"graph.h"
 
-1523037894 D
+1523052340 D
 	"grman.h"
 	<iostream>
 	<string>
@@ -62,7 +62,22 @@
 	<algorithm>
 	<allegro.h>
 
-1522926053 >
+1523051967 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523052339 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+
+1523049287 >
 
 1523037355 supr_ajout
 	"graph.h"
@@ -306,43 +321,27 @@
 	"grman/grman.h"
 	"graph.h"
 
-1522841579 
+1523051967 
 
 1523044649 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\graph.h
+
+1523032372 d0e0a00a80f42d764d5e67f7ff169994b2817
 	<vector>
 	<map>
 	<string>
 	<memory>
 	"grman/grman.h"
-
-1522844184 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.h
 	<allegro.h>
 	<string>
 	"grman_couleurs.h"
 	"coords.h"
 	"widget.h"
-
-1522765994 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\grman_couleurs.h
-
-1522765994 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.h
-	<cmath>
-	<cmath>
-	<cmath>
-
-1523044648 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
 	"grman.h"
 	<iostream>
 	<string>
 	<vector>
 	<algorithm>
 	<allegro.h>
-
-1522765994 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.cpp
-	"coords.h"
-	"coords.h"
-	"coords.h"
-
-1523043597 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.cpp
 	<cmath>
 	<unordered_map>
 	<unordered_set>
@@ -355,6 +354,69 @@
 	<png.h>
 	<loadpng.h>
 	<jpgalleg.h>
+
+1522539042 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.h
+
+1522844184 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.h
+
+1509222374 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\grman_couleurs.h
+
+1522575426 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.h
+	<cmath>
+	<cmath>
+	<cmath>
+
+1523052340 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1522765994 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\grman_couleurs.h
+
+1522765994 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.h
+	<cmath>
+	<cmath>
+	<cmath>
+
+1523044648 c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
+
+1522575070 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.cpp
+	"coords.h"
+	"coords.h"
+	"coords.h"
+
+1523052340 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1522765994 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.cpp
+	"coords.h"
+	"coords.h"
+	"coords.h"
+
+1523043597 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.cpp
+
+1523052340 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
+	"widget.h"
+
+1523052439 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
+	"grman/grman.h"
+	"graph.h"
+	"utilitaire.h"
+	<time.h>
 
 1523043597 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
@@ -369,22 +431,21 @@
 
 1523016155 source:c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
 
-1523031518 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
+1523049287 an.h"
 
-1523030441 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.h
+1523052340 ter
+	<iostream>
+	<string.h>
+	<fstream>
+	<vector>
+	<stack>
+	<allegro.h>
+	<ctime>
+	<cstdlib>
 
 1523010581 c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\graph.h
 
-1522539042 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.h
-
 1522779604 c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.h
-
-1509222374 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\grman_couleurs.h
-
-1522575426 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.h
-	<cmath>
-
-1523031409 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
 
 1522779604 c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\grman\grman_couleurs.h
 
@@ -393,22 +454,14 @@
 
 1522852653 c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.h
 
-1522575070 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.cpp
-	"coords.h"
-
-1522867536 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.cpp
+1523049287 h>
 
 1522779604 source:c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\grman\coords.cpp
 	"coords.h"
 
 1522779604 source:c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\grman\grman.cpp
 
-1522942040 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
-	"widget.h"
-
-1522943370 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
-	"grman/grman.h"
-	"graph.h"
+1523038004 e.h"
 
 1523031577 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\menu.cpp
 
@@ -429,8 +482,6 @@
 1523043597 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\utilitaire.cpp
 	"utilitaire.h"
 
-1523038004 e.h"
-
 1522852653 source:c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
@@ -438,4 +489,35 @@
 	"grman/grman.h"
 	"graph.h"
 	<time.h>
+
+1523052340 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\utilitaire.h
+
+1523052340 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\utilitaire.cpp
+	"utilitaire.h"
+	"utilitaire.h"
+
+1523052439 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\interface.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523051967 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\update.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523051967 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\adjacence.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523052439 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\fichiers.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523052439 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\simu_pop.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
 

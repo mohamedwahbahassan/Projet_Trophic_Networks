@@ -38,6 +38,8 @@
 			<Add library="jpgalleg" />
 			<Add library="alleg44.dll" />
 		</Linker>
+		<Unit filename="adjacence.cpp" />
+		<Unit filename="fichiers.cpp" />
 		<Unit filename="graph.cpp" />
 		<Unit filename="graph.h" />
 		<Unit filename="grman/coords.cpp" />
@@ -47,7 +49,10 @@
 		<Unit filename="grman/grman_couleurs.h" />
 		<Unit filename="grman/widget.cpp" />
 		<Unit filename="grman/widget.h" />
+		<Unit filename="interface.cpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="simu_pop.cpp" />
+		<Unit filename="update.cpp" />
 		<Unit filename="utilitaire.cpp" />
 		<Unit filename="utilitaire.h" />
 		<Extensions>
