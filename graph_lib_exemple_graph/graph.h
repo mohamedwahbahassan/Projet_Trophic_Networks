@@ -138,10 +138,12 @@ class Vertex
         /// liste des indices des arcs partant du sommet : accès aux successeurs
         std::vector<int> m_out;
 
-        /// un exemple de donnée associée au sommet, on peut en ajouter d'autres...
+        /// un exemple de donnée associée au sommet, changed by jojo
         double m_value; ///N: nombre d'individus dans la population
         double m_capacite; /// K: capacité de portage de l'environnement
         double m_quantiteConsomme; ///K2: quantité de N consommée par les autres espèces
+        float m_rythmeCroissance; ///r: rythme de croissance differente pour chaque population
+        float m_coeffPondere; /// ar le modèle proposé n'est pas étalonné sur des échelles homogènes
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<VertexInterface> m_interface = nullptr;
@@ -155,10 +157,13 @@ class Vertex
 
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
-        Vertex (double value=0, VertexInterface *interface=nullptr,double capacite=0) :
-            m_value(value), m_interface(interface),m_capacite(capacite)   {  }
-       // Vertex (double value=0, VertexInterface *interface=nullptr, int _x, int _y) :
-         //   m_value(value), m_interface(interface),m_top_box.set_pos(_x,_y)   {  }
+       // Vertex (double value=0, VertexInterface *interface=nullptr) :
+         //   m_value(value), m_interface(interface)   {  }
+
+
+        ///Constructeur changed by jojo
+        Vertex (double value=0, VertexInterface *interface=nullptr, float rythmeCroissance=0, float coeffPondere=0) :
+            m_value(value), m_interface(interface),m_rythmeCroissance(rythmeCroissance), m_coeffPondere(coeffPondere)   {  }
 
         /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
         /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
@@ -307,7 +312,7 @@ class Graph
         Graph (GraphInterface *interface=nullptr) :
             m_interface(interface)  {  }
 
-        void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 );
+        void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0 , float rythmeCroissance = 0, float coeffPondere = 0); ///changed by jojo
         void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
         /// Méthode spéciale qui construit un graphe arbitraire (démo)
