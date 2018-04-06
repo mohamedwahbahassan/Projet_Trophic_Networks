@@ -2,7 +2,20 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="utilitaire.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+<<<<<<< HEAD
+	<File name="graph.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="20802" topLine="668" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+	<File name="fichiers.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> fda4544d6cf5a2289acb2e2b3ce14f2b4ec4cd3c
+>>>>>>> 2dca2bdf55851246235d13894a5be803638a0ce9
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -12,7 +25,16 @@
 			<Cursor1 position="160" topLine="249" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="grman\widget.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+<<<<<<< HEAD
+	<File name="grman\grman.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="160" topLine="256" />
+=======
+	<File name="graph.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> 2dca2bdf55851246235d13894a5be803638a0ce9
 		<Cursor>
 			<Cursor1 position="6920" topLine="429" />
 		</Cursor>
@@ -25,6 +47,7 @@
 	<File name="interface.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
+>>>>>>> fda4544d6cf5a2289acb2e2b3ce14f2b4ec4cd3c
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -32,7 +55,16 @@
 			<Cursor1 position="585" topLine="30" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="grman\widget.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+=======
+<<<<<<< HEAD
+	<File name="grman\widget.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="398" />
+=======
+	<File name="update.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+>>>>>>> 2dca2bdf55851246235d13894a5be803638a0ce9
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
@@ -54,7 +86,12 @@
 	</File>
 	<File name="adjacence.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
+<<<<<<< HEAD
 			<Cursor1 position="1998" topLine="70" />
+=======
+			<Cursor1 position="0" topLine="0" />
+>>>>>>> fda4544d6cf5a2289acb2e2b3ce14f2b4ec4cd3c
+>>>>>>> 2dca2bdf55851246235d13894a5be803638a0ce9
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
