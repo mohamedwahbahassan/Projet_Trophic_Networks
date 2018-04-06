@@ -41,6 +41,7 @@ int main()
 
     testFichier.affichageForteConnexiteInterface();
 
+
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
 
