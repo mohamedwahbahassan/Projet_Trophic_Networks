@@ -23,7 +23,7 @@ namespace grman
 
 // Nombre de pixels horizontalement et verticalement
 #define LARGEURECRAN 1024
-#define HAUTEURECRAN 768
+#define HAUTEURECRAN 578
 
 // Couleur initiale :
 #define PAGE_COULEUR_INIT BLANC
