@@ -341,10 +341,11 @@ void Graph::chargerFichier(int ordre)
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
-
-        nomFichier = "desert";
+        nomFichier = "banquise1";
     else if (ordre == 2)
-        nomFichier = "banquise";
+        nomFichier = "desert";
+    else if(ordre == 3)
+        nomFichier = "savane";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
@@ -360,8 +361,10 @@ void Graph::chargerFichier(int ordre)
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
     std::ifstream fsommets (fichier, std::ios::in);
+    std::cout << "fichier ouvert1" << std::endl;
     if(fsommets)
     {
+        std::cout << "firchier ouvert2" << std::endl;
         while(!fsommets.eof())
         {
             fsommets>>idx;
@@ -433,9 +436,9 @@ void Graph::sauverFichier(int ordre)
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
-        nomFichier = "desert";
-    else if (ordre == 2)
         nomFichier = "banquise";
+    else if (ordre == 2)
+        nomFichier = "desert";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
@@ -841,28 +844,31 @@ void Graph::affichageTableauForteConnexite()
 void Graph::CalculPop()
 {
 
-    m_vertices[0].m_rythmeCroissance= 1;
-    m_vertices[1].m_rythmeCroissance= 0.5;
-    m_vertices[2].m_rythmeCroissance= 0.1;
-
     for (auto &e : m_vertices)
     {
-        std::cout << "SOMMET" << std::endl;
+        e.second.m_capacite=0;
+        e.second.m_quantiteConsomme=0;
+
+        std::cout << "SOMMET"<< e.first << std::endl;
         std::cout << "valeur initiale" << e.second.m_value<< std::endl;
 
 ///Calcul de la capacité de portage de l'environnement
 
         for(unsigned int i=0; i<e.second.m_in.size(); i++)
         {
-            std::cout << "poids des arcs entrant" << std::endl;
-            std::cout << (m_edges[e.second.m_in[i]].m_weight)/100 << std::endl;
-            std::cout << "valeur des sommet desquelles partent l'arc:" << std::endl;
-            std::cout << m_vertices[m_edges[e.second.m_in[i]].m_from].m_value << std::endl;
+           // std::cout << "poids des arcs entrant" << std::endl;
+           // std::cout << (m_edges[e.second.m_in[i]].m_weight)/100 << std::endl;
+           // std::cout << "valeur des sommet desquelles partent l'arc:" << std::endl;
+           // std::cout << m_vertices[m_edges[e.second.m_in[i]].m_from].m_value << std::endl;
+
+           double capaciteinit= e.second.m_capacite ;
 
             e.second.m_capacite = e.second.m_capacite
 
             /// ex: K lapin = Coeff(herbe->lapin)* N herbe :  Capacité = Poids de l'arc entrante * valeur du sommet 1 de l'arc entrante
-            + (m_edges[e.second.m_in[i]].m_weight) * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
+            + (m_edges[e.second.m_in[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
+
+            std::cout << "capacite de portage = " << capaciteinit << "+" << (m_edges[e.second.m_in[i]].m_weight)/10 << "*"<< m_vertices[m_edges[e.second.m_in[i]].m_from].m_value<< "=" << e.second.m_capacite<< std::endl;
 
         }
 
@@ -872,21 +878,27 @@ void Graph::CalculPop()
        for(unsigned int i=0; i<e.second.m_out.size(); i++)
 
         {
-            std::cout << "Poids des arcs sortant" << std::endl;
+            /*std::cout << "Poids des arcs sortant" << std::endl;
             std::cout << (m_edges[e.second.m_out[i]].m_weight)/100 << std::endl;
             std::cout << "valeur des sommet vers lesquelles poitent l'arc:" << std::endl;
-            std::cout << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << std::endl;
+            std::cout << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << std::endl;*/
 
+            double quantiteinit =e.second.m_quantiteConsomme;
             e.second.m_quantiteConsomme = e.second.m_quantiteConsomme
 
             /// ex: K2 herbe= Coeff (herbe->lapin)* N lapin : Quantité consommée = Poids de l'arc sortante * valeur du sommet 2 de l'arc sortante
-             + (m_edges[e.second.m_out[i]].m_weight)/100 * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
+             + (m_edges[e.second.m_out[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
+
+            std::cout << "quantite consomme=" << quantiteinit << "+" << (m_edges[e.second.m_out[i]].m_weight)/10 << "*" << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << "=" << e.second.m_quantiteConsomme << std::endl;
         }
 
-///Calcul de l'évolution de la population à partir d'un certain temps
+///Calcul de l'évolution de la population à partir d'un certain temps t
+
+        double valueinit= e.second.m_value;
 
         if(e.second.m_capacite!=0)
         {
+
          e.second.m_value = e.second.m_value
          + e.second.m_rythmeCroissance * e.second.m_value * (1-(e.second.m_value/e.second.m_capacite)) ///R * N (1 - N/K)
          - e.second.m_quantiteConsomme * e.second.m_coeffPondere; ///R2*CoeffPondere
@@ -906,6 +918,8 @@ void Graph::CalculPop()
         {
             e.second.m_value=0;
         }
+        std::cout << "\ncalcul nouvelle valeur:" << valueinit << "+" << e.second.m_rythmeCroissance << "*" << valueinit << "*"
+        << "(1-" << valueinit << "/" << e.second.m_capacite<<")" <<"-" << e.second.m_quantiteConsomme << "*" << e.second.m_coeffPondere<< "=" << e.second.m_value << std::endl;
         std::cout << "1: capacite: " << e.second.m_capacite << std::endl;
         std::cout << "2: quantite consomme: " << e.second.m_quantiteConsomme<< std::endl;
         std::cout << "3:nouvelle valeur:" <<e.second.m_value << std::endl;

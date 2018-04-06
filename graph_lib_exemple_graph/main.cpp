@@ -17,7 +17,7 @@ void MenuPrincipal()
 
 int main()
 {
-    int graph = 2;
+    int graph =1;
 
     int t1 = clock();
     int rest_evolution = 2000;
