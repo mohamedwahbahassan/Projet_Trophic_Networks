@@ -143,6 +143,8 @@ private :
     /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
     double m_value;
 
+
+
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<VertexInterface> m_interface = nullptr;
 
@@ -306,6 +308,8 @@ private :
     /// tableau de forte connexe
     std::vector<std::vector<int>> m_tab_forte_connexite;
 
+    int m_ordre;
+
 
 
 
@@ -342,6 +346,11 @@ public:
     void toutesLesComposantesFortementConnexes();
     void affichageTableauForteConnexite();
 
+    void affichageForteConnexiteInterface();
+
+
+    ///
+    void ordredebase();
 
 
     /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface

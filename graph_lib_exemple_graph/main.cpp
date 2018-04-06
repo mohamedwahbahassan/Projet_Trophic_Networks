@@ -14,12 +14,14 @@ int main()
 
     Graph testFichier;
     testFichier.chargerFichier(graph);
+    testFichier.ordredebase();
     testFichier.remplir_tab_adj();
+
 
     //testFichier.uneComposanteFortementConnexe(7);
     testFichier.toutesLesComposantesFortementConnexes();
 
-    testFichier.affichageTableauForteConnexite();
+     testFichier.affichageTableauForteConnexite();
 
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -28,6 +30,8 @@ int main()
     {
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
+        testFichier.affichageForteConnexiteInterface();
+
 
 
         /// Mise à jour générale (clavier/souris/buffer etc...)
