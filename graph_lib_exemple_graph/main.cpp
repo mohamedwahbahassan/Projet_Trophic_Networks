@@ -26,19 +26,11 @@ int main()
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
     }
-    testFichier.add_vertex("clown1.jpg");
+    //testFichier.add_vertex("clown1.jpg");
     //testFichier.remove_vertex(3);
     //testFichier.add_edge(0,7);
     //testFichier.remove_edge(7);
 
-    while ( !key[KEY_A] )
-    {
-        /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
-        testFichier.update();
-
-        /// Mise à jour générale (clavier/souris/buffer etc...)
-        grman::mettre_a_jour();
-    }
 
     //testFichier.sauverFichier(graph);
 

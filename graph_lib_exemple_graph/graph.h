@@ -113,7 +113,7 @@ class VertexInterface
 
         // Une boite pour le label précédent
         grman::WidgetText m_box_label_idx;
-
+        //une boite croix pour supr le somet
         grman::WidgetCheckBox m_box_close;
 
     public :
@@ -198,6 +198,9 @@ class EdgeInterface
         // Un label de visualisation du poids de l'arc
         grman::WidgetText m_label_weight;
 
+        //box de fermeture de arete
+        grman::WidgetCheckBox m_box_Edge_close;
+
     public :
 
         // Le constructeur met en place les éléments de l'interface
@@ -223,6 +226,8 @@ class Edge
         /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
         double m_weight;
 
+        bool m_suprEdge = false;
+
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<EdgeInterface> m_interface = nullptr;
 
@@ -239,6 +244,8 @@ class Edge
         /// Voir l'implémentation Graph::update dans le .cpp
         void pre_update();
         void post_update();
+
+        bool supr_edge() {return m_suprEdge;}
 
 };
 
@@ -267,14 +274,18 @@ class GraphInterface
 
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
+        //image de fond
+        grman::WidgetImage m_imgP;
 
 
         /*******************************
         BOUTONS
         *******************************/
-        grman::WidgetButton m_Button_Save;
-        grman::WidgetText m_Text_Save;
+        grman::WidgetButton m_Button_Save; //bouton sauver
+        grman::WidgetText m_Text_Save; //test "sauver
 
+        grman::WidgetButton m_Button_Supr_Arette;
+        grman::WidgetText m_Text_Supr_arette;
 
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
@@ -284,6 +295,7 @@ class GraphInterface
         // Le constructeur met en place les éléments de l'interface
         // voir l'implémentation dans le .cpp
         GraphInterface(int x, int y, int w, int h);
+
 };
 
 
@@ -299,8 +311,6 @@ class Graph
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<GraphInterface> m_interface = nullptr;
-
-
 
 
 
@@ -322,6 +332,8 @@ class Graph
 
         void add_vertex(std::string image);
         void add_edge(int from, int to);
+
+        void WraperBoutons();
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
         void update();
