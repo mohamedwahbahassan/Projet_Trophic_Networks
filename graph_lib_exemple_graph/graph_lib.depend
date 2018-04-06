@@ -369,7 +369,7 @@
 
 1523016155 source:c:\users\administrateur\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
 
-1523049287 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
+1523049511 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
@@ -479,4 +479,14 @@
 
 1523049288 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\utilitaire.cpp
 	"utilitaire.h"
+
+1523050486 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\interface.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523050486 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\update.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
 
