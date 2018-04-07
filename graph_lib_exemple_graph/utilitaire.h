@@ -8,8 +8,9 @@
 #define DESERT makecol(136,0,21)
 #define SAVANE makecol (255,242,0)
 #define BANQUISE makecol (34,177,76)
+#define QUIT makecol (181,230,29)
 
-#define NB_IMAGES_MENU 3
+#define NB_IMAGES_MENU 4
 
 
 BITMAP* charger_image(char nom_fic[50]);

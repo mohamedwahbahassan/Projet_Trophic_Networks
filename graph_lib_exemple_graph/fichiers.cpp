@@ -23,11 +23,11 @@ void Graph::chargerFichier(int ordre)
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
-        nomFichier = "banquise1";
+        nomFichier = "banquise";
     else if (ordre == 2)
         nomFichier = "desert";
     else if(ordre == 3)
-        nomFichier = "savane";
+        nomFichier = "savane1";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;

@@ -5,10 +5,10 @@
 
 
 
-void MenuPrincipal()
+int MenuPrincipal()
 {
     BITMAP* buffer = create_bitmap(SCREEN_W,SCREEN_H);
-    BITMAP*images[NB_IMAGES_MENU] ;
+    BITMAP* images[NB_IMAGES_MENU];
     BITMAP* menu = charger_image("pics/menu/ecran_d'accueil.bmp");
     BITMAP* menu_coli = charger_image("pics/menu/menu_carte_coli.bmp");
     chargement_images_menu(images);
@@ -28,8 +28,20 @@ void MenuPrincipal()
             blit(images[1],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
         if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
             blit(images[2],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+        if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
+            blit(images[3],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
-
+            if (mouse_b&1)
+            {
+        if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
+            return 1;
+        if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
+            return 2;
+        if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
+            return 3;
+        if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
+        return 0;
+            }
 
 
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -42,7 +54,7 @@ void MenuPrincipal()
 
 int main()
 {
-    int graph =1;
+
 
     int t1 = clock();
     int rest_evolution = 2000;
@@ -54,11 +66,12 @@ int main()
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
 
-    MenuPrincipal();
+    int graph = MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
+    if (graph == 0) return 0;//cas ou l'utilisateur veut quitter
+
 
     Graph testFichier;
     testFichier.chargerFichier(graph);
-    testFichier.
     testFichier.ordredebase();
     testFichier.remplir_tab_adj();
 
