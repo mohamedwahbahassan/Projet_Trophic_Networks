@@ -17,12 +17,15 @@ void Vertex::pre_update()
     if (!m_interface)
         return;
 
+     //   std::cout << "VERTEX" << std::endl;
 
     /// Copier la valeur locale de la donnée m_value vers le slider associé
     m_interface->m_slider_value.set_value(m_value);
+ //   std::cout << "VERTEX" << std::endl;
 
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
-    m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
+   //m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
+   // std::cout << "VERTEX" << std::endl;
 
 }
 
@@ -85,15 +88,23 @@ void Edge::post_update()
 void Graph::update()
 {
 
+    int cas=1;
 
     int indice = -1;
     if (!m_interface)
         return;
 
     WraperBoutons();
+    //std::cout << "UPDATE" << std::endl;
+
 
     for (auto &elt : m_vertices)
-        elt.second.pre_update();
+    {//std::cout << "UPDATE" << std::endl;
+         elt.second.pre_update();
+
+
+    }
+
 
     for (auto &elt : m_edges)
         elt.second.pre_update();
@@ -111,16 +122,17 @@ void Graph::update()
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
 
-        if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
+        if (elt->second.m_interface->m_box_Edge_close.get_value() == true && elt->second.m_actif == true)
         {
             indice = elt->first;
         }
+
     }
 
 
     if(indice != -1)
     {
-        remove_edge(indice);
+        remove_edge(indice,cas);
         indice = -1;
     }
 
@@ -128,7 +140,7 @@ void Graph::update()
     for (auto &elt : m_vertices)
     {
         elt.second.post_update();
-        if (elt.second.m_interface->m_box_close.get_value() == true)
+        if (elt.second.m_interface->m_box_close.get_value() == true && elt.second.m_actif == true)
         {
             indice = elt.first;
 
@@ -136,13 +148,16 @@ void Graph::update()
     }
     if (indice != -1)
     {
-        remove_vertex(indice);
+        remove_vertex(indice,cas);
         indice = -1;
     }
 
+    remplir_tab_adj_sym();
 
 
 
+
+ //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }
 
 

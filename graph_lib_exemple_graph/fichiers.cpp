@@ -69,11 +69,11 @@ void Graph::chargerFichier(int ordre,bool restauration)
             //std::cout << " c = " << c;
 
             ///add by jojo
-            //std::cout << r << "\n";
-            //std::cout << c << "\n";
+            std::cout << r << "\n";
+            std::cout << c << "\n";
 
             fsommets>> picture_name;
-            // std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
+             std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
 
             add_interfaced_vertex(idx, value, x, y, picture_name,idx,r,c); ///Changed by jojo
 
@@ -95,10 +95,11 @@ void Graph::chargerFichier(int ordre,bool restauration)
         while(!farettes.eof())
         {
             farettes>>idx;
+
             farettes>>vert1;
             farettes>>vert2;
             farettes>>value;
-
+            std::cout << "idx " << idx<<" " << vert1  <<" " << vert2 << " " << value<< std::endl;
             add_interfaced_edge(idx, vert1, vert2, value);
         }
         farettes.close();
