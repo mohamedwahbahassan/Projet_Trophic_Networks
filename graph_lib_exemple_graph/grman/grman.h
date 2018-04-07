@@ -118,6 +118,8 @@ void rafraichir_clavier_souris();
 
 /// Auxiliaires : compléments aux fonctions graphiques allegro
 
+BITMAP* charger_image(char nom_fic[50]);
+
 void thick_line(BITMAP *bmp, int x1, int y1, int x2, int y2, int thickness, int color);
 
 }

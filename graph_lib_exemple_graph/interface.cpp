@@ -95,12 +95,13 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
 
     // la croix de supression
-    // if ( supr_edge() == true ){
+    //if (m_autor_supr == true )
+
     m_top_edge.add_child(m_box_Edge_close);
-    m_box_Edge_close.set_dim(10,10);
+    m_box_Edge_close.set_dim(5,5);
     m_box_Edge_close.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Down);
-    m_box_Edge_close.set_bg_color(JAUNE);
-    //    }
+    m_box_Edge_close.set_bg_color(ROUGE);
+
 
 }
 
@@ -152,8 +153,53 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Button_Save.set_pos(9,10);
     m_Button_Save.add_child(m_Text_Save);//text du bouton save
 
-    m_Text_Save.set_pos(30,15);
+    m_Text_Save.set_pos(30,5);
     m_Text_Save.set_message("SAVE");
+
+    m_Button_Save.add_child(m_Button_Restaurer); //bouton
+    m_Button_Restaurer.set_dim(70,15);
+    m_Button_Restaurer.set_bg_color(BLANC);
+    m_Button_Restaurer.set_pos(3,20);
+    m_Button_Restaurer.add_child(m_Text_Restaurer);//text du bouton save
+
+    m_Text_Restaurer.set_pos(0,0);
+    m_Text_Restaurer.set_message("RESTAURER");
+
+    /**************************************
+            BOUTON QUIT
+    **************************************/
+    m_top_box.add_child(m_Button_Quit); //bouton
+    m_Button_Quit.set_dim(80,40);
+    m_Button_Quit.set_bg_color(BLEU);
+    m_Button_Quit.set_pos(9,500);
+    m_Button_Quit.add_child(m_Text_Quit);//text du bouton save
+
+    m_Text_Quit.set_pos(20,15);
+    m_Text_Quit.set_message("QUIT");
+
+    /**************************************
+            BOUTON AJOUT VERTEX
+    **************************************/
+    m_top_box.add_child(m_Button_Ajout_Vertex); //bouton
+    m_Button_Ajout_Vertex.set_dim(80,40);
+    m_Button_Ajout_Vertex.set_bg_color(BLEU);
+    m_Button_Ajout_Vertex.set_pos(9,400);
+    m_Button_Ajout_Vertex.add_child(m_Text_Ajout_Vertex);//text du bouton save
+
+    m_Text_Ajout_Vertex.set_pos(0,15);
+    m_Text_Ajout_Vertex.set_message(" SOMMET +");
+
+    /**************************************
+            BOUTON AJOUT EDGE
+    **************************************/
+    m_top_box.add_child(m_Button_Ajout_Edge); //bouton
+    m_Button_Ajout_Edge.set_dim(80,40);
+    m_Button_Ajout_Edge.set_bg_color(ROSE);
+    m_Button_Ajout_Edge.set_pos(9,350);
+    m_Button_Ajout_Edge.add_child(m_Text_Ajout_Edge);//text du bouton save
+
+    m_Text_Ajout_Edge.set_pos(0,15);
+    m_Text_Ajout_Edge.set_message(" ARETE +");
 
     /**************************************
             BOUTON SUPR ARETTE
@@ -165,7 +211,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Button_Supr_Arette.add_child(m_Text_Supr_arette);//text du bouton save
 
     m_Text_Supr_arette.set_pos(1,15);
-    m_Text_Supr_arette.set_message("SUPR ARETTE");
+    m_Text_Supr_arette.set_message("SUPR ARETE");
 
 
     /**********************************************
@@ -202,22 +248,66 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
 void Graph::WraperBoutons()
 {
+
+    if (m_interface->m_Button_Vit_Evolution.get_value()==true)
+    {
+        m_playEvolution = true;
+        m_interface->m_Button_Vit_Evolution.set_value(false);
+    }
+    if (m_interface->m_Button_Vit_Evolution_moins.get_value()==true)
+    {
+        std::cout << "\nmoins vite";
+        m_vitEvolutionMoins = true;
+        m_interface->m_Button_Vit_Evolution_moins.set_value(false);
+    }
+
+    if (m_interface->m_Button_Vit_Evolution_plus.get_value()==true)
+    {
+        std::cout << "\nplus vite";
+        m_vitEvolutionPlus = true;
+        m_interface->m_Button_Vit_Evolution_plus.set_value(false);
+    }
+
     if (m_interface->m_Button_Save.get_value()==true)
     {
         std::cout << "\non sauve";
+        m_sauver = true;
         m_interface->m_Button_Save.set_value(false);
     }
+
+    if (m_interface->m_Button_Restaurer.get_value()==true)
+    {
+        std::cout << "\non sauve";
+        m_restaurer_graph = true;
+        m_interface->m_Button_Restaurer.set_value(false);
+    }
+
+    if (m_interface->m_Button_Quit.get_value()==true)
+    {
+        std::cout << "\non quite";
+        m_quiter = true;
+        m_interface->m_Button_Quit.set_value(false);
+    }
+
+    if (m_interface->m_Button_Ajout_Vertex.get_value()==true)
+    {
+        std::cout << "\nvertex +";
+        m_AjoutVertex= true;
+        m_interface->m_Button_Ajout_Vertex.set_value(false);
+    }
+    if (m_interface->m_Button_Ajout_Edge.get_value()==true)
+    {
+        std::cout << "\nedge +";
+        m_AjoutEdge= true;
+        m_interface->m_Button_Ajout_Edge.set_value(false);
+    }
+
     if (m_interface->m_Button_Supr_Arette.get_value()==true)
     {
-        for (auto &elt : m_edges)
-        {
-            if (elt.second.m_suprEdge == false)
-                elt.second.m_suprEdge = true;
-            else
-                elt.second.m_suprEdge = false;
-            m_interface->m_Button_Supr_Arette.set_value(false);
-        }
+        m_edges[7].m_autorisation_supr_edge = true;
+        m_interface->m_Button_Supr_Arette.set_value(false);
     }
+
 }
 
 
@@ -245,9 +335,9 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     ///
 //   remplir_tab_adj();
     // std::cout << "nouveau tableau" << std::endl;
-    std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
+    //std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
     m_vertices[idx] = Vertex(value, vi, r, c);
-    std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
+    //std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
 
 }
 

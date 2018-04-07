@@ -13,21 +13,24 @@ Utilité : charge les sommets et les arettes a partir d'un fichier
 Créateur :Léo
 Statut : fini
 ***********************************************************************/
-void Graph::chargerFichier(int ordre)
+void Graph::chargerFichier(int ordre,bool restauration)
 {
 
     std::string nomFichier;
     if (ordre == 0)
     {
-        std::cout << "quel est le nom de votre fichier : ";
+        std::cout << "chargement : quel est le nom de votre fichier : ";
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
-        nomFichier = "banquise1";
+        nomFichier = "banquise";
     else if (ordre == 2)
         nomFichier = "desert";
     else if(ordre == 3)
         nomFichier = "savane";
+
+    if (restauration == true)
+        nomFichier = nomFichier+"_restauration";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
@@ -43,28 +46,34 @@ void Graph::chargerFichier(int ordre)
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
     std::ifstream fsommets (fichier, std::ios::in);
-    std::cout << "fichier ouvert1" << std::endl;
+    std::cout << "\n fichier ouvert : " << fichier << std::endl;
     if(fsommets)
     {
-        std::cout << "firchier ouvert2" << std::endl;
         while(!fsommets.eof())
         {
+
             fsommets>>idx;
+            //std::cout << "\nidx = " << idx;
             fsommets>>value;
+            //std::cout << " value = " << value;
             fsommets>>x;
+            // std::cout << " x = " << x;
             fsommets>>y;
+            // std::cout << " y = " << y;
 
             //std::cout << y << "\n";
 
             fsommets>> r; /// Rythme Croissance
+            //std::cout << " r = " << r;
             fsommets>> c; ///Coeff Pondéré
+            //std::cout << " c = " << c;
 
             ///add by jojo
             //std::cout << r << "\n";
             //std::cout << c << "\n";
 
             fsommets>> picture_name;
-            std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
+            // std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
 
             add_interfaced_vertex(idx, value, x, y, picture_name,idx,r,c); ///Changed by jojo
 
@@ -108,20 +117,19 @@ Utilité : sauve les sommets et les arettes dans un fichier
 Créateur :Léo
 Statut : fini
 ***********************************************************************/
-void Graph::sauverFichier(int ordre)
+void Graph::sauverFichier(int ordre,bool restauration)
 {
-
     std::string nomFichier;
-    if (ordre == 0)
-    {
-        std::cout << "quel est le nom de votre fichier : ";
-        std::cin >> nomFichier;
-    }
-    else if (ordre == 1)
-        nomFichier = "banquise";
 
+    if (ordre == 1)
+        nomFichier = "banquise";
     else if (ordre == 2)
         nomFichier = "desert";
+    else if(ordre == 3)
+        nomFichier = "savane";
+
+    if (restauration == true)
+        nomFichier = nomFichier+"_restauration";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
@@ -153,6 +161,7 @@ void Graph::sauverFichier(int ordre)
         }
         fsommets.close();
     }
+
     else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
@@ -183,6 +192,16 @@ void Graph::sauverFichier(int ordre)
     }
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

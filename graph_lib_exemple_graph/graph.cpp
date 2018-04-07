@@ -65,9 +65,6 @@ void Graph::add_vertex(std::string image)
     for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
     {
         indice = a->first;
-
-
-
     }
 
     add_interfaced_vertex(indice + 1, 30, 100, 100, image);
@@ -79,9 +76,20 @@ void Graph::add_edge(int from, int to)
     int indice;
     for (auto a=m_edges.begin() ; a != m_edges.end(); a++)
         indice = a->first;
-    std::cout << "coucou13\n";
+    //std::cout << "coucou13\n";
     add_interfaced_edge(indice + 1,from,to,50);
-    std::cout << "coucou 14";
+    //std::cout << "coucou 14";
+}
+
+void Graph::vider_graph()
+{
+    // std::cout << "\ncoucou";
+
+    while (m_vertices.size() != 0)
+    {
+        //  std ::cout << "\n" << m_vertices.begin()->first;
+        remove_vertex(m_vertices.begin()->first);
+    }
 }
 
 
