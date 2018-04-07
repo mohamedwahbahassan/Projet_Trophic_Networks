@@ -148,6 +148,9 @@ private :
     float m_rythmeCroissance; ///r: rythme de croissance differente pour chaque population
     float m_coeffPondere; /// ar le modèle proposé n'est pas étalonné sur des échelles homogènes
 
+    bool m_dejaFortementConexe = false;
+    int m_borderColor = VERT;
+
 
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
@@ -175,6 +178,15 @@ public:
     /// Voir l'implémentation Graph::update dans le .cpp
     void pre_update();
     void post_update();
+
+
+
+    bool get_deja_fortement_connexe(){return m_dejaFortementConexe;}
+    int get_borderColor() {return m_borderColor;}
+
+
+    void set_deja_fortement_connexe(bool val) {m_dejaFortementConexe = val;}
+    void set_borderColor(int val) {m_borderColor = val;}
 
 };
 

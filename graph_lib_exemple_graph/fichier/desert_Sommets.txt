@@ -4,5 +4,6 @@
 2 30 542 171 1 1 desert/gazelle.jpg
 3 0 350 180 1 1 desert/adax.jpg
 4 37.1429 179 185 1 1 desert/fourmi.jpg
-5 30 439 20 1 1 desert/guepard.jpg
-6 30 157 18 1 1 desert/scorpion.jpg
+5 92.9448 439 20 1 1 desert/guepard.jpg
+6 33.4249 157 18 1 1 desert/scorpion.jpg
+8 50 547 299 1 1 desert/gazelle.jpg
