@@ -104,8 +104,6 @@ void Graph::update()
     m_interface->m_top_box.update(); /// a placer au milieu
 
 
-
-
     for (auto &elt : m_edges)
         elt.second.post_update();
 
@@ -152,6 +150,7 @@ void Graph::update()
     affichageTableauForteConnexite();
     affichageForteConnexiteInterface();
 */
+
 
 
 

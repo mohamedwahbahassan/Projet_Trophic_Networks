@@ -54,9 +54,9 @@ void Graph::chargerFichier(int ordre)
             fsommets>>value;
             //std::cout << " value = " << value;
             fsommets>>x;
-            //std::cout << " x = " << x;
+           // std::cout << " x = " << x;
             fsommets>>y;
-            //std::cout << " y = " << y;
+           // std::cout << " y = " << y;
 
             //std::cout << y << "\n";
 
@@ -189,6 +189,18 @@ void Graph::sauverFichier(int ordre)
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

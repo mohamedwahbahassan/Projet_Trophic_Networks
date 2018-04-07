@@ -5,7 +5,7 @@
 
 
 
-int MenuPrincipal()
+int MenuPrincipal(Graph testFichier)
 {
     BITMAP* buffer = create_bitmap(SCREEN_W,SCREEN_H);
     BITMAP* images[NB_IMAGES_MENU];
@@ -36,11 +36,12 @@ int MenuPrincipal()
         if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
             return 2;
         if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
-            return 3;
+return 3;
         if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
             return 1;
         if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
         return 0;
+
             }
 
 
@@ -68,11 +69,12 @@ int main()
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
 
-    int graph = MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
-    if (graph == 0) return 0;//cas ou l'utilisateur veut quitter
+
 
 
     Graph testFichier;
+    int graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
+    if (graph == 0) return 0;//cas ou l'utilisateur veut quitter
     testFichier.chargerFichier(graph);
     testFichier.ordredebase();
     testFichier.remplir_tab_adj();
@@ -123,12 +125,22 @@ int main()
             t1 = clock();
 
         }
-
-
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
+
+        if (testFichier.get_quiter() == true)
+            {testFichier.vider_graph();
+    graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
+    if (graph == 0) return 0;//cas ou l'utilisateur veut quitter
+    testFichier.chargerFichier(graph);
+            testFichier.RAZ_quiter();
+            }
+
+
+
+
 
 
 

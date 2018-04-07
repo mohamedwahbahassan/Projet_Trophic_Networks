@@ -378,6 +378,8 @@ public:
     void remove_edge(int eidx);
     void remove_vertex(int eidx);
 
+    void vider_graph();
+
     void add_vertex(std::string image);
     void add_edge(int from, int to);
 
@@ -406,9 +408,12 @@ public:
     void CalculPop();
 
 
+    //RAZ
+    void RAZ_quiter(){m_quiter = false;}
 
     //getters
     bool get_autorisation_supr_edge() {return m_SuprEdge;}
+    bool get_quiter () {return m_quiter;}
 
 };
 

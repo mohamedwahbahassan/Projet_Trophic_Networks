@@ -81,6 +81,17 @@ void Graph::add_edge(int from, int to)
     //std::cout << "coucou 14";
 }
 
+void Graph::vider_graph()
+{
+    // std::cout << "\ncoucou";
+
+    while (m_vertices.size() != 0)
+    {
+        //  std ::cout << "\n" << m_vertices.begin()->first;
+        remove_vertex(m_vertices.begin()->first);
+    }
+}
+
 
 
 
