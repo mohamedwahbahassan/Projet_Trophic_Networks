@@ -1,9 +1,0 @@
-
-0 90 278 487 1.7 1 banquise/krill.jpg
-1 0 280 354 1.3 0.3 banquise/poisson.jpg
-2 75.7143 554 191 0.9 0.6 banquise/morse.jpg
-3 0 199 181 0.9 0.6 banquise/phoque.jpg
-4 0 379 178 0.9 0.6 banquise/macareux.jpg
-5 88.1402 44 181 0.9 1 banquise/pingouin.jpg
-6 77.5238 582 3 0.2 1 banquise/ours.jpg
-7 50.0153 289 3 0.2 1 banquise/renard.jpg
