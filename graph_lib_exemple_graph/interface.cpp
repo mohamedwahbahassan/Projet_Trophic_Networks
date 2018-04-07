@@ -245,9 +245,9 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     ///
 //   remplir_tab_adj();
     // std::cout << "nouveau tableau" << std::endl;
-    std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
+    //std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
     m_vertices[idx] = Vertex(value, vi, r, c);
-    std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
+    //std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
 
 }
 

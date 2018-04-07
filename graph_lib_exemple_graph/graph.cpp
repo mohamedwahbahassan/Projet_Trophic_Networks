@@ -65,9 +65,6 @@ void Graph::add_vertex(std::string image)
     for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
     {
         indice = a->first;
-
-
-
     }
 
     add_interfaced_vertex(indice + 1, 30, 100, 100, image);

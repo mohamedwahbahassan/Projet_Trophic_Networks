@@ -43,10 +43,10 @@ void Graph::chargerFichier(int ordre)
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
     std::ifstream fsommets (fichier, std::ios::in);
-    std::cout << "fichier ouvert1" << std::endl;
+    //std::cout << "fichier ouvert1" << std::endl;
     if(fsommets)
     {
-        std::cout << "firchier ouvert2" << std::endl;
+        //std::cout << "firchier ouvert2" << std::endl;
         while(!fsommets.eof())
         {
             fsommets>>idx;
@@ -64,7 +64,7 @@ void Graph::chargerFichier(int ordre)
             //std::cout << c << "\n";
 
             fsommets>> picture_name;
-            std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
+           // std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
 
             add_interfaced_vertex(idx, value, x, y, picture_name,idx,r,c); ///Changed by jojo
 

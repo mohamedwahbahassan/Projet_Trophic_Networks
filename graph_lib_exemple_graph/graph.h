@@ -388,6 +388,8 @@ public:
     void affichageForteConnexiteInterface();
 
 
+
+
     ///
     void ordredebase();
 

@@ -96,12 +96,14 @@ void Graph::CalculPop()
         {
             e.second.m_value=0;
         }
+        /*
         std::cout << "\ncalcul nouvelle valeur:" << valueinit << "+" << e.second.m_rythmeCroissance << "*" << valueinit << "*"
                   << "(1-" << valueinit << "/" << e.second.m_capacite<<")" <<"-" << e.second.m_quantiteConsomme << "*" << e.second.m_coeffPondere<< "=" << e.second.m_value << std::endl;
         std::cout << "1: capacite: " << e.second.m_capacite << std::endl;
         std::cout << "2: quantite consomme: " << e.second.m_quantiteConsomme<< std::endl;
         std::cout << "3:nouvelle valeur:" <<e.second.m_value << std::endl;
         std::cout << std::endl << std::endl;
+        */
 
     }
 

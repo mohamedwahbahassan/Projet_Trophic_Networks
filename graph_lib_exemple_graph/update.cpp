@@ -139,13 +139,13 @@ void Graph::update()
 
         indice = -1;
     }
-
+/*
     remplir_tab_adj();
 
     toutesLesComposantesFortementConnexes();
     affichageTableauForteConnexite();
     affichageForteConnexiteInterface();
-
+*/
 
 
 

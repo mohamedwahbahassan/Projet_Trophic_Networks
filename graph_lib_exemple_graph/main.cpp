@@ -5,11 +5,36 @@
 
 
 
-
-
-
 void MenuPrincipal()
 {
+    BITMAP* buffer = create_bitmap(SCREEN_W,SCREEN_H);
+    BITMAP*images[NB_IMAGES_MENU] ;
+    BITMAP* menu = charger_image("pics/menu/ecran_d'accueil.bmp");
+    BITMAP* menu_coli = charger_image("pics/menu/menu_carte_coli.bmp");
+    chargement_images_menu(images);
+
+
+    bool fin = false;
+
+    blit(menu,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+
+    while(!fin)
+    {
+        blit(menu,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+
+        if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
+            blit(images[0],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+        if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
+            blit(images[1],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+        if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
+            blit(images[2],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
+
+
+
+
+        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+        //fin = true;
+    }
 
 }
 
@@ -33,13 +58,13 @@ int main()
 
     Graph testFichier;
     testFichier.chargerFichier(graph);
+    testFichier.
     testFichier.ordredebase();
     testFichier.remplir_tab_adj();
 
     testFichier.toutesLesComposantesFortementConnexes();
-    testFichier.affichageTableauForteConnexite();
-
-    testFichier.affichageForteConnexiteInterface();
+    //testFichier.affichageTableauForteConnexite();
+    //testFichier.affichageForteConnexiteInterface();
 
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -67,12 +92,12 @@ int main()
         if(key[KEY_Q]) ///accélere
         {
             rest_evolution = rest_evolution - 10;
-            std::cout << "\n rest = " << rest_evolution;
+            //std::cout << "\n rest = " << rest_evolution;
         }
         if(key[KEY_D]) ///ralentir
         {
             rest_evolution = rest_evolution + 10;
-            std::cout << "\n rest = " << rest_evolution;
+            //std::cout << "\n rest = " << rest_evolution;
         }
 
         if (t1 + rest_evolution <= clock())
@@ -80,19 +105,18 @@ int main()
 
             if (pause == true)
                 testFichier.CalculPop();
-
             t1 = clock();
 
         }
 
 
-
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
-
-
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
+
+
+
     }
     // testFichier.add_vertex("clown1.jpg");
     //testFichier.remove_vertex(3);
