@@ -304,6 +304,9 @@ private :
     grman::WidgetButton m_Button_Quit; //bouton sauver
     grman::WidgetText m_Text_Quit; //test "sauver
 
+    grman::WidgetButton m_Button_Ajout_Vertex; //bouton sauver
+    grman::WidgetText m_Text_Ajout_Vertex; //test "sauver
+
     grman::WidgetButton m_Button_Supr_Arette;
     grman::WidgetText m_Text_Supr_arette;
 
@@ -359,11 +362,13 @@ private :
     bool m_sauver = false;
     bool m_quiter = false;
     bool m_SuprEdge = false;
+    bool m_AjoutVertex = false;
     int m_CurrentGraph;
 
     bool m_playEvolution = false;
     bool m_vitEvolutionPlus = false;
     bool m_vitEvolutionMoins = false;
+
 
 
 
@@ -403,6 +408,8 @@ public:
     void affichageTableauForteConnexite();
 
     void affichageForteConnexiteInterface();
+
+    void menu_ajout_vertex();
 
 
 

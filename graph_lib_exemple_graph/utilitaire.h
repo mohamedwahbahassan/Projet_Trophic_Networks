@@ -13,6 +13,7 @@
 #define NB_IMAGES_MENU 4
 
 
+
 BITMAP* charger_image(char nom_fic[50]);
 
 void chargement_images_menu(BITMAP*images[NB_IMAGES_MENU] );

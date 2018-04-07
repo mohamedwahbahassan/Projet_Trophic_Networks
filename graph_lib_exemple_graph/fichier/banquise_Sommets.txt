@@ -2,7 +2,7 @@
 0 0 271 464 1 1 desert/vegetaux.jpg
 1 37.1429 9 192 1 1 desert/dromadaire.jpg
 2 30 542 171 1 1 desert/gazelle.jpg
-3 0 350 180 1 1 desert/adax.jpg
-4 37.1429 660 369 1 1 desert/fourmi.jpg
+3 0 376 212 1 1 desert/adax.jpg
+4 37.1429 209 223 1 1 desert/fourmi.jpg
 5 30 439 20 1 1 desert/guepard.jpg
 6 30 155 42 1 1 desert/scorpion.jpg

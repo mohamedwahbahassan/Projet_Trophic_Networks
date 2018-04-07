@@ -174,8 +174,20 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Button_Quit.set_pos(9,500);
     m_Button_Quit.add_child(m_Text_Quit);//text du bouton save
 
-    m_Text_Quit.set_pos(30,15);
+    m_Text_Quit.set_pos(20,15);
     m_Text_Quit.set_message("QUIT");
+
+    /**************************************
+            BOUTON AJOUT VERTEX
+    **************************************/
+    m_top_box.add_child(m_Button_Ajout_Vertex); //bouton
+    m_Button_Ajout_Vertex.set_dim(80,40);
+    m_Button_Ajout_Vertex.set_bg_color(BLEU);
+    m_Button_Ajout_Vertex.set_pos(9,400);
+    m_Button_Ajout_Vertex.add_child(m_Text_Ajout_Vertex);//text du bouton save
+
+    m_Text_Ajout_Vertex.set_pos(0,15);
+    m_Text_Ajout_Vertex.set_message(" SOMMET +");
 
     /**************************************
             BOUTON SUPR ARETTE
@@ -263,6 +275,13 @@ void Graph::WraperBoutons()
         std::cout << "\non quite";
         m_quiter = true;
         m_interface->m_Button_Quit.set_value(false);
+    }
+
+    if (m_interface->m_Button_Ajout_Vertex.get_value()==true)
+    {
+        std::cout << "\nvertex +";
+        m_AjoutVertex= true;
+        m_interface->m_Button_Ajout_Vertex.set_value(false);
     }
 
     if (m_interface->m_Button_Supr_Arette.get_value()==true)
