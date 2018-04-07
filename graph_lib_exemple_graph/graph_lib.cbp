@@ -55,6 +55,7 @@
 		<Unit filename="update.cpp" />
 		<Unit filename="utilitaire.cpp" />
 		<Unit filename="utilitaire.h" />
+		<Unit filename="wrapper_menu.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
