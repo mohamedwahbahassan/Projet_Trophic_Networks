@@ -408,6 +408,8 @@ public:
 
     /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
     void update();
+    bool boutons();
+    bool MenuPrincipal();
 
     ///Fonction qui calcul la population en fonction des populations des autres sommets et coefficients des autres arcs
     void CalculPop();

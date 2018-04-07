@@ -19,7 +19,7 @@ void Graph::chargerFichier(int ordre,bool restauration)
     std::string nomFichier;
     if (ordre == 0)
     {
-        std::cout << "quel est le nom de votre fichier : ";
+        std::cout << "chargement : quel est le nom de votre fichier : ";
         std::cin >> nomFichier;
     }
     else if (ordre == 1)
@@ -119,14 +119,9 @@ Statut : fini
 ***********************************************************************/
 void Graph::sauverFichier(int ordre,bool restauration)
 {
-
     std::string nomFichier;
-    if (ordre == 0)
-    {
-        std::cout << "quel est le nom de votre fichier : ";
-        std::cin >> nomFichier;
-    }
-    else if (ordre == 1)
+
+    if (ordre == 1)
         nomFichier = "banquise";
     else if (ordre == 2)
         nomFichier = "desert";
@@ -166,6 +161,7 @@ void Graph::sauverFichier(int ordre,bool restauration)
         }
         fsommets.close();
     }
+
     else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;

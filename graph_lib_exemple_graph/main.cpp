@@ -3,7 +3,7 @@
 #include "utilitaire.h"
 #include <time.h>
 
-
+/*
 
 int MenuPrincipal(Graph testFichier)
 {
@@ -51,7 +51,7 @@ int MenuPrincipal(Graph testFichier)
 
 }
 
-
+*/
 
 int main()
 {
@@ -61,7 +61,6 @@ int main()
     int rest_evolution = 2000;
     bool pause = false;
 
-    bool fin = false;
 
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
@@ -70,17 +69,11 @@ int main()
     grman::set_pictures_path("pics");
 
 
-
-
     Graph testFichier;
-    int graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
-    if (graph == 0)
-        return 0;//cas ou l'utilisateur veut quitter
-    testFichier.chargerFichier(graph,false);
-    testFichier.set_current_graph(graph);
+    bool fin = testFichier.MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
+
     testFichier.ordredebase();
     testFichier.remplir_tab_adj();
-
     testFichier.toutesLesComposantesFortementConnexes();
     //testFichier.affichageTableauForteConnexite();
     //testFichier.affichageForteConnexiteInterface();
@@ -89,7 +82,7 @@ int main()
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
 
-    while ( !key[KEY_ESC] )
+    while ( !fin )
     {
 /// SIMULATION DE L'EVOLUTION DES POPULATIONS
         if(key[KEY_SPACE] && pause == true)
@@ -123,45 +116,12 @@ int main()
 
         }
 
-
+        fin = testFichier.boutons();
 
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
-
-        if (testFichier.get_quiter() == true)
-        {
-                        std::cout << "\n quiter main";
-
-            testFichier.vider_graph();
-            graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
-            if (graph == 0)
-                return 0;//cas ou l'utilisateur veut quitter
-            testFichier.chargerFichier(graph,false);
-
-            testFichier.set_current_graph(graph);
-            testFichier.RAZ_quiter();
-        }
-        if (testFichier.get_restaurer_graph() == true)
-        {
-                        std::cout << "\n restaurer main";
-
-            testFichier.vider_graph();
-            testFichier.chargerFichier(testFichier.get_current_graph(),true);
-            testFichier.RAZ_restaurer_graph();
-        }
-        if (testFichier.get_sauver() == true)
-        {
-            std::cout << "\n sauver main";
-            testFichier.sauverFichier(testFichier.get_current_graph(),false);
-
-            testFichier.vider_graph();
-            testFichier.chargerFichier(graph,false);
-            testFichier.RAZ_sauver();
-        }
-
-
 
 
 

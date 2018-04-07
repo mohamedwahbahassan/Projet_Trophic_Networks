@@ -67,7 +67,7 @@
 	<fstream>
 	<iostream>
 
-1523110135 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.h
+1523113262 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
@@ -414,7 +414,7 @@
 1523052340 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1523109603 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
+1523113177 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
 	"grman/grman.h"
 	"graph.h"
 	"utilitaire.h"
@@ -500,7 +500,7 @@
 	<allegro.h>
 	"utilitaire.h"
 
-1523110200 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\interface.cpp
+1523110350 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\interface.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
@@ -515,13 +515,19 @@
 	<fstream>
 	<iostream>
 
-1523107180 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\fichiers.cpp
+1523112994 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\fichiers.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
 
 1523055818 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\simu_pop.cpp
 	"graph.h"
+	<fstream>
+	<iostream>
+
+1523113435 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\wrapper_menu.cpp
+	"graph.h"
+	"utilitaire.h"
 	<fstream>
 	<iostream>
 
