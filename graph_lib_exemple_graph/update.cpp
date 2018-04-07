@@ -137,19 +137,8 @@ void Graph::update()
     if (indice != -1)
     {
         remove_vertex(indice);
-
-
-        // std::cout << "couccou leo" << std::endl;
-
         indice = -1;
     }
-/*
-    remplir_tab_adj();
-
-    toutesLesComposantesFortementConnexes();
-    affichageTableauForteConnexite();
-    affichageForteConnexiteInterface();
-*/
 
 
 

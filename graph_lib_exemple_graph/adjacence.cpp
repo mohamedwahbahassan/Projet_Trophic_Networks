@@ -210,6 +210,8 @@ void Graph::toutesLesComposantesFortementConnexes()
 
 }
 
+
+/*
 void Graph::affichageTableauForteConnexite()
 {
     std::cout << " Tableau de forte connexité" << std::endl;
@@ -222,36 +224,7 @@ void Graph::affichageTableauForteConnexite()
         std::cout << std::endl;
     }
 }
-
-
-
-void Graph::affichageForteConnexiteInterface()
-{
-    int i,j;
-    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
-    {
-        it -> second.m_interface->m_top_box.set_border_color(VERT);
-    }
-
-
-    for(int i=0; i<m_ordre-1; i++)
-    {
-        for(j=i+1; j<m_ordre; j++)
-        {
-            if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
-            {
-                m_vertices[i].m_interface->m_top_box.set_border_color(ROUGE);
-                m_vertices[j].m_interface->m_top_box.set_border_color(ROUGE);
-            }
-
-        }
-
-
-    }
-}
-
-
-
+*/
 
 
 

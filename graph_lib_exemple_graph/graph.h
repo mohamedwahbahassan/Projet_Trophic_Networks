@@ -148,6 +148,9 @@ private :
     float m_rythmeCroissance; ///r: rythme de croissance differente pour chaque population
     float m_coeffPondere; /// ar le modèle proposé n'est pas étalonné sur des échelles homogènes
 
+    bool m_dejaFortementConexe = false;
+    int m_borderColor = VERT;
+
 
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
@@ -175,6 +178,15 @@ public:
     /// Voir l'implémentation Graph::update dans le .cpp
     void pre_update();
     void post_update();
+
+
+
+    bool get_deja_fortement_connexe(){return m_dejaFortementConexe;}
+    int get_borderColor() {return m_borderColor;}
+
+
+    void set_deja_fortement_connexe(bool val) {m_dejaFortementConexe = val;}
+    void set_borderColor(int val) {m_borderColor = val;}
 
 };
 
@@ -298,20 +310,24 @@ private :
     *******************************/
     grman::WidgetButton m_Button_Save; //bouton sauver
     grman::WidgetText m_Text_Save; //test "sauver
-    grman::WidgetButton m_Button_Restaurer; //bouton sauver
-    grman::WidgetText m_Text_Restaurer; //test "sauver
 
-    grman::WidgetButton m_Button_Quit; //bouton sauver
-    grman::WidgetText m_Text_Quit; //test "sauver
+    grman::WidgetButton m_Button_Restaurer; //bouton restaurer
+    grman::WidgetText m_Text_Restaurer; //texte restaurer
 
-    grman::WidgetButton m_Button_Ajout_Vertex; //bouton sauver
-    grman::WidgetText m_Text_Ajout_Vertex; //test "sauver
+    grman::WidgetButton m_Button_Quit; //bouton quiter
+    grman::WidgetText m_Text_Quit; //texte restaurer
 
-    grman::WidgetButton m_Button_Ajout_Edge; //bouton sauver
-    grman::WidgetText m_Text_Ajout_Edge; //test "sauver
+    grman::WidgetButton m_Button_Ajout_Vertex; //bouton ajouter vertex
+    grman::WidgetText m_Text_Ajout_Vertex; //texte ajouter vertex
 
-    grman::WidgetButton m_Button_Supr_Arette;
-    grman::WidgetText m_Text_Supr_arette;
+    grman::WidgetButton m_Button_Ajout_Edge; //bouton ajouter edge
+    grman::WidgetText m_Text_Ajout_Edge; //texter ajouter edge
+
+    grman::WidgetButton m_Button_Montrer_Composantes_Connexe; //bouton ajouter edge
+    grman::WidgetText m_Text_Montrer_Composantes_Connexe; //texter ajouter edge
+
+    grman::WidgetButton m_Button_Supr_Arette;//bouton supprimer arete
+    grman::WidgetText m_Text_Supr_arette;//texte supprimer arete
 
     grman::WidgetButton m_Button_Vit_Evolution;//Boutons d'évolition
     grman::WidgetText m_Text_Vit_Evolution;
@@ -367,6 +383,7 @@ private :
     bool m_SuprEdge = false;
     bool m_AjoutVertex = false;
     bool m_AjoutEdge = false;
+    bool m_montrerComposantesConnexe = false;
     int m_CurrentGraph;
 
     bool m_playEvolution = false;
@@ -437,6 +454,7 @@ public:
     void RAZ_sauver(){m_sauver = false;}
     void RAZ_playEvolution() {m_playEvolution = false;}
     void RAZ_vitEvolution() {m_vitEvolutionMoins = false; m_vitEvolutionPlus = false;}
+    void RAZ_montrerComposantesFortementConnexe(){m_montrerComposantesConnexe = false;}
 
     void evolution(bool* pause, int*rest_evolution, int* t1);
 
@@ -448,6 +466,7 @@ public:
     bool get_restaurer_graph () {return m_restaurer_graph;}
     bool get_sauver () {return m_sauver;}
     bool get_quiter () {return m_quiter;}
+    bool get_montrerComposantesFortementConnexe () {return m_montrerComposantesConnexe;}
     bool get_playEvolution() {return m_playEvolution;}
     bool get_vitEvolutionMoins() {return m_vitEvolutionMoins;}
     bool get_vitEvolutionPlus() {return m_vitEvolutionPlus;}

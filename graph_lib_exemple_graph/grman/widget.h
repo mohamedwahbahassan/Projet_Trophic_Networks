@@ -65,7 +65,7 @@ class Widget
         int m_border_color_over = BLANC;
         int m_border_color_focus = ROUGE;
 
-        int m_border = 1;
+        int m_border = 2;
         int m_margin = 1;
         int m_padding = 1;
 

@@ -3,81 +3,23 @@
 #include "utilitaire.h"
 #include <time.h>
 
-/*
-
-int MenuPrincipal(Graph testFichier)
-{
-    BITMAP* buffer = create_bitmap(SCREEN_W,SCREEN_H);
-    BITMAP* images[NB_IMAGES_MENU];
-    BITMAP* menu = charger_image("pics/menu/ecran_d'accueil.bmp");
-    BITMAP* menu_coli = charger_image("pics/menu/menu_carte_coli.bmp");
-    chargement_images_menu(images);
-
-
-    bool fin = false;
-
-    blit(menu,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-
-    while(!fin)
-    {
-        blit(menu,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-
-        if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
-            blit(images[0],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-        if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
-            blit(images[1],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-        if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
-            blit(images[2],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-        if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
-            blit(images[3],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
-
-        if (mouse_b&1)
-        {
-            if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
-                return 2;
-            if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
-                return 3;
-            if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
-                return 1;
-            if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
-                return 0;
-
-        }
-
-
-        blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-        //fin = true;
-    }
-
-}
-
-*/
 
 int main()
 {
 
-
     int t1 = clock();
     int rest_evolution = 2000;
     bool pause = false;
-
-
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
 
     /// Le nom du répertoire où se trouvent les images à charger
     grman::set_pictures_path("pics");
 
-
     Graph testFichier;
     bool fin = testFichier.MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
 
     testFichier.ordredebase();
-   // testFichier.remplir_tab_adj();
-    //testFichier.toutesLesComposantesFortementConnexes();
-    //testFichier.affichageTableauForteConnexite();
-    //testFichier.affichageForteConnexiteInterface();
-
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
@@ -94,20 +36,7 @@ int main()
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
 
-
-
-
-
-
-
-
     }
-    // testFichier.add_vertex("clown1.jpg");
-    //testFichier.remove_vertex(3);
-    //testFichier.add_edge(0,7);
-    //testFichier.remove_edge(7);
-
-    //testFichier.sauverFichier(graph);
 
     grman::fermer_allegro();
 
