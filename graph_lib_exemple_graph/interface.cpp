@@ -95,7 +95,7 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
 
     // la croix de supression
-     //if (m_autor_supr == true )
+    //if (m_autor_supr == true )
 
     m_top_edge.add_child(m_box_Edge_close);
     m_box_Edge_close.set_dim(5,5);
@@ -224,6 +224,26 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
 void Graph::WraperBoutons()
 {
+
+    if (m_interface->m_Button_Vit_Evolution.get_value()==true)
+    {
+        m_playEvolution = true;
+        m_interface->m_Button_Vit_Evolution.set_value(false);
+    }
+    if (m_interface->m_Button_Vit_Evolution_moins.get_value()==true)
+    {
+        std::cout << "\nmoins vite";
+        m_vitEvolutionMoins = true;
+        m_interface->m_Button_Vit_Evolution_moins.set_value(false);
+    }
+
+    if (m_interface->m_Button_Vit_Evolution_plus.get_value()==true)
+    {
+        std::cout << "\nplus vite";
+        m_vitEvolutionPlus = true;
+        m_interface->m_Button_Vit_Evolution_plus.set_value(false);
+    }
+
     if (m_interface->m_Button_Save.get_value()==true)
     {
         std::cout << "\non sauve";
@@ -238,8 +258,6 @@ void Graph::WraperBoutons()
         m_interface->m_Button_Restaurer.set_value(false);
     }
 
-
-
     if (m_interface->m_Button_Quit.get_value()==true)
     {
         std::cout << "\non quite";
@@ -247,12 +265,9 @@ void Graph::WraperBoutons()
         m_interface->m_Button_Quit.set_value(false);
     }
 
-
     if (m_interface->m_Button_Supr_Arette.get_value()==true)
     {
-
-    m_edges[7].m_autorisation_supr_edge = true;
-
+        m_edges[7].m_autorisation_supr_edge = true;
         m_interface->m_Button_Supr_Arette.set_value(false);
     }
 

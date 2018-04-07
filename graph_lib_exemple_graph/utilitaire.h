@@ -3,7 +3,7 @@
 
 #include <fstream>
 #include <iostream>
-
+#include <time.h>
 
 #define DESERT makecol(136,0,21)
 #define SAVANE makecol (255,242,0)

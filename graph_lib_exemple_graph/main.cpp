@@ -84,40 +84,10 @@ int main()
 
     while ( !fin )
     {
-/// SIMULATION DE L'EVOLUTION DES POPULATIONS
-        if(key[KEY_SPACE] && pause == true)
-        {
-            pause = false;
-            while (key[KEY_SPACE]) {}
-        }
-        else if (key[KEY_SPACE])
-        {
-            pause = true;
-            while (key[KEY_SPACE]) {}
-        }
-/// accelerer/ralentir la vitesse d'évolution
-        if(key[KEY_Q]) ///accélere
-        {
-            rest_evolution = rest_evolution - 10;
-            //std::cout << "\n rest = " << rest_evolution;
-        }
-        if(key[KEY_D]) ///ralentir
-        {
-            rest_evolution = rest_evolution + 10;
-            //std::cout << "\n rest = " << rest_evolution;
-        }
 
-        if (t1 + rest_evolution <= clock())
-        {
 
-            if (pause == true)
-                testFichier.CalculPop();
-            t1 = clock();
-
-        }
-
-        testFichier.evolution();
-        fin = testFichier.boutons();
+        testFichier.evolution(&pause,&rest_evolution,&t1); // évolution dynamique des populations
+        fin = testFichier.boutons(); //wrapper de gestion des boutons
 
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();

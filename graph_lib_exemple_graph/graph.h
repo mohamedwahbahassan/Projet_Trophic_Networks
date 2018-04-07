@@ -361,6 +361,10 @@ private :
     bool m_SuprEdge = false;
     int m_CurrentGraph;
 
+    bool m_playEvolution = false;
+    bool m_vitEvolutionPlus = false;
+    bool m_vitEvolutionMoins = false;
+
 
 
 
@@ -419,8 +423,10 @@ public:
     void RAZ_quiter(){m_quiter = false;}
     void RAZ_restaurer_graph(){m_restaurer_graph = false;}
     void RAZ_sauver(){m_sauver = false;}
+    void RAZ_playEvolution() {m_playEvolution = false;}
+    void RAZ_vitEvolution() {m_vitEvolutionMoins = false; m_vitEvolutionPlus = false;}
 
-    void evolution();
+    void evolution(bool* pause, int*rest_evolution, int* t1);
 
     //geters
     void set_current_graph(int var) {m_CurrentGraph = var;}
@@ -430,6 +436,9 @@ public:
     bool get_restaurer_graph () {return m_restaurer_graph;}
     bool get_sauver () {return m_sauver;}
     bool get_quiter () {return m_quiter;}
+    bool get_playEvolution() {return m_playEvolution;}
+    bool get_vitEvolutionMoins() {return m_vitEvolutionMoins;}
+    bool get_vitEvolutionPlus() {return m_vitEvolutionPlus;}
     int get_current_graph() {return m_CurrentGraph;}
 
 };

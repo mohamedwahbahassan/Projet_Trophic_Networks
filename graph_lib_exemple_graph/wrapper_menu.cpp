@@ -104,9 +104,45 @@ bool Graph::boutons()
 }
 
 
-void Graph::evolution()
+void Graph::evolution(bool* pause, int*rest_evolution, int* t1)
 {
+/// SIMULATION DE L'EVOLUTION DES POPULATIONS
 
+
+        if(m_playEvolution && *pause == true)
+        {
+            *pause = false;
+            m_playEvolution = false;
+            std::cout << "\npause";
+        }
+        else if (m_playEvolution)
+        {
+            *pause = true;
+            m_playEvolution = false;
+            std::cout << "\nplay";
+        }
+/// accelerer/ralentir la vitesse d'évolution
+        if(m_vitEvolutionMoins == true) ///accélere
+        {
+            std::cout << " - ";
+            *rest_evolution = *rest_evolution + 50;
+           m_vitEvolutionMoins = false;
+        }
+        if(m_vitEvolutionPlus == true) ///ralentir
+        {
+            std::cout << " + ";
+            *rest_evolution = *rest_evolution - 50;
+            m_vitEvolutionPlus = false;
+        }
+
+        if (*t1 + *rest_evolution <= clock())
+        {
+
+            if (*pause == true)
+                CalculPop();
+            *t1 = clock();
+
+        }
 }
 
 
