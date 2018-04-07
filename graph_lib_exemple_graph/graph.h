@@ -307,6 +307,9 @@ private :
     grman::WidgetButton m_Button_Ajout_Vertex; //bouton sauver
     grman::WidgetText m_Text_Ajout_Vertex; //test "sauver
 
+    grman::WidgetButton m_Button_Ajout_Edge; //bouton sauver
+    grman::WidgetText m_Text_Ajout_Edge; //test "sauver
+
     grman::WidgetButton m_Button_Supr_Arette;
     grman::WidgetText m_Text_Supr_arette;
 
@@ -363,6 +366,7 @@ private :
     bool m_quiter = false;
     bool m_SuprEdge = false;
     bool m_AjoutVertex = false;
+    bool m_AjoutEdge = false;
     int m_CurrentGraph;
 
     bool m_playEvolution = false;
@@ -410,6 +414,7 @@ public:
     void affichageForteConnexiteInterface();
 
     void menu_ajout_vertex();
+    void menu_ajout_edge();
 
 
 
