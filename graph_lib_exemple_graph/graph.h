@@ -212,6 +212,8 @@ private :
     //box de fermeture de arete
     grman::WidgetCheckBox m_box_Edge_close;
 
+    bool m_autor_supr;
+
 
 public :
 
@@ -239,7 +241,8 @@ private :
     /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
     double m_weight;
 
-    bool m_suprEdge = false;
+    bool m_autorisation_supr_edge = false;
+
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<EdgeInterface> m_interface = nullptr;
@@ -257,11 +260,6 @@ public:
     /// Voir l'implémentation Graph::update dans le .cpp
     void pre_update();
     void post_update();
-
-    bool supr_edge()
-    {
-        return m_suprEdge;
-    }
 
 };
 
@@ -301,10 +299,13 @@ private :
     grman::WidgetButton m_Button_Save; //bouton sauver
     grman::WidgetText m_Text_Save; //test "sauver
 
+    grman::WidgetButton m_Button_Quit; //bouton sauver
+    grman::WidgetText m_Text_Quit; //test "sauver
+
     grman::WidgetButton m_Button_Supr_Arette;
     grman::WidgetText m_Text_Supr_arette;
 
-    grman::WidgetButton m_Button_Vit_Evolution;
+    grman::WidgetButton m_Button_Vit_Evolution;//Boutons d'évolition
     grman::WidgetText m_Text_Vit_Evolution;
     grman::WidgetButton m_Button_Vit_Evolution_plus;
     grman::WidgetText m_Text_Vit_Evolution_plus;
@@ -314,6 +315,9 @@ private :
 
     // A compléter éventuellement par des widgets de décoration ou
     // d'édition (boutons ajouter/enlever ...)
+
+
+
 
 public :
 
@@ -349,6 +353,8 @@ private :
     std::vector<std::vector<int>> m_tab_forte_connexite;
 
     int m_ordre;
+    bool m_quiter = false;
+    bool m_SuprEdge = false;
 
 
 
@@ -398,6 +404,11 @@ public:
 
     ///Fonction qui calcul la population en fonction des populations des autres sommets et coefficients des autres arcs
     void CalculPop();
+
+
+
+    //getters
+    bool get_autorisation_supr_edge() {return m_SuprEdge;}
 
 };
 

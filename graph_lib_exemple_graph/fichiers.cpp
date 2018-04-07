@@ -27,7 +27,7 @@ void Graph::chargerFichier(int ordre)
     else if (ordre == 2)
         nomFichier = "desert";
     else if(ordre == 3)
-        nomFichier = "savane1";
+        nomFichier = "savane";
 
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
     nomFichier = "fichier/" + nomFichier;
@@ -43,21 +43,27 @@ void Graph::chargerFichier(int ordre)
     ***********************************************************/
     fichier = nomFichier+"_Sommets.txt";
     std::ifstream fsommets (fichier, std::ios::in);
-    //std::cout << "fichier ouvert1" << std::endl;
+    std::cout << "\n fichier ouvert : " << fichier << std::endl;
     if(fsommets)
     {
-        //std::cout << "firchier ouvert2" << std::endl;
         while(!fsommets.eof())
         {
+
             fsommets>>idx;
+            //std::cout << "\nidx = " << idx;
             fsommets>>value;
+            //std::cout << " value = " << value;
             fsommets>>x;
+            //std::cout << " x = " << x;
             fsommets>>y;
+            //std::cout << " y = " << y;
 
             //std::cout << y << "\n";
 
             fsommets>> r; /// Rythme Croissance
+            //std::cout << " r = " << r;
             fsommets>> c; ///Coeff Pondéré
+            //std::cout << " c = " << c;
 
             ///add by jojo
             //std::cout << r << "\n";

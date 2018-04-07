@@ -95,12 +95,13 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
 
     // la croix de supression
-    // if ( supr_edge() == true ){
+     //if (m_autor_supr == true )
+
     m_top_edge.add_child(m_box_Edge_close);
-    m_box_Edge_close.set_dim(10,10);
+    m_box_Edge_close.set_dim(5,5);
     m_box_Edge_close.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Down);
-    m_box_Edge_close.set_bg_color(JAUNE);
-    //    }
+    m_box_Edge_close.set_bg_color(ROUGE);
+
 
 }
 
@@ -156,6 +157,18 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Text_Save.set_message("SAVE");
 
     /**************************************
+            BOUTON QUIT
+    **************************************/
+    m_top_box.add_child(m_Button_Quit); //bouton
+    m_Button_Quit.set_dim(80,40);
+    m_Button_Quit.set_bg_color(BLEU);
+    m_Button_Quit.set_pos(9,500);
+    m_Button_Quit.add_child(m_Text_Quit);//text du bouton save
+
+    m_Text_Quit.set_pos(30,15);
+    m_Text_Quit.set_message("QUIT");
+
+    /**************************************
             BOUTON SUPR ARETTE
     **************************************/
     m_top_box.add_child(m_Button_Supr_Arette); //bouton
@@ -207,17 +220,20 @@ void Graph::WraperBoutons()
         std::cout << "\non sauve";
         m_interface->m_Button_Save.set_value(false);
     }
+    if (m_interface->m_Button_Quit.get_value()==true)
+    {
+        std::cout << "\non quite";
+        m_quiter = true;
+        m_interface->m_Button_Quit.set_value(false);
+    }
     if (m_interface->m_Button_Supr_Arette.get_value()==true)
     {
-        for (auto &elt : m_edges)
-        {
-            if (elt.second.m_suprEdge == false)
-                elt.second.m_suprEdge = true;
-            else
-                elt.second.m_suprEdge = false;
-            m_interface->m_Button_Supr_Arette.set_value(false);
-        }
+
+    m_edges[7].m_autorisation_supr_edge = true;
+
+        m_interface->m_Button_Supr_Arette.set_value(false);
     }
+
 }
 
 

@@ -34,11 +34,11 @@ int MenuPrincipal()
             if (mouse_b&1)
             {
         if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
-            return 1;
-        if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
             return 2;
-        if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
+        if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
             return 3;
+        if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
+            return 1;
         if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
         return 0;
             }
@@ -59,6 +59,8 @@ int main()
     int t1 = clock();
     int rest_evolution = 2000;
     bool pause = false;
+
+    bool fin = false;
 
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();

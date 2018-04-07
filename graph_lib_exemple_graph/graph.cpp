@@ -76,9 +76,9 @@ void Graph::add_edge(int from, int to)
     int indice;
     for (auto a=m_edges.begin() ; a != m_edges.end(); a++)
         indice = a->first;
-    std::cout << "coucou13\n";
+    //std::cout << "coucou13\n";
     add_interfaced_edge(indice + 1,from,to,50);
-    std::cout << "coucou 14";
+    //std::cout << "coucou 14";
 }
 
 
