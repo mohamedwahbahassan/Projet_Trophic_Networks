@@ -3,11 +3,11 @@
 1 37.1429 37 177 1 1 savane/elephant.jpg
 2 30 493 3 1 1 savane/buffle.jpg
 3 0 270 477 1 1 savane/gnou.jpg
-4 37.1429 37 177 1 1 savane/zebre.jpg
+4 37.1429 13 373 1 1 savane/zebre.jpg
 5 30 493 3 1 1 savane/phacochere.jpg
 6 30 493 3 1 1 savane/gazelle.jpg
 7 0 270 477 1 1 savane/fourmi.jpg
-8 37.1429 37 177 1 1 savane/lion.jpg
+8 37.1429 221 5 1 1 savane/lion.jpg
 9 30 493 3 1 1 savane/guepard.jpg
-10 0 270 477 1 1 savane/leopard.jpg
-11 37.1429 37 177 1 1 savane/hyene.jpg
+10 0 594 284 1 1 savane/leopard.jpg
+11 37.1429 398 44 1 1 savane/hyene.jpg

@@ -31,18 +31,18 @@ int MenuPrincipal(Graph testFichier)
         if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
             blit(images[3],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
-            if (mouse_b&1)
-            {
-        if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
-            return 2;
-        if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
-return 3;
-        if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
-            return 1;
-        if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
-        return 0;
+        if (mouse_b&1)
+        {
+            if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
+                return 2;
+            if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
+                return 3;
+            if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
+                return 1;
+            if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
+                return 0;
 
-            }
+        }
 
 
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -74,8 +74,10 @@ int main()
 
     Graph testFichier;
     int graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
-    if (graph == 0) return 0;//cas ou l'utilisateur veut quitter
-    testFichier.chargerFichier(graph);
+    if (graph == 0)
+        return 0;//cas ou l'utilisateur veut quitter
+    testFichier.chargerFichier(graph,false);
+    testFichier.set_current_graph(graph);
     testFichier.ordredebase();
     testFichier.remplir_tab_adj();
 
@@ -89,9 +91,7 @@ int main()
 
     while ( !key[KEY_ESC] )
     {
-
 /// SIMULATION DE L'EVOLUTION DES POPULATIONS
-
         if(key[KEY_SPACE] && pause == true)
         {
             pause = false;
@@ -102,10 +102,7 @@ int main()
             pause = true;
             while (key[KEY_SPACE]) {}
         }
-
-
 /// accelerer/ralentir la vitesse d'évolution
-
         if(key[KEY_Q]) ///accélere
         {
             rest_evolution = rest_evolution - 10;
@@ -125,18 +122,47 @@ int main()
             t1 = clock();
 
         }
+
+
+
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
         /// Mise à jour générale (clavier/souris/buffer etc...)
         grman::mettre_a_jour();
 
         if (testFichier.get_quiter() == true)
-            {testFichier.vider_graph();
-    graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
-    if (graph == 0) return 0;//cas ou l'utilisateur veut quitter
-    testFichier.chargerFichier(graph);
+        {
+                        std::cout << "\n quiter main";
+
+            testFichier.vider_graph();
+            graph = MenuPrincipal(testFichier); //on demande à l'utilisateur quel graph il souhaite ouvrir
+            if (graph == 0)
+                return 0;//cas ou l'utilisateur veut quitter
+            testFichier.chargerFichier(graph,false);
+
+            testFichier.set_current_graph(graph);
             testFichier.RAZ_quiter();
-            }
+        }
+        if (testFichier.get_restaurer_graph() == true)
+        {
+                        std::cout << "\n restaurer main";
+
+            testFichier.vider_graph();
+            testFichier.chargerFichier(testFichier.get_current_graph(),true);
+            testFichier.RAZ_restaurer_graph();
+        }
+        if (testFichier.get_sauver() == true)
+        {
+            std::cout << "\n sauver main";
+            testFichier.sauverFichier(testFichier.get_current_graph(),false);
+
+            testFichier.vider_graph();
+            testFichier.chargerFichier(graph,false);
+            testFichier.RAZ_sauver();
+        }
+
+
+
 
 
 

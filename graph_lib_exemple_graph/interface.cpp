@@ -153,8 +153,17 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Button_Save.set_pos(9,10);
     m_Button_Save.add_child(m_Text_Save);//text du bouton save
 
-    m_Text_Save.set_pos(30,15);
+    m_Text_Save.set_pos(30,5);
     m_Text_Save.set_message("SAVE");
+
+    m_Button_Save.add_child(m_Button_Restaurer); //bouton
+    m_Button_Restaurer.set_dim(70,15);
+    m_Button_Restaurer.set_bg_color(BLANC);
+    m_Button_Restaurer.set_pos(3,20);
+    m_Button_Restaurer.add_child(m_Text_Restaurer);//text du bouton save
+
+    m_Text_Restaurer.set_pos(0,0);
+    m_Text_Restaurer.set_message("RESTAURER");
 
     /**************************************
             BOUTON QUIT
@@ -178,7 +187,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Button_Supr_Arette.add_child(m_Text_Supr_arette);//text du bouton save
 
     m_Text_Supr_arette.set_pos(1,15);
-    m_Text_Supr_arette.set_message("SUPR ARETTE");
+    m_Text_Supr_arette.set_message("SUPR ARETE");
 
 
     /**********************************************
@@ -218,14 +227,27 @@ void Graph::WraperBoutons()
     if (m_interface->m_Button_Save.get_value()==true)
     {
         std::cout << "\non sauve";
+        m_sauver = true;
         m_interface->m_Button_Save.set_value(false);
     }
+
+    if (m_interface->m_Button_Restaurer.get_value()==true)
+    {
+        std::cout << "\non sauve";
+        m_restaurer_graph = true;
+        m_interface->m_Button_Restaurer.set_value(false);
+    }
+
+
+
     if (m_interface->m_Button_Quit.get_value()==true)
     {
         std::cout << "\non quite";
         m_quiter = true;
         m_interface->m_Button_Quit.set_value(false);
     }
+
+
     if (m_interface->m_Button_Supr_Arette.get_value()==true)
     {
 

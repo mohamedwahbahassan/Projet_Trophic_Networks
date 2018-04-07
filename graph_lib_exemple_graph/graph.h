@@ -298,6 +298,8 @@ private :
     *******************************/
     grman::WidgetButton m_Button_Save; //bouton sauver
     grman::WidgetText m_Text_Save; //test "sauver
+    grman::WidgetButton m_Button_Restaurer; //bouton sauver
+    grman::WidgetText m_Text_Restaurer; //test "sauver
 
     grman::WidgetButton m_Button_Quit; //bouton sauver
     grman::WidgetText m_Text_Quit; //test "sauver
@@ -353,8 +355,11 @@ private :
     std::vector<std::vector<int>> m_tab_forte_connexite;
 
     int m_ordre;
+    bool m_restaurer_graph = false;
+    bool m_sauver = false;
     bool m_quiter = false;
     bool m_SuprEdge = false;
+    int m_CurrentGraph;
 
 
 
@@ -372,8 +377,8 @@ public:
     void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0, float rythmeCroissance = 0, float coeffPondere = 0);  ///changed by jojo
     void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
-    void chargerFichier(int ordre);
-    void sauverFichier(int ordre);
+    void chargerFichier(int ordre,bool restauration);
+    void sauverFichier(int ordre,bool restauration);
 
     void remove_edge(int eidx);
     void remove_vertex(int eidx);
@@ -410,10 +415,19 @@ public:
 
     //RAZ
     void RAZ_quiter(){m_quiter = false;}
+    void RAZ_restaurer_graph(){m_restaurer_graph = false;}
+    void RAZ_sauver(){m_sauver = false;}
+
+
+    //geters
+    void set_current_graph(int var) {m_CurrentGraph = var;}
 
     //getters
     bool get_autorisation_supr_edge() {return m_SuprEdge;}
+    bool get_restaurer_graph () {return m_restaurer_graph;}
+    bool get_sauver () {return m_sauver;}
     bool get_quiter () {return m_quiter;}
+    int get_current_graph() {return m_CurrentGraph;}
 
 };
 
