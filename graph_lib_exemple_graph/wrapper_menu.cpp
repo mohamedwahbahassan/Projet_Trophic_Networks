@@ -70,7 +70,7 @@ bool Graph::MenuPrincipal()
 
 bool Graph::boutons()
 {
-    if (get_quiter() == true)
+    if (get_quiter() == true) /// on a appuyé suir le bouton quiter
     {
         // std::cout << "\n quiter main";
         vider_graph();
@@ -78,14 +78,22 @@ bool Graph::boutons()
         return MenuPrincipal();//cas ou l'utilisateur veut quitter
     }
 
-    if (get_restaurer_graph() == true)
+    if (get_montrerComposantesFortementConnexe() == true) /// on a appuyé sur le bouton pour montrer les composantes fortement connexe
+    {
+    remplir_tab_adj();
+    toutesLesComposantesFortementConnexes();
+    affichageForteConnexiteInterface();
+    RAZ_montrerComposantesFortementConnexe();
+    }
+
+    if (get_restaurer_graph() == true) /// on a appuyé sur le bouton restaurer
     {
         std::cout << "\n restaurer main";
         vider_graph();
         chargerFichier(get_current_graph(),true);
         RAZ_restaurer_graph();
     }
-    if (get_sauver() == true)
+    if (get_sauver() == true) /// on a appuyé sur le bouton sauvegarder
     {
         std::cout << "\n sauver main";
         sauverFichier(get_current_graph(),false);

@@ -25,12 +25,6 @@ int main()
     testFichier.ordredebase(); //enregistrement de l'ordre du graph
 
 
-    testFichier.remplir_tab_adj();
-    testFichier.toutesLesComposantesFortementConnexes();
-    //testFichier.affichageTableauForteConnexite();
-    testFichier.affichageForteConnexiteInterface();
-
-
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
 

@@ -177,6 +177,18 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Text_Quit.set_pos(20,15);
     m_Text_Quit.set_message("QUIT");
 
+    /**********************************************
+            BOUTON MONTRER COMPOSANTES CONNEXE
+    **********************************************/
+    m_top_box.add_child(m_Button_Montrer_Composantes_Connexe); //bouton composantes connexe
+    m_Button_Montrer_Composantes_Connexe.set_dim(40,40);
+    m_Button_Montrer_Composantes_Connexe.set_bg_color(BLEU);
+    m_Button_Montrer_Composantes_Connexe.set_pos(9,300);
+    m_Button_Montrer_Composantes_Connexe.add_child(m_Text_Montrer_Composantes_Connexe);//texte composantes connexe
+
+    m_Text_Montrer_Composantes_Connexe.set_pos(10,15);
+    m_Text_Montrer_Composantes_Connexe.set_message("MCC");
+
     /**************************************
             BOUTON AJOUT VERTEX
     **************************************/
@@ -204,6 +216,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     /**************************************
             BOUTON SUPR ARETTE
     **************************************/
+    /*
     m_top_box.add_child(m_Button_Supr_Arette); //bouton
     m_Button_Supr_Arette.set_dim(80,40);
     m_Button_Supr_Arette.set_bg_color(JAUNE);
@@ -212,6 +225,7 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
     m_Text_Supr_arette.set_pos(1,15);
     m_Text_Supr_arette.set_message("SUPR ARETE");
+    */
 
 
     /**********************************************
@@ -249,60 +263,68 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 void Graph::WraperBoutons()
 {
 
-    if (m_interface->m_Button_Vit_Evolution.get_value()==true)
+    if (m_interface->m_Button_Vit_Evolution.get_value()==true) /// play/ pause evolution
     {
         m_playEvolution = true;
         m_interface->m_Button_Vit_Evolution.set_value(false);
     }
-    if (m_interface->m_Button_Vit_Evolution_moins.get_value()==true)
+
+    if (m_interface->m_Button_Vit_Evolution_moins.get_value()==true) /// ralentissement evolution
     {
         std::cout << "\nmoins vite";
         m_vitEvolutionMoins = true;
         m_interface->m_Button_Vit_Evolution_moins.set_value(false);
     }
 
-    if (m_interface->m_Button_Vit_Evolution_plus.get_value()==true)
+    if (m_interface->m_Button_Vit_Evolution_plus.get_value()==true) /// acceleration evolution
     {
         std::cout << "\nplus vite";
         m_vitEvolutionPlus = true;
         m_interface->m_Button_Vit_Evolution_plus.set_value(false);
     }
 
-    if (m_interface->m_Button_Save.get_value()==true)
+    if (m_interface->m_Button_Save.get_value()==true) /// sauvegarde
     {
         std::cout << "\non sauve";
         m_sauver = true;
         m_interface->m_Button_Save.set_value(false);
     }
 
-    if (m_interface->m_Button_Restaurer.get_value()==true)
+    if (m_interface->m_Button_Restaurer.get_value()==true) ///restauration
     {
         std::cout << "\non sauve";
         m_restaurer_graph = true;
         m_interface->m_Button_Restaurer.set_value(false);
     }
 
-    if (m_interface->m_Button_Quit.get_value()==true)
+    if (m_interface->m_Button_Quit.get_value()==true) /// quiter
     {
         std::cout << "\non quite";
         m_quiter = true;
         m_interface->m_Button_Quit.set_value(false);
     }
 
-    if (m_interface->m_Button_Ajout_Vertex.get_value()==true)
+    if (m_interface->m_Button_Montrer_Composantes_Connexe.get_value()==true) /// montrer composantes connexe
+    {
+        std::cout << "\non montre les composantes fortement connexe";
+        m_montrerComposantesConnexe = true;
+        m_interface->m_Button_Montrer_Composantes_Connexe.set_value(false);
+    }
+
+    if (m_interface->m_Button_Ajout_Vertex.get_value()==true) /// ajouter sommet
     {
         std::cout << "\nvertex +";
         m_AjoutVertex= true;
         m_interface->m_Button_Ajout_Vertex.set_value(false);
     }
-    if (m_interface->m_Button_Ajout_Edge.get_value()==true)
+    if (m_interface->m_Button_Ajout_Edge.get_value()==true) /// ajouter arete
     {
         std::cout << "\nedge +";
         m_AjoutEdge= true;
         m_interface->m_Button_Ajout_Edge.set_value(false);
     }
 
-    if (m_interface->m_Button_Supr_Arette.get_value()==true)
+    if (m_interface->m_Button_Supr_Arette.get_value()==true) ///supprimer arete (pas tres tres bon)
     {
         m_edges[7].m_autorisation_supr_edge = true;
         m_interface->m_Button_Supr_Arette.set_value(false);
