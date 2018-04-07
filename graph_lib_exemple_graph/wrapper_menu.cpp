@@ -104,3 +104,9 @@ bool Graph::boutons()
 }
 
 
+void Graph::evolution()
+{
+
+}
+
+

@@ -116,6 +116,7 @@ int main()
 
         }
 
+        testFichier.evolution();
         fin = testFichier.boutons();
 
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets

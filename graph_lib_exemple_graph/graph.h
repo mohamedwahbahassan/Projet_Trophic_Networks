@@ -420,6 +420,7 @@ public:
     void RAZ_restaurer_graph(){m_restaurer_graph = false;}
     void RAZ_sauver(){m_sauver = false;}
 
+    void evolution();
 
     //geters
     void set_current_graph(int var) {m_CurrentGraph = var;}
