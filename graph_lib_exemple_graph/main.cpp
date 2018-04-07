@@ -18,10 +18,10 @@ void MenuPrincipal()
 int main()
 {
     int graph =1;
-
     int t1 = clock();
     int rest_evolution = 2000;
     bool pause = false;
+
 
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
@@ -36,10 +36,13 @@ int main()
     testFichier.ordredebase();
     testFichier.remplir_tab_adj();
 
+    testFichier.remplir_tab_adj_sym();
+
     testFichier.toutesLesComposantesFortementConnexes();
     testFichier.affichageTableauForteConnexite();
 
     testFichier.affichageForteConnexiteInterface();
+
 
 
     /// Vous gardez la main sur la "boucle de jeu"
@@ -84,11 +87,20 @@ int main()
             t1 = clock();
 
         }
+        if(key[KEY_K])
+        {
+            testFichier.getAllCombin(testFichier.get_serie());
+            testFichier.affichage_tab_combin();
+
+
+        }
 
 
 
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
+
+
 
 
         /// Mise à jour générale (clavier/souris/buffer etc...)

@@ -148,6 +148,9 @@ private :
     float m_rythmeCroissance; ///r: rythme de croissance differente pour chaque population
     float m_coeffPondere; /// ar le modèle proposé n'est pas étalonné sur des échelles homogènes
 
+    /// pour k-connexité
+    bool m_actif= true;
+
 
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
@@ -243,6 +246,8 @@ private :
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<EdgeInterface> m_interface = nullptr;
+
+    bool m_actif = true;
 
 
 public:
@@ -350,6 +355,11 @@ private :
 
     int m_ordre;
 
+    std::vector<std::vector<int>> m_tab_adj_sym;
+
+    std::vector<int> m_tab_connexe;
+
+    std::vector <std::string> m_tabCombin;
 
 
 
@@ -369,8 +379,8 @@ public:
     void chargerFichier(int ordre);
     void sauverFichier(int ordre);
 
-    void remove_edge(int eidx);
-    void remove_vertex(int eidx);
+    void remove_edge(int eidx, int cas);
+    void remove_vertex(int eidx, int cas);
 
     void add_vertex(std::string image);
     void add_edge(int from, int to);
@@ -396,6 +406,18 @@ public:
 
     ///Fonction qui calcul la population en fonction des populations des autres sommets et coefficients des autres arcs
     void CalculPop();
+
+
+    void remplir_tab_adj_sym();
+    std::vector<int> remplir_tab_connexe(int s);
+    bool Graphe_connexe();
+    int chercher_sommet_actif();
+    void getCombinFork(const std::string &serie, size_t i, std::string result,int* compteur);
+    void getAllCombin(std::string serie);
+    std::string get_serie();
+
+    void affichage_tab_combin();
+
 
 };
 

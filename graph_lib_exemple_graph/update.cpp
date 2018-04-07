@@ -81,6 +81,7 @@ void Edge::post_update()
 void Graph::update()
 {
 
+    int cas=2;
 
     int indice = -1;
     if (!m_interface)
@@ -107,16 +108,17 @@ void Graph::update()
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
 
-        if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
+        if (elt->second.m_interface->m_box_Edge_close.get_value() == true && elt->second.m_actif == true)
         {
             indice = elt->first;
         }
+
     }
 
 
     if(indice != -1)
     {
-        remove_edge(indice);
+        remove_edge(indice,cas);
         indice = -1;
     }
 
@@ -124,7 +126,7 @@ void Graph::update()
     for (auto &elt : m_vertices)
     {
         elt.second.post_update();
-        if (elt.second.m_interface->m_box_close.get_value() == true)
+        if (elt.second.m_interface->m_box_close.get_value() == true && elt.second.m_actif == true)
         {
             indice = elt.first;
 
@@ -132,8 +134,7 @@ void Graph::update()
     }
     if (indice != -1)
     {
-        remove_vertex(indice);
-
+        remove_vertex(indice,cas);
 
         // std::cout << "couccou leo" << std::endl;
 
@@ -141,14 +142,16 @@ void Graph::update()
     }
 
     remplir_tab_adj();
+     remplir_tab_adj_sym();
 
     toutesLesComposantesFortementConnexes();
-    affichageTableauForteConnexite();
+   // affichageTableauForteConnexite();
     affichageForteConnexiteInterface();
 
 
 
 
+ //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }
 
 
