@@ -278,6 +278,9 @@ public:
     void pre_update();
     void post_update();
 
+    int get_from() {return m_from;}
+    int get_to() {return m_to;}
+    int get_weight() {return m_weight;}
 };
 
 
@@ -317,22 +320,25 @@ private :
     grman::WidgetText m_Text_Save; //test "sauver
 
     grman::WidgetButton m_Button_Restaurer; //bouton restaurer
-    grman::WidgetText m_Text_Restaurer; //texte restaurer
+    grman::WidgetText m_Text_Restaurer;
 
     grman::WidgetButton m_Button_Quit; //bouton quiter
-    grman::WidgetText m_Text_Quit; //texte restaurer
+    grman::WidgetText m_Text_Quit;
 
     grman::WidgetButton m_Button_Ajout_Vertex; //bouton ajouter vertex
-    grman::WidgetText m_Text_Ajout_Vertex; //texte ajouter vertex
+    grman::WidgetText m_Text_Ajout_Vertex;
 
     grman::WidgetButton m_Button_Ajout_Edge; //bouton ajouter edge
-    grman::WidgetText m_Text_Ajout_Edge; //texter ajouter edge
+    grman::WidgetText m_Text_Ajout_Edge;
 
     grman::WidgetButton m_Button_Montrer_Composantes_Connexe; //bouton ajouter edge
-    grman::WidgetText m_Text_Montrer_Composantes_Connexe; //texter ajouter edge
+    grman::WidgetText m_Text_Montrer_Composantes_Connexe;
+
+    grman::WidgetButton m_Button_Graph_Reduit; //bouton graph reduit
+    grman::WidgetText m_Text_Graph_Reduit;
 
     grman::WidgetButton m_Button_Supr_Arette;//bouton supprimer arete
-    grman::WidgetText m_Text_Supr_arette;//texte supprimer arete
+    grman::WidgetText m_Text_Supr_arette;
 
     grman::WidgetButton m_Button_Vit_Evolution;//Boutons d'évolition
     grman::WidgetText m_Text_Vit_Evolution;
@@ -389,6 +395,9 @@ private :
     bool m_AjoutVertex = false;
     bool m_AjoutEdge = false;
     bool m_montrerComposantesConnexe = false;
+    bool m_graphReduit = false;
+    bool m_stopGraphReduit = false;
+    bool m_mouse_prec = false;
     int m_CurrentGraph;
 
     bool m_playEvolution = false;
@@ -417,8 +426,8 @@ public:
     void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0, float rythmeCroissance = 0, float coeffPondere = 0);  ///changed by jojo
     void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
-    void chargerFichier(int ordre,bool restauration);
-    void sauverFichier(int ordre,bool restauration);
+    void chargerFichier(int ordre,int restauration);
+    void sauverFichier(int ordre,int restauration);
 
     void remove_edge(int eidx, int cas);
     void remove_vertex(int eidx, int cas);
@@ -439,6 +448,7 @@ public:
     void affichageTableauForteConnexite();
 
     void affichageForteConnexiteInterface(bool actif);
+    void GraphReduit();
 
     void menu_ajout_vertex();
     void menu_ajout_edge();
@@ -465,6 +475,7 @@ public:
     void RAZ_playEvolution() {m_playEvolution = false;}
     void RAZ_vitEvolution() {m_vitEvolutionMoins = false; m_vitEvolutionPlus = false;}
     void RAZ_montrerComposantesFortementConnexe(){m_montrerComposantesConnexe = false;}
+    void RAZ_graphReduit() {m_graphReduit = false;}
 
     void evolution(bool* pause, int*rest_evolution, int* t1);
 
@@ -477,6 +488,7 @@ public:
     bool get_sauver () {return m_sauver;}
     bool get_quiter () {return m_quiter;}
     bool get_montrerComposantesFortementConnexe () {return m_montrerComposantesConnexe;}
+    bool get_graphReduit() {return m_graphReduit;}
     bool get_playEvolution() {return m_playEvolution;}
     bool get_vitEvolutionMoins() {return m_vitEvolutionMoins;}
     bool get_vitEvolutionPlus() {return m_vitEvolutionPlus;}

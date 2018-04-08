@@ -1,8 +1,11 @@
 
-0 0 270 463 1 1 desert/vegetaux.jpg
-1 37.1429 8 191 1 1 desert/dromadaire.jpg
-2 30 541 170 1 1 desert/gazelle.jpg
-3 0 349 179 1 1 desert/adax.jpg
-4 37.1429 178 184 1 1 desert/fourmi.jpg
-5 92.9448 438 19 1 1 desert/guepard.jpg
-6 33.4249 156 17 1 1 desert/scorpion.jpg
+0 0 266 459 1 1 desert/vegetaux.jpg
+1 37.1429 4 187 1 1 desert/dromadaire.jpg
+2 30 645 196 1 1 desert/gazelle.jpg
+3 0 345 175 1 1 desert/adax.jpg
+4 37.1429 174 180 1 1 desert/fourmi.jpg
+5 92.9448 453 24 1 1 desert/guepard.jpg
+6 33.4249 152 13 1 1 desert/scorpion.jpg
+7 50 582 361 1 1 desert/dromadaire.jpg
+8 50 741 319 1 1 desert/dromadaire.jpg
+9 50 713 61 1 1 desert/scorpion.jpg

@@ -181,13 +181,25 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
             BOUTON MONTRER COMPOSANTES CONNEXE
     **********************************************/
     m_top_box.add_child(m_Button_Montrer_Composantes_Connexe); //bouton composantes connexe
-    m_Button_Montrer_Composantes_Connexe.set_dim(40,40);
+    m_Button_Montrer_Composantes_Connexe.set_dim(35,40);
     m_Button_Montrer_Composantes_Connexe.set_bg_color(BLEU);
     m_Button_Montrer_Composantes_Connexe.set_pos(9,300);
     m_Button_Montrer_Composantes_Connexe.add_child(m_Text_Montrer_Composantes_Connexe);//texte composantes connexe
 
-    m_Text_Montrer_Composantes_Connexe.set_pos(10,15);
+    m_Text_Montrer_Composantes_Connexe.set_pos(3,15);
     m_Text_Montrer_Composantes_Connexe.set_message("MCC");
+
+    /**********************************************
+            BOUTON MONTRER GRAPH REDUIT
+    **********************************************/
+    m_top_box.add_child(m_Button_Graph_Reduit); //bouton composantes connexe
+    m_Button_Graph_Reduit.set_dim(35,40);
+    m_Button_Graph_Reduit.set_bg_color(BLEU);
+    m_Button_Graph_Reduit.set_pos(55,300);
+    m_Button_Graph_Reduit.add_child(m_Text_Graph_Reduit);//texte composantes connexe
+
+    m_Text_Graph_Reduit.set_pos(10,15);
+    m_Text_Graph_Reduit.set_message("GR");
 
     /**************************************
             BOUTON AJOUT VERTEX
@@ -289,6 +301,12 @@ void Graph::WraperBoutons()
         m_sauver = true;
         m_interface->m_Button_Save.set_value(false);
     }
+    if (m_interface->m_Button_Graph_Reduit.get_value()==true) /// sauvegarde
+    {
+        std::cout << "\ngraph_réduit";
+        m_graphReduit = true;
+        m_interface->m_Button_Graph_Reduit.set_value(false);
+    }
 
     if (m_interface->m_Button_Restaurer.get_value()==true) ///restauration
     {
@@ -344,12 +362,19 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
         std::cerr << "Error adding vertex at idx=" << idx << " already used..." << std::endl;
         throw "Error adding vertex";
     }
+
+
+
+
     // Création d'une interface de sommet
     VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
+    //   std::cout << "salut 2 ";
+
     // Ajout de la top box de l'interface de sommet
     m_interface->m_main_box.add_child(vi->m_top_box);
     // On peut ajouter directement des vertices dans la map avec la notation crochet :
 
+    // std::cout << "coucou2";
 
     m_ordre ++;
 
@@ -359,7 +384,7 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     //std::cout << "\n avant le vertex idx = " << idx << " r = " << r << " c = " << c;
     m_vertices[idx] = Vertex(value, vi, r, c);
     //std::cout << "\n dans le vertex idx = " << idx << " r = " << m_vertices[idx].m_rythmeCroissance << "c = "<< m_vertices[idx].m_coeffPondere;
-
+    // std::cout << "coucou2";
 }
 
 /// Aide à l'ajout d'arcs interfacés
@@ -399,64 +424,160 @@ void Graph::affichageForteConnexiteInterface(bool actif)
     {
 
 
-    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
-    {
-        it -> second.set_deja_fortement_connexe(false);
-    }
-
-    for(int i=0; i<m_ordre-1; i++)
-    {
-        for(j=i+1; j<m_ordre; j++)
+        for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
         {
-            if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
-            {
-                // std::cout << "\nforte connexite entre " << i << " et " << j;
-                if (m_vertices[i].get_deja_fortement_connexe() == true && m_vertices[j].get_deja_fortement_connexe() == true)
-                {
-//std::cout << "\n1 : forte connexite entre " << i << " et " << j;
-                }
-                else if (m_vertices[i].get_deja_fortement_connexe() == true)
-                {
-                    //std::cout << "\n2 : forte connexite entre " << i << " et " << j;
-                    m_vertices[j].set_borderColor(m_vertices[i].get_borderColor());
-                    m_vertices[j].set_deja_fortement_connexe(true);
-                }
-                else if (m_vertices[j].get_deja_fortement_connexe() == true)
-                {
-                    //std::cout << "\n3 : forte connexite entre " << i << " et " << j;
-                    m_vertices[i].set_borderColor(m_vertices[j].get_borderColor());
-                    m_vertices[i].set_deja_fortement_connexe(true);
-                }
-                else
-                {
-                    //   std::cout << "\n4 : forte connexite entre " << i << " et " << j;
-                    m_vertices[i].set_borderColor(COULEURALEATOIRE);
-                    m_vertices[i].set_deja_fortement_connexe(true);
+            it -> second.set_deja_fortement_connexe(false);
+        }
 
-                    m_vertices[j].set_borderColor(m_vertices[i].get_borderColor());
-                    m_vertices[j].set_deja_fortement_connexe(true);
+        for(int i=0; i<m_ordre-1; i++)
+        {
+            for(j=i+1; j<m_ordre; j++)
+            {
+                if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
+                {
+                    // std::cout << "\nforte connexite entre " << i << " et " << j;
+                    if (m_vertices[i].get_deja_fortement_connexe() == true && m_vertices[j].get_deja_fortement_connexe() == true)
+                    {
+//std::cout << "\n1 : forte connexite entre " << i << " et " << j;
+                    }
+                    else if (m_vertices[i].get_deja_fortement_connexe() == true)
+                    {
+                        //std::cout << "\n2 : forte connexite entre " << i << " et " << j;
+                        m_vertices[j].set_borderColor(m_vertices[i].get_borderColor());
+                        m_vertices[j].set_deja_fortement_connexe(true);
+                    }
+                    else if (m_vertices[j].get_deja_fortement_connexe() == true)
+                    {
+                        //std::cout << "\n3 : forte connexite entre " << i << " et " << j;
+                        m_vertices[i].set_borderColor(m_vertices[j].get_borderColor());
+                        m_vertices[i].set_deja_fortement_connexe(true);
+                    }
+                    else
+                    {
+                        //   std::cout << "\n4 : forte connexite entre " << i << " et " << j;
+                        m_vertices[i].set_borderColor(COULEURALEATOIRE);
+                        m_vertices[i].set_deja_fortement_connexe(true);
+
+                        m_vertices[j].set_borderColor(m_vertices[i].get_borderColor());
+                        m_vertices[j].set_deja_fortement_connexe(true);
+                    }
                 }
             }
         }
-    }
 
-    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
-    {
-        if (it->second.get_deja_fortement_connexe() == true)
-            it->second.m_interface->m_top_box.set_border_color(it->second.get_borderColor());
-        else
-            it->second.m_interface->m_top_box.set_border_color(COULEURALEATOIRE);
-    }
+        for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+        {
+            if (it->second.get_deja_fortement_connexe() == true)
+                it->second.m_interface->m_top_box.set_border_color(it->second.get_borderColor());
+            else
+                it->second.m_interface->m_top_box.set_border_color(COULEURALEATOIRE);
+        }
     }
     else
     {
-           for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
-    {
+        for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+        {
 
             it->second.m_interface->m_top_box.set_border_color(GRISCLAIR);
-    }
+        }
     }
 }
+
+
+
+void Graph::GraphReduit()
+{
+    sauverFichier(get_current_graph(),2);
+    vider_graph();
+    chargerFichier(get_current_graph(),2);
+    int idx,from,to,weight;
+
+    for(int i=0; i<m_ordre-1; i++)
+    {
+        for(int j=i+1; j<m_ordre; j++)
+        {
+            if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
+            {
+                for (auto it=m_edges.begin(); it!=m_edges.end() ; it++)
+                {
+                    if(it->second.get_from() == j && it->second.get_to() == i)
+                    {
+                        remove_edge(it->first,1);
+                     //   std::cout << "\ncas n1 : " << it->first;
+                    }
+                    else if (it->second.get_from() == i && it->second.get_to() == j)
+                    {
+                        remove_edge(it->first,1);
+                   //     std::cout << "\ncas n2 " << it->first;
+                    }
+                    else if (  it->second.get_from() == j )
+                    {
+                      ///  std::cout << "\ncas n3 "  << it->first;
+                        idx = it->first;
+                        from = it->second.get_from();
+                        to = it->second.get_to();
+                        weight = it->second.get_weight();
+                        remove_edge(idx,1);
+                        add_interfaced_edge(idx,i,to,weight);
+                    }
+                    else if ( it->second.get_to() == j)
+                    {
+                    //    std::cout << "\ncas n4 " << it->first;
+                        idx = it->first;
+                        from = it->second.get_from();
+                        to = it->second.get_to();
+                        weight = it->second.get_weight();
+                        remove_edge(idx,1);
+                        add_interfaced_edge(idx,from,i,weight);
+                    }
+
+                   // std::cout << "\nedge : " << it->first << " from : " << it->second.get_from() << " to : " << it->second.get_to() ;
+                }
+                                for (auto it=m_edges.begin(); it!=m_edges.end() ; it++)
+                {
+                    if(it->second.get_from() == j && it->second.get_to() == i)
+                    {
+                        remove_edge(it->first,1);
+                       // std::cout << "\ncas n1 : " << it->first;
+                    }
+                    else if (it->second.get_from() == i && it->second.get_to() == j)
+                    {
+                        remove_edge(it->first,1);
+                     //   std::cout << "\ncas n2 " << it->first;
+                    }
+                    else if (  it->second.get_from() == j )
+                    {
+                        //std::cout << "\ncas n3 "  << it->first;
+                        idx = it->first;
+                        from = it->second.get_from();
+                        to = it->second.get_to();
+                        weight = it->second.get_weight();
+                        remove_edge(idx,1);
+                        add_interfaced_edge(idx,i,to,weight);
+                    }
+                    else if ( it->second.get_to() == j)
+                    {
+                       // std::cout << "\ncas n4 " << it->first;
+                        idx = it->first;
+                        from = it->second.get_from();
+                        to = it->second.get_to();
+                        weight = it->second.get_weight();
+                        remove_edge(idx,1);
+                        add_interfaced_edge(idx,from,i,weight);
+                    }
+
+                 //   std::cout << "\nedge : " << it->first << " from : " << it->second.get_from() << " to : " << it->second.get_to() ;
+                }
+
+
+               // std::cout << "\nremoving vertex n" <<j;
+                remove_vertex(j,1);
+            }
+        }
+    }
+}
+
+
 
 
 

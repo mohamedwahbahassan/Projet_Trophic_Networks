@@ -21,12 +21,14 @@ int main()
 
     Graph testFichier;
     bool fin = testFichier.MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
+    std::cout << "coucou";
     testFichier.ordredebase(); //enregistrement de l'ordre du graph
-
+std::cout << "\ndfhjhcoucou";
 //    testFichier.remplir_tab_adj();
 
     testFichier.remplir_tab_adj_sym();
 
+    std::cout << "\ncoucouc5";
 //    testFichier.toutesLesComposantesFortementConnexes();
 //    testFichier.affichageTableauForteConnexite();
 

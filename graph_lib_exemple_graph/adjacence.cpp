@@ -212,7 +212,12 @@ void Graph::affichageTableauForteConnexite()
 
 void Graph::ordredebase()
 {
-    m_ordre = m_vertices.size();
+    int indice;
+    for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
+    {
+        indice = a->first;
+    }
+    m_ordre = indice +1;
     //std::cout << "ordre est " << m_ordre << std::endl;
 }
 

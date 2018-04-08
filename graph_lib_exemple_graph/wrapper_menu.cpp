@@ -35,19 +35,19 @@ bool Graph::MenuPrincipal()
         {
             if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
             {
-                chargerFichier(2,false);
+                chargerFichier(2,0);
                 set_current_graph(2);
                 fin = true;
             }
             if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
             {
-                chargerFichier(3,false);
+                chargerFichier(3,0);
                 set_current_graph(3);
                 fin = true;
             }
             if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
             {
-                chargerFichier(1,false);
+                chargerFichier(1,0);
                 set_current_graph(1);
                 fin = true;
             }
@@ -70,6 +70,8 @@ bool Graph::MenuPrincipal()
 
 bool Graph::boutons()
 {
+
+
     if (get_quiter() == true) /// on a appuyé suir le bouton quiter
     {
         // std::cout << "\n quiter main";
@@ -80,27 +82,43 @@ bool Graph::boutons()
 
     if (get_montrerComposantesFortementConnexe() == true) /// on a appuyé sur le bouton pour montrer les composantes fortement connexe
     {
-    remplir_tab_adj();
-    toutesLesComposantesFortementConnexes();
-    affichageForteConnexiteInterface(true);
-    RAZ_montrerComposantesFortementConnexe();
+        remplir_tab_adj();
+        toutesLesComposantesFortementConnexes();
+        affichageForteConnexiteInterface(true);
+        RAZ_montrerComposantesFortementConnexe();
     }
     else if (!mouse_b&1)
-        affichageForteConnexiteInterface(false);
+        affichageForteConnexiteInterface(false); /// cas ou o'on reste appuyé sur le bouton. on attends de relacher le bouton avant d'effacer les couleurs
 
+
+
+    if (get_graphReduit() == true) /// on a appuyé sur le bouton graph réduit
+    {
+        remplir_tab_adj();
+        toutesLesComposantesFortementConnexes();
+        GraphReduit();
+        m_stopGraphReduit = true;
+        RAZ_graphReduit();
+    }
+    else if (!mouse_b&1 && m_stopGraphReduit == true)
+    {
+    vider_graph();
+    chargerFichier(get_current_graph(),2);
+    m_stopGraphReduit = false;
+    }
     if (get_restaurer_graph() == true) /// on a appuyé sur le bouton restaurer
     {
         std::cout << "\n restaurer main";
         vider_graph();
-        chargerFichier(get_current_graph(),true);
+        chargerFichier(get_current_graph(),1);
         RAZ_restaurer_graph();
     }
     if (get_sauver() == true) /// on a appuyé sur le bouton sauvegarder
     {
         std::cout << "\n sauver main";
-        sauverFichier(get_current_graph(),false);
+        sauverFichier(get_current_graph(),0);
         vider_graph();
-        chargerFichier(get_current_graph(),false);
+        chargerFichier(get_current_graph(),0);
         RAZ_sauver();
     }
 
@@ -164,7 +182,13 @@ void Graph::menu_ajout_edge()
     int from,to;
     bool fin = false;
     bool bfrom = false,bto = false;
-    int idx = m_edges.end()->first +1;
+int idx;
+        for (auto a=m_edges.begin() ; a != m_edges.end(); a++)
+    {
+        idx = a->first;
+    }
+    idx = idx + 1 ;
+
     std::cout << std::endl << std::endl << "Vous voulez ajouter une arete. Saisisez 2 fois la meme valeur pour sortir";
 
     while (fin == false)
@@ -206,7 +230,6 @@ void Graph::menu_ajout_edge()
 }
 
 
-
 void Graph::menu_ajout_vertex()
 {
     /*
@@ -220,7 +243,14 @@ void Graph::menu_ajout_vertex()
 
     bool fin = false;
     int color;
-    int idx = m_vertices.end()->first +1;
+    int idx ;
+    for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
+    {
+        idx = a->first;
+    }
+    idx = idx + 1 ;
+
+
     BITMAP* menu = charger_image("pics/menu/choix_de_vertex.bmp");
     BITMAP* menu_coli = charger_image("pics/menu/choix_de_vertex_coli.bmp");
 

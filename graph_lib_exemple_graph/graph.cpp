@@ -9,7 +9,7 @@ void Graph::remove_edge(int eidx,int cas)
 {
 /// référence vers le Edge à enlever
     Edge &supr=m_edges[eidx];
-//std::cout << "Removing edge " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
+//std::cout << std::endl << "Removing edge " << eidx ;
 
 /// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
 //std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
