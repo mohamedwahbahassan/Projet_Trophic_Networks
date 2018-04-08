@@ -491,7 +491,7 @@ public:
     std::string get_serie();
 
     void affichage_tab_combin();
-
+    void initialise_tab_combine();
 
 };
 

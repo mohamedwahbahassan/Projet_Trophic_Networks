@@ -62,7 +62,10 @@
 	<algorithm>
 	<allegro.h>
 
-1523148606 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
+1523150762 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
 
 1523148605 k-connexitÃ©
 	"graph.h"
@@ -116,7 +119,7 @@
 	<fstream>
 	<iostream>
 
-1523149457 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.h
+1523150348 c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\graph.h
 	<vector>
 	<map>
 	<string>
@@ -486,7 +489,11 @@
 1523052340 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
 
-1523148606 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
+1523150349 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\main.cpp
+	"grman/grman.h"
+	"graph.h"
+	"utilitaire.h"
+	<time.h>
 
 1523051363 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\grman\widget.cpp
 	"widget.h"
@@ -574,12 +581,12 @@
 	<fstream>
 	<iostream>
 
-1523148764 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\update.cpp
+1523150849 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\update.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
 
-1523148764 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\adjacence.cpp
+1523149457 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\adjacence.cpp
 	"graph.h"
 	<fstream>
 	<iostream>
@@ -612,7 +619,7 @@
 
 1523139461 source:c:\users\wahba\projet_trophic_networks\graph_lib_exemple_graph\k-connexite.cpp
 
-1523148895 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\k-connexite.cpp
+1523150642 source:c:\users\léo\projet_trophic_networks\graph_lib_exemple_graph\k-connexite.cpp
 	"graph.h"
 	<fstream>
 	<iostream>

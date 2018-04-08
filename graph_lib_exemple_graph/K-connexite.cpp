@@ -274,7 +274,7 @@ void Graph::getAllCombin(std::string serie)
         }
     }
 
-    for(auto &e: m_vertices)
+   /* for(auto &e: m_vertices)
     {
         e.second.m_actif = true;
         m_interface->m_main_box.add_child(e.second.m_interface->m_top_box);
@@ -285,7 +285,7 @@ void Graph::getAllCombin(std::string serie)
         m_interface->m_main_box.add_child(e.second.m_interface->m_top_edge);
 
 
-    }
+    }*/
 
 }
 
@@ -307,4 +307,20 @@ void Graph::affichage_tab_combin()
     {
         std::cout << m_tabCombin[i] << std::endl;
     }
+
 }
+
+
+
+void Graph::initialise_tab_combine()
+{
+    for(int i=0; i<=m_tabCombin.size(); i++)
+    {
+        m_tabCombin.erase(m_tabCombin.begin()+i);
+    }
+}
+
+
+
+
+

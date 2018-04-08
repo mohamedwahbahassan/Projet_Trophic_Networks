@@ -50,7 +50,8 @@ int main()
         {
             testFichier.getAllCombin(testFichier.get_serie());
             testFichier.affichage_tab_combin();
-
+            testFichier.initialise_tab_combine();
+            while (key[KEY_K]){}
 
         }
 
