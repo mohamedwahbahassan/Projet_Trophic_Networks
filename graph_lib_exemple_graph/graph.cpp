@@ -67,7 +67,7 @@ void Graph::remove_vertex(int vdx,int cas)
         ///on supprime tous les elements interfacés
         if (m_interface && supr.m_interface)
         {
-            std::cout << "je supprime un sommet" << std::endl;
+            //std::cout << "je supprime un sommet" << std::endl;
             m_interface->m_main_box.remove_child( supr.m_interface->m_top_box );
         }
         ///on supprime le sommet

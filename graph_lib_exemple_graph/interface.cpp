@@ -336,9 +336,6 @@ void Graph::WraperBoutons()
 
 
 
-
-
-
 /// Aide à l'ajout de sommets interfacés
 void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx, float r, float c)
 {
@@ -394,9 +391,14 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 }
 
 
-void Graph::affichageForteConnexiteInterface()
+void Graph::affichageForteConnexiteInterface(bool actif)
 {
     int i,j;
+
+    if (actif == true)
+    {
+
+
     for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
     {
         it -> second.set_deja_fortement_connexe(false);
@@ -444,6 +446,15 @@ void Graph::affichageForteConnexiteInterface()
             it->second.m_interface->m_top_box.set_border_color(it->second.get_borderColor());
         else
             it->second.m_interface->m_top_box.set_border_color(COULEURALEATOIRE);
+    }
+    }
+    else
+    {
+           for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
+    {
+
+            it->second.m_interface->m_top_box.set_border_color(GRISCLAIR);
+    }
     }
 }
 

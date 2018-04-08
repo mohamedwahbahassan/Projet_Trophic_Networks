@@ -82,9 +82,11 @@ bool Graph::boutons()
     {
     remplir_tab_adj();
     toutesLesComposantesFortementConnexes();
-    affichageForteConnexiteInterface();
+    affichageForteConnexiteInterface(true);
     RAZ_montrerComposantesFortementConnexe();
     }
+    else if (!mouse_b&1)
+        affichageForteConnexiteInterface(false);
 
     if (get_restaurer_graph() == true) /// on a appuyé sur le bouton restaurer
     {

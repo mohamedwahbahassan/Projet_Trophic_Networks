@@ -438,7 +438,7 @@ public:
     void toutesLesComposantesFortementConnexes();
     void affichageTableauForteConnexite();
 
-    void affichageForteConnexiteInterface();
+    void affichageForteConnexiteInterface(bool actif);
 
     void menu_ajout_vertex();
     void menu_ajout_edge();
