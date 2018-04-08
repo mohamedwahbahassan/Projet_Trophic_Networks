@@ -38,6 +38,7 @@
 			<Add library="jpgalleg" />
 			<Add library="alleg44.dll" />
 		</Linker>
+		<Unit filename="K-connexite.cpp" />
 		<Unit filename="adjacence.cpp" />
 		<Unit filename="fichiers.cpp" />
 		<Unit filename="graph.cpp" />

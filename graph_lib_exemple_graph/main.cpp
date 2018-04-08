@@ -6,8 +6,7 @@
 
 int main()
 {
-
-
+    int graph =1;
     int t1 = clock();
     int rest_evolution = 2000;
     bool pause = false;
@@ -24,6 +23,17 @@ int main()
     bool fin = testFichier.MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
     testFichier.ordredebase(); //enregistrement de l'ordre du graph
 
+//    testFichier.remplir_tab_adj();
+
+    testFichier.remplir_tab_adj_sym();
+
+//    testFichier.toutesLesComposantesFortementConnexes();
+//    testFichier.affichageTableauForteConnexite();
+
+//    testFichier.affichageForteConnexiteInterface();
+
+
+
 
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
@@ -35,6 +45,15 @@ int main()
         testFichier.evolution(&pause,&rest_evolution,&t1); // évolution dynamique des populations
         fin = testFichier.boutons(); //wrapper de gestion des boutons
 
+
+                if(key[KEY_K])
+        {
+            testFichier.getAllCombin(testFichier.get_serie());
+            testFichier.affichage_tab_combin();
+
+
+        }
+
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
         /// Mise à jour générale (clavier/souris/buffer etc...)
@@ -42,18 +61,7 @@ int main()
 
 
 
-
-
-
-
-
-    }
-    // testFichier.add_vertex("clown1.jpg");
-    //testFichier.remove_vertex(3);
-    //testFichier.add_edge(0,7);
-    //testFichier.remove_edge(7);
-
-    //testFichier.sauverFichier(graph);
+        }
 
     grman::fermer_allegro();
 
