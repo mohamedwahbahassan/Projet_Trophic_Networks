@@ -42,11 +42,12 @@ int main()
         fin = testFichier.boutons(); //wrapper de gestion des boutons
 
 
-                if(key[KEY_K])
+        if(key[KEY_K])
         {
+            testFichier.ordredebase();
             testFichier.getAllCombin(testFichier.get_serie());
            // testFichier.affichage_tab_combin();
-      //      testFichier.initialise_tab_combine();
+        //testFichier.initialise_tab_combine();
             while (key[KEY_K]){}
 
         }

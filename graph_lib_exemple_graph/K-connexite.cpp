@@ -106,10 +106,10 @@ std::vector<int> Graph::remplir_tab_connexe(int s)
     for(x=0; x<m_ordre; x++)
     {
         c[x]=0;
-       /* if(actif[x]==false)
-        {
-            c[x]=1;
-        }*/
+        /* if(actif[x]==false)
+         {
+             c[x]=1;
+         }*/
     }
     c[s]=1;
 
@@ -199,6 +199,7 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
 
             combinaison=result+serie[j];
 
+
             for(int i=0; i<combinaison.size(); i++)
             {
                 std::cout <<" combinaison de i est " << combinaison[i] << std::endl;
@@ -254,10 +255,19 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
         getCombinFork(serie.substr(j+1), i-1, result+serie[j],compteur);
     }
 
-        for(int i=0; i<m_tabCombin.size(); i++)
+
+
+    for(int i=0; i<m_tabCombin.size(); i++)
     {
+        //int convert;
+        // convert=atoi(m_tabCombin[i].c_str());
         std::cout << m_tabCombin[i] << std::endl;
+        //  m_vertices[convert].m_actif=false;
+        //  std::cout << "je desactive le sommet d indice  " << convert << " " << m_vertices[convert].m_actif << std::endl;
+
     }
+    m_tabCombin.clear();
+
 
 
 }
@@ -282,18 +292,44 @@ void Graph::getAllCombin(std::string serie)
         }
     }
 
-   /* for(auto &e: m_vertices)
+
+    for(int i=0; i<m_ordre; i++)
     {
-        e.second.m_actif = true;
-        m_interface->m_main_box.add_child(e.second.m_interface->m_top_box);
+        for(int j=0; j<m_ordre; j++)
+        {
+            std::cout << m_tab_adj_sym[i][j] << " ";
+        }
+        std::cout << std::endl;
     }
-        for(auto &e: m_edges)
+
+ /*   for(int i=0; i<m_ordre; i++)
     {
-        e.second.m_actif=true;
-        m_interface->m_main_box.add_child(e.second.m_interface->m_top_edge);
+        stdm_tab_connexe[i]
+    }
+*/
+    m_tab_adj_sym.clear();
+    m_tab_connexe.clear();
 
 
-    }*/
+
+
+
+
+
+
+
+    /* for(auto &e: m_vertices)
+     {
+         e.second.m_actif = true;
+         m_interface->m_main_box.add_child(e.second.m_interface->m_top_box);
+     }
+         for(auto &e: m_edges)
+     {
+         e.second.m_actif=true;
+         m_interface->m_main_box.add_child(e.second.m_interface->m_top_edge);
+
+
+     }*/
 
 }
 
