@@ -13,7 +13,7 @@ void Graph::remplir_tab_adj()
 {
     int i=0, j=0;
     //std::cout << "ordre est " << m_ordre << std::endl;
-
+    bool ok = true;
     m_tab_adj.resize(m_ordre);
     for(i=0; i<m_ordre; i++)
     {

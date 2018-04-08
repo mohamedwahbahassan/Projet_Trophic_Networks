@@ -125,6 +125,7 @@ void Graph::update()
         if (elt->second.m_interface->m_box_Edge_close.get_value() == true && elt->second.m_actif == true)
         {
             indice = elt->first;
+            cas=1;
         }
 
     }
@@ -143,17 +144,18 @@ void Graph::update()
         if (elt.second.m_interface->m_box_close.get_value() == true && elt.second.m_actif == true)
         {
             indice = elt.first;
+            cas=1;
 
         }
     }
     if (indice != -1)
     {
+
         remove_vertex(indice,cas);
         indice = -1;
     }
 
     remplir_tab_adj_sym();
-
 
 
 

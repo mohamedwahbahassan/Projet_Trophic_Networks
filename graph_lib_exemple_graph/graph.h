@@ -151,7 +151,6 @@ private :
 
     bool m_dejaFortementConexe = false;
     int m_borderColor = VERT;
-
     /// pour k-connexité
     bool m_actif= true;
 
@@ -401,7 +400,7 @@ private :
 
     std::vector<int> m_tab_connexe;
 
-    std::vector <std::string> m_tabCombin;
+  //  std::vector <std::string> m_tabCombin;
 
 
 
@@ -491,7 +490,8 @@ public:
     void getAllCombin(std::string serie);
     std::string get_serie();
 
-    void affichage_tab_combin();
+  //  void affichage_tab_combin();
+    //void initialise_tab_combine();
 
 };
 
