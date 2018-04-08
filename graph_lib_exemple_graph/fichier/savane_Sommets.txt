@@ -1,12 +1,13 @@
-0 0 410 458 1 1 savane/vegetaux.jpg
-1 37.1429 34 460 1 1 savane/elephant.jpg
-2 30 178 259 1 1 savane/buffle.jpg
-3 0 322 260 1 1 savane/gnou.jpg
-4 37.1429 23 247 1 1 savane/zebre.jpg
-5 30 533 263 1 1 savane/phacochere.jpg
-6 30 682 268 1 1 savane/gazelle.jpg
-7 0 727 440 1 1 savane/fourmi.jpg
-8 37.1429 153 18 1 1 savane/lion.jpg
-9 30 610 19 1 1 savane/guepard.jpg
-10 0 372 9 1 1 savane/leopard.jpg
-11 37.1429 768 21 1 1 savane/hyene.jpg
+
+0 88.5714 406 454 0.25 0.03 savane/vegetaux.jpg
+1 0 30 456 0.06 1 savane/elephant.jpg
+2 57.7357 174 255 0.08 0.01 savane/buffle.jpg
+3 64.5435 358 257 0.08 0.01 savane/gnou.jpg
+4 51.0419 19 243 0.08 0.01 savane/zebre.jpg
+5 66.3071 517 259 0.08 0.01 savane/phacochere.jpg
+6 82.4053 678 264 0.08 0.01 savane/gazelle.jpg
+7 0 723 436 0.08 0.01 savane/fourmi.jpg
+8 81.1611 149 14 0.06 1 savane/lion.jpg
+9 21.9718 606 15 0.06 1 savane/guepard.jpg
+10 70.9154 368 5 0.06 1 savane/leopard.jpg
+11 55.8303 764 17 0.06 1 savane/hyene.jpg
