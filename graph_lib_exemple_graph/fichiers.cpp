@@ -3,10 +3,6 @@
 #include <iostream>
 
 
-
-
-
-
 /************************************************************************
 Type : Méthode
 Utilité : charge les sommets et les arettes a partir d'un fichier
@@ -15,7 +11,6 @@ Statut : fini
 ***********************************************************************/
 void Graph::chargerFichier(int ordre,int restauration)
 {
-
     std::string nomFichier;
     if (ordre == 0)
     {
@@ -113,8 +108,6 @@ void Graph::chargerFichier(int ordre,int restauration)
     }
 }
 
-
-
 /************************************************************************
 Type : Méthode
 Utilité : sauve les sommets et les arettes dans un fichier
@@ -167,7 +160,6 @@ void Graph::sauverFichier(int ordre,int restauration)
         }
         fsommets.close();
     }
-
     else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
@@ -198,19 +190,5 @@ void Graph::sauverFichier(int ordre,int restauration)
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

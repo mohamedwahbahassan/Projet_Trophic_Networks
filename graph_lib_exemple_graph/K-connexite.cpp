@@ -71,7 +71,6 @@ int Graph::chercher_sommet_actif()
     }
 }
 
-
 std::vector<int> Graph::remplir_tab_connexe(int s)
 {
     std::vector<int> c; /// tableau dynamique contenant les composantes connexes
@@ -97,7 +96,6 @@ std::vector<int> Graph::remplir_tab_connexe(int s)
       {
           std::cout << "la valeur de "<< i <<" est " << actif[i] << std::endl;
       }*/
-
 
     for(x=0; x<m_ordre; x++)
     {
@@ -250,8 +248,6 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
         ///Fonction récursive qui se rappelle elle même, avec la taille de la chaine=j+1
         getCombinFork(serie.substr(j+1), i-1, result+serie[j],compteur);
     }
-
-
 }
 
 
@@ -299,7 +295,6 @@ std::string Graph::get_serie()
     return serie;
 }
 
-
 void Graph::affichage_tab_combin()
 {
     for(int i=0; i<m_tabCombin.size(); i++)
@@ -310,16 +305,9 @@ void Graph::affichage_tab_combin()
 }
 
 
-
 void Graph::initialise_tab_combine()
 {
-    for(int i=0; i<=m_tabCombin.size(); i++)
-    {
-        m_tabCombin.erase(m_tabCombin.begin()+i);
-    }
+m_tabCombin.clear();
 }
-
-
-
 
 

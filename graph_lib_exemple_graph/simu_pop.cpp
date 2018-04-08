@@ -1,9 +1,8 @@
-
 #include "graph.h"
 #include <fstream>
 #include <iostream>
-
-
+#include <vector>
+#include "utilitaire.h"
 
         /*************************************************
          *********** SIMULATION DE POPULATION *************
@@ -19,8 +18,8 @@ void Graph::CalculPop()
         e.second.m_capacite=0;
         e.second.m_quantiteConsomme=0;
 
-        std::cout << "SOMMET"<< e.first << std::endl;
-        std::cout << "valeur initiale" << e.second.m_value<< std::endl;
+       // std::cout << "SOMMET"<< e.first << std::endl;
+       // std::cout << "valeur initiale" << e.second.m_value<< std::endl;
 
 ///Calcul de la capacité de portage de l'environnement
 
@@ -38,11 +37,8 @@ void Graph::CalculPop()
                                   /// ex: K lapin = Coeff(herbe->lapin)* N herbe :  Capacité = Poids de l'arc entrante * valeur du sommet 1 de l'arc entrante
                                   + (m_edges[e.second.m_in[i]].m_weight)/10 * m_vertices[m_edges[e.second.m_in[i]].m_from].m_value; ///m_edges[e.second.m_in[i]].m_from = indice du sommet 1 de l'arc entrante
 
-            std::cout << "capacite de portage = " << capaciteinit << "+" << (m_edges[e.second.m_in[i]].m_weight)/100 << "*"<< m_vertices[m_edges[e.second.m_in[i]].m_from].m_value<< "=" << e.second.m_capacite<< std::endl;
-
+          //  std::cout << "capacite de portage = " << capaciteinit << "+" << (m_edges[e.second.m_in[i]].m_weight)/100 << "*"<< m_vertices[m_edges[e.second.m_in[i]].m_from].m_value<< "=" << e.second.m_capacite<< std::endl;
         }
-
-
         ///Calcul de la quantité consommée
 
         for(unsigned int i=0; i<e.second.m_out.size(); i++)
@@ -60,7 +56,7 @@ void Graph::CalculPop()
             + (m_edges[e.second.m_out[i]].m_weight)/100 * m_vertices[m_edges[e.second.m_out[i]].m_to].m_value;
 
             ///AFFICHAGE DU CALCUL DE LA QUANTITE CONSOMMEE
-            std::cout << "quantite consomme=" << quantiteinit << "+" << (m_edges[e.second.m_out[i]].m_weight)/100 << "*" << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << "=" << e.second.m_quantiteConsomme << std::endl;
+           // std::cout << "quantite consomme=" << quantiteinit << "+" << (m_edges[e.second.m_out[i]].m_weight)/100 << "*" << m_vertices[m_edges[e.second.m_out[i]].m_to].m_value << "=" << e.second.m_quantiteConsomme << std::endl;
         }
 
 ///Calcul de l'évolution de la population à partir d'un certain temps t
@@ -82,7 +78,7 @@ void Graph::CalculPop()
         if ((e.second.m_capacite==0) && e.first!=0)
         {
             ///Si la capacité de portage de l'environnement est égale à 0, l'espèce meurt
-            std::cout << e.second.m_capacite << std::endl;
+           // std::cout << e.second.m_capacite << std::endl;
             e.second.m_value = 0;
         }
 
@@ -93,7 +89,9 @@ void Graph::CalculPop()
             e.second.m_value=0;
         }
 
+
         ///AFFICHAGE DES CALCULS
+        /*
         std::cout << "\ncalcul nouvelle valeur:" << valueinit << " + " << e.second.m_rythmeCroissance << " * " << valueinit << " * "
                   << "(1-" << valueinit << " / " << e.second.m_capacite<<" ) " <<" - " << e.second.m_quantiteConsomme << " * " << e.second.m_coeffPondere<< " - " << MortVieillesse <<" = " << e.second.m_value << std::endl;
         std::cout << "1: capacite: " << e.second.m_capacite << std::endl;
@@ -102,10 +100,91 @@ void Graph::CalculPop()
         std::cout << "4: mort(s) par vieillesse: " << MortVieillesse << std::endl;
         std::cout << "NOUVELLE VALEUR: " <<e.second.m_value << std::endl;
         std::cout << std::endl << std::endl;
-
+*/
     }
 
 }
+
+
+void Graph::EnregistrementGraph()
+{
+
+    std::string nomFichier;
+    if (m_CurrentGraph == 1)
+        nomFichier = "banquise";
+    else if (m_CurrentGraph == 2)
+        nomFichier = "desert";
+    else if(m_CurrentGraph == 3)
+        nomFichier = "savane";
+
+        nomFichier ="fichier/" + nomFichier+"_evol_graph.txt";
+
+    std::ofstream fichier (nomFichier, std::ios::app);
+if(!fichier)
+    std::cerr << "pb lors de l'ouverture de fichier" << std::endl;
+    else{
+    for (auto &e : m_vertices)
+    {
+        fichier << " " << e.second.m_value;
+    }
+    }
+    fichier.close();
+}
+
+void Graph::AffPop(){
+
+
+    std::string nomFichier;
+    BITMAP*buffer1 = charger_image("pics/fondgraph.bmp");
+    float var,nb;
+
+    if (m_CurrentGraph == 1)
+        nomFichier = "banquise";
+    else if (m_CurrentGraph == 2)
+        nomFichier = "desert";
+    else if(m_CurrentGraph == 3)
+        nomFichier = "savane";
+
+        nomFichier ="fichier/" + nomFichier+"_evol_graph.txt";
+
+        std::vector<std::vector<float> > vec;
+
+    std::ifstream fichier (nomFichier, std::ios::in);
+if(!fichier)
+    std::cerr << "pb lors de l'ouverture de fichier" << std::endl;
+    else{
+            fichier >> var;
+            for (int i = 0 ; i < var ; i ++)
+                vec.push_back( std::vector <float> ()) ;
+
+            for (int i = 0 ; i < var ; i ++)
+                vec[i].push_back( COULEURALEATOIRE ) ;
+
+         while(!fichier.eof())
+        {
+            for (int i = 0 ; i < var ; i ++)
+            {
+                fichier >> nb;
+                vec[i].push_back(nb);
+            }
+        }
+    }
+    fichier.close();
+
+for (int j = 0 ; j < var ; j++){
+for (int i = 2; i < vec[2].size()-3;i++)
+{
+    line (buffer1, 91 + i*900/vec[0].size()  ,  545 - vec[j][i]*5  ,  91 + (i+1)*900/vec[j].size()  ,  545 - vec[j][i+1]*5  ,  vec[j][0]);
+    line (buffer1, 90 + i*900/vec[0].size()  ,  544 - vec[j][i]*5  ,  90 + (i+1)*900/vec[j].size()  ,  544 - vec[j][i+1]*5  ,  vec[j][0]);
+    line (buffer1, 91 + i*900/vec[0].size()  ,  544 - vec[j][i]*5  ,  91 + (i+1)*900/vec[j].size()  ,  544 - vec[j][i+1]*5  ,  vec[j][0]);
+    line (buffer1, 90 + i*900/vec[0].size()  ,  545 - vec[j][i]*5  ,  90 + (i+1)*900/vec[j].size()  ,  545 - vec[j][i+1]*5  ,  vec[j][0]);
+}
+}
+    blit(buffer1,screen,0,0,0,0,SCREEN_W,SCREEN_H);
+while(mouse_b&1){}
+
+}
+
 
 /*void Graph::simulate_Kconnexite(std::vector<std::string> tabCombin)
 {

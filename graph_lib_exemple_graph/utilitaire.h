@@ -10,15 +10,12 @@
 #define BANQUISE makecol (34,177,76)
 #define QUIT makecol (181,230,29)
 
+#define ENREGISTREMENT 100 ///enregistrement tout les 100 ms
+
 #define NB_IMAGES_MENU 4
-
-
 
 BITMAP* charger_image(char nom_fic[50]);
 
 void chargement_images_menu(BITMAP*images[NB_IMAGES_MENU] );
-
-
-
 
 #endif // UTILITAIRE_H_INCLUDED

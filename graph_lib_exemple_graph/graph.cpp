@@ -2,8 +2,6 @@
 #include <fstream>
 #include <iostream>
 
-
-
 /// eidx index of edge to remove
 void Graph::remove_edge(int eidx,int cas)
 {
@@ -78,11 +76,8 @@ void Graph::remove_vertex(int vdx,int cas)
         m_vertices[vdx].m_actif=false;
 
         std::cout<<"ON SUPPRIME LE VERTEX "<< vdx << std::endl;
-
     }
-
 }
-
 
 
 void Graph::add_vertex(std::string image)
@@ -92,9 +87,7 @@ void Graph::add_vertex(std::string image)
     {
         indice = a->first;
     }
-
     add_interfaced_vertex(indice + 1, 30, 100, 100, image);
-
 }
 
 void Graph::add_edge(int from, int to)

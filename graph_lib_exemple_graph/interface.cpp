@@ -2,8 +2,6 @@
 #include <fstream>
 #include <iostream>
 
-
-
 /***************************************************
                     VERTEX
 ****************************************************/
@@ -15,12 +13,8 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
     m_top_box.set_pos(x, y);
     m_top_box.set_dim(130, 100);
     m_top_box.set_moveable();
-
     //m_top_box.set_border_color(ROUGE);
-
     // m_top_box.set_border_color(VERT);
-
-
     // Le slider de réglage de valeur
     m_top_box.add_child( m_slider_value );
     m_slider_value.set_range(0.0, 100.0);  // Valeurs arbitraires, à adapter...
@@ -56,9 +50,6 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
     m_box_close.set_pos(116,0);
     m_box_close.set_bg_color(VERT);
 }
-
-
-
 
 
 /***************************************************
@@ -107,10 +98,6 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 
 
 
-
-
-
-
 /***************************************************
                     GRAPH
 ****************************************************/
@@ -122,15 +109,12 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     int ordre = y;
     y = 0;
 
-
     if (ordre%10 == 1)
         m_fond = "banquise.jpg";
     if (ordre%10 == 2)
         m_fond = "desert.jpg";
     if(ordre%10 == 3)
         m_fond = "savane.jpg";
-
-
 
     m_top_box.set_dim(1020,600);
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
@@ -147,8 +131,6 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_main_box.set_dim(920,590);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
 
-
-
     /**************************************
             BOITE A OUTILS
     **************************************/
@@ -156,7 +138,6 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_tool_box.set_dim(100,590);
     m_tool_box.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
     m_tool_box.set_bg_color(BLANCBLEU);
-
 
     /**************************************
             BOUTON SAVE
@@ -178,6 +159,30 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
     m_Text_Restaurer.set_pos(0,0);
     m_Text_Restaurer.set_message("RESTAURER");
+
+    /**************************************
+            BOUTON K CONNEXITE
+    **************************************/
+    m_top_box.add_child(m_Button_K_Connexite); //bouton voir graph pop
+    m_Button_K_Connexite.set_dim(80,40);
+    m_Button_K_Connexite.set_bg_color(ROUGE);
+    m_Button_K_Connexite.set_pos(9,200);
+    m_Button_K_Connexite.add_child(m_Text_K_Connexite);
+
+    m_Text_K_Connexite.set_pos(7,15);
+    m_Text_K_Connexite.set_message("K-Connexe");
+
+    /**************************************
+            BOUTON VOIR GRAPH POP
+    **************************************/
+    m_top_box.add_child(m_Button_Graph_Pop); //bouton voir graph pop
+    m_Button_Graph_Pop.set_dim(80,40);
+    m_Button_Graph_Pop.set_bg_color(ROUGE);
+    m_Button_Graph_Pop.set_pos(9,250);
+    m_Button_Graph_Pop.add_child(m_Text_Graph_Pop);
+
+    m_Text_Graph_Pop.set_pos(7,15);
+    m_Text_Graph_Pop.set_message("Graph Pop");
 
     /**************************************
             BOUTON QUIT
@@ -253,14 +258,13 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_Text_Supr_arette.set_message("SUPR ARETE");
     */
 
-
     /**********************************************
             BOUTON GESTION VITESSE EVOLUTION
     **********************************************/
     m_top_box.add_child(m_Button_Vit_Evolution); //bouton
     m_Button_Vit_Evolution.set_dim(80,80);
     m_Button_Vit_Evolution.set_bg_color(BLANC);
-    m_Button_Vit_Evolution.set_pos(9,120);
+    m_Button_Vit_Evolution.set_pos(9,100);
     m_Button_Vit_Evolution.add_child(m_Text_Vit_Evolution);//text du bouton save
 
     m_Text_Vit_Evolution.set_pos(3,15);
@@ -283,16 +287,27 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
     m_Text_Vit_Evolution_moins.set_pos(5,5);
     m_Text_Vit_Evolution_moins.set_message("-");
-
 }
 
 void Graph::WraperBoutons()
 {
-
     if (m_interface->m_Button_Vit_Evolution.get_value()==true) /// play/ pause evolution
     {
         m_playEvolution = true;
         m_interface->m_Button_Vit_Evolution.set_value(false);
+    }
+    if (m_interface->m_Button_K_Connexite.get_value()==true) /// play/ pause evolution
+    {
+        m_interface->m_Button_K_Connexite.set_value(false);
+                    ordredebase();
+            getAllCombin(get_serie());
+            affichage_tab_combin();
+            initialise_tab_combine();
+    }
+    if (m_interface->m_Button_Graph_Pop.get_value()==true) /// play/ pause evolution
+    {
+        AffPop();
+        m_interface->m_Button_Graph_Pop.set_value(false);
     }
 
     if (m_interface->m_Button_Vit_Evolution_moins.get_value()==true) /// ralentissement evolution
@@ -362,13 +377,7 @@ void Graph::WraperBoutons()
         m_interface->m_Button_Supr_Arette.set_value(false);
     }
 
-
-
-
-
 }
-
-
 
 
 
@@ -380,10 +389,6 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
         std::cerr << "Error adding vertex at idx=" << idx << " already used..." << std::endl;
         throw "Error adding vertex";
     }
-
-
-
-
     // Création d'une interface de sommet
     VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
     //   std::cout << "salut 2 ";
@@ -391,9 +396,7 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     // Ajout de la top box de l'interface de sommet
     m_interface->m_main_box.add_child(vi->m_top_box);
     // On peut ajouter directement des vertices dans la map avec la notation crochet :
-
     // std::cout << "coucou2";
-
     m_ordre ++;
 
     ///
@@ -429,10 +432,7 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
     m_vertices[id_vert1].m_out.push_back(idx);
     m_vertices[id_vert2].m_in.push_back(idx);
-
-
 }
-
 
 void Graph::affichageForteConnexiteInterface(bool actif)
 {
@@ -440,8 +440,6 @@ void Graph::affichageForteConnexiteInterface(bool actif)
 
     if (actif == true)
     {
-
-
         for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
         {
             it -> second.set_deja_fortement_connexe(false);
@@ -585,7 +583,6 @@ void Graph::GraphReduit()
 
                  //   std::cout << "\nedge : " << it->first << " from : " << it->second.get_from() << " to : " << it->second.get_to() ;
                 }
-
 
                // std::cout << "\nremoving vertex n" <<j;
                 remove_vertex(j,1);
