@@ -119,9 +119,26 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 /// éléments qui seront ensuite ajoutés lors de la mise ne place du Graphe
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
+    int ordre = y;
+    y = 0;
+
+
+    if (ordre%10 == 1)
+        m_fond = "banquise.jpg";
+    if (ordre%10 == 2)
+        m_fond = "desert.jpg";
+    if(ordre%10 == 3)
+        m_fond = "savane.jpg";
+
+
 
     m_top_box.set_dim(1020,600);
     m_top_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
+
+        m_top_box.add_child( m_imgP );
+    m_imgP.set_pic_name(m_fond);
+    m_imgP.set_gravity_x(grman::GravityX::Right);
+
 
     /**************************************
             BOITE PRINCIPALE
@@ -129,11 +146,8 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
     m_top_box.add_child(m_main_box);
     m_main_box.set_dim(920,590);
     m_main_box.set_gravity_xy(grman::GravityX::Right, grman::GravityY::Up);
-    m_main_box.set_bg_color(BLANCJAUNE);
 
-    //m_top_box.add_child( m_imgP );
-    //m_imgP.set_pic_name("DSC_0369.jpg");
-    //m_imgP.set_gravity_x(grman::GravityX::Right);
+
 
     /**************************************
             BOITE A OUTILS
@@ -348,6 +362,10 @@ void Graph::WraperBoutons()
         m_interface->m_Button_Supr_Arette.set_value(false);
     }
 
+
+
+
+
 }
 
 
@@ -482,7 +500,6 @@ void Graph::affichageForteConnexiteInterface(bool actif)
         }
     }
 }
-
 
 
 void Graph::GraphReduit()

@@ -34,7 +34,9 @@ void Graph::chargerFichier(int ordre,int restauration)
         if (restauration == 2)
         nomFichier = nomFichier+"_graphreduit";
 
-    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+    m_interface = std::make_shared<GraphInterface>(50, ordre, 750, 600);
+
+
     nomFichier = "fichier/" + nomFichier;
     std::string fichier;
     int idx,x,y,vert1,vert2;
@@ -135,7 +137,7 @@ void Graph::sauverFichier(int ordre,int restauration)
         if (restauration == 2)
         nomFichier = nomFichier+"_graphreduit";
 
-    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+
     nomFichier = "fichier/" + nomFichier;
     std::string fichier;
 

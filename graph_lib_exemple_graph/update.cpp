@@ -135,25 +135,17 @@ void Graph::update()
         {
             indice = elt.first;
             cas=1;
-
         }
     }
     if (indice != -1)
     {
-
         remove_vertex(indice,cas);
-
         // std::cout << "couccou leo" << std::endl;
 
         indice = -1;
     }
 
-
      remplir_tab_adj_sym();
-
-
-
-
 
  //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }

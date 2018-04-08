@@ -121,6 +121,13 @@ bool Graph::boutons()
         chargerFichier(get_current_graph(),0);
         RAZ_sauver();
     }
+    /*
+    if (key[KEY_A])
+    {
+
+    m_interface = std::make_shared<GraphInterface>(50, 1, 750, 600);
+    }
+    */
 
     return false;
 }

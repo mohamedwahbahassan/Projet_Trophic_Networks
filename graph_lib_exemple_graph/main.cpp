@@ -10,7 +10,7 @@ int main()
     int t1 = clock();
     int rest_evolution = 2000;
     bool pause = false;
-
+bool fin = true;
 
     /// A appeler en 1er avant d'instancier des objets graphiques etc...
     grman::init();
@@ -20,15 +20,12 @@ int main()
 
 
     Graph testFichier;
-    bool fin = testFichier.MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
-    std::cout << "coucou";
+    fin = testFichier.MenuPrincipal(); //on demande à l'utilisateur quel graph il souhaite ouvrir
     testFichier.ordredebase(); //enregistrement de l'ordre du graph
-std::cout << "\ndfhjhcoucou";
 //    testFichier.remplir_tab_adj();
 
-    testFichier.remplir_tab_adj_sym();
 
-    std::cout << "\ncoucouc5";
+
 //    testFichier.toutesLesComposantesFortementConnexes();
 //    testFichier.affichageTableauForteConnexite();
 
@@ -40,7 +37,7 @@ std::cout << "\ndfhjhcoucou";
     /// Vous gardez la main sur la "boucle de jeu"
     /// ( contrairement à des frameworks plus avancés )
 
-    while ( !fin )
+   do
     {
 
 
@@ -50,12 +47,14 @@ std::cout << "\ndfhjhcoucou";
 
                 if(key[KEY_K])
         {
+            testFichier.ordredebase();
             testFichier.getAllCombin(testFichier.get_serie());
             testFichier.affichage_tab_combin();
             testFichier.initialise_tab_combine();
             while (key[KEY_K]){}
 
         }
+
 
         /// Il faut appeler les méthodes d'update des objets qui comportent des widgets
         testFichier.update();
@@ -64,7 +63,7 @@ std::cout << "\ndfhjhcoucou";
 
 
 
-        }
+        }while ( !fin );
 
     grman::fermer_allegro();
 

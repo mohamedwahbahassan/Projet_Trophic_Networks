@@ -360,6 +360,8 @@ public :
     // voir l'implémentation dans le .cpp
     GraphInterface(int x, int y, int w, int h);
 
+    std::string m_fond;
+
 };
 
 

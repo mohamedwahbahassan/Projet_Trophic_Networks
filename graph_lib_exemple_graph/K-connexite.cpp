@@ -225,14 +225,14 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
             {
                 std::cout<< " le graphe est toujours connexe"<< std::endl;
             }
-            for(auto &e: m_vertices)
+            for(auto e=m_vertices.begin() ; e!=m_vertices.end(); e++)
             {
-                e.second.m_actif = true;
-                std::cout << "j active " << e.first << std::endl;
+                e->second.m_actif = true;
+                std::cout << "j active " << e->first << std::endl;
             }
-            for(auto &e:m_edges)
+            for(auto e=m_vertices.begin() ; e!=m_vertices.end(); e++)
             {
-                e.second.m_actif = true;
+                e->second.m_actif = true;
             }
 
             combinaison="";
@@ -243,7 +243,6 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
         /// Si la série ne possède pas assez d'élément (on envoie k>n), la fonction crache
         if(serie.size()-j<i)
         {
-
             std::cout << "il n'existe pas assez d'elements" << std::endl;
             return;
         }
