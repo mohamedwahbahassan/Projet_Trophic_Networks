@@ -17,6 +17,7 @@ void Graph::remove_edge(int eidx,int cas)
 
 /// Il reste encore à virer l'arc supprimé de la liste des entrants et sortants des 2 sommets to et from !
 /// References sur les listes de edges des sommets from et to
+   /// on supprime vraiment l'arete depuis l'interface et la map de edge
     if (cas ==1)
     {
         /// test : on a bien des éléments interfacés
@@ -31,6 +32,7 @@ void Graph::remove_edge(int eidx,int cas)
         m_edges.erase( eidx );
 
     }
+    /// on desactive l'arete depuis le graphe pour tester la k-connexité
     if(cas==2)
     {
         m_edges[eidx].m_actif=false;
@@ -49,6 +51,7 @@ void Graph::remove_vertex(int vdx,int cas)
     ///Reference vers le sommet (vertex) a enlever
     Vertex supr=m_vertices[vdx];
 
+    /// on supprime vraiment le sommet depuis l'interface et la map de vertice
     if(cas ==1)
     {
 
@@ -71,6 +74,7 @@ void Graph::remove_vertex(int vdx,int cas)
         ///on supprime le sommet
         m_vertices.erase(vdx);
     }
+    /// on desactive le sommet depuis le graphe pour tester la k-connexité
     if(cas==2)
     {
         m_vertices[vdx].m_actif=false;

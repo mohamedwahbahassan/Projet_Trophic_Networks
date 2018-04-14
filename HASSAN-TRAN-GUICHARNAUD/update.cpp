@@ -119,6 +119,7 @@ void Graph::update()
 
         indice = -1;
     }
+    /// on actualise le remplissage de tableau d'adjace à chaque tour de boucle
      remplir_tab_adj_sym();
  //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }

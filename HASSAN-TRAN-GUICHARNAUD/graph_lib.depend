@@ -856,3 +856,108 @@
 	<fstream>
 	<iostream>
 
+1523751551 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\adjacence.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523750991 c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+
+1523746124 c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1523746124 c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\grman_couleurs.h
+
+1523746124 c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\coords.h
+	<cmath>
+
+1523746124 c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1523746124 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\fichiers.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523750991 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\graph.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523746124 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\coords.cpp
+	"coords.h"
+
+1523746124 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1523746124 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\grman\widget.cpp
+	"widget.h"
+
+1523746124 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\interface.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523751551 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\k-connexite.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523746124 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\main.cpp
+	"grman/grman.h"
+	"graph.h"
+	"utilitaire.h"
+	<time.h>
+
+1523746127 c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\utilitaire.h
+	<fstream>
+	<iostream>
+	<time.h>
+
+1523746127 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\simu_pop.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+	<vector>
+	"utilitaire.h"
+
+1523746127 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\utilitaire.cpp
+	<allegro.h>
+	"utilitaire.h"
+
+1523746127 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\wrapper_menu.cpp
+	"graph.h"
+	"utilitaire.h"
+	<fstream>
+	<iostream>
+
+1523750991 source:c:\users\wahba\projet_trophic_networks\hassan-tran-guicharnaud\update.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+

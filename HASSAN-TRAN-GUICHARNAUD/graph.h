@@ -145,7 +145,7 @@ private :
 
     bool m_dejaFortementConexe = false;
     int m_borderColor = VERT;
-    /// pour k-connexité
+    /// pour k-connexité qui permet de supprimer un sommet pour essayer la connexité sans le supprimer depuis la map vertice
     bool m_actif= true;
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
@@ -244,7 +244,7 @@ private :
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<EdgeInterface> m_interface = nullptr;
-
+    /// un booléen qui permet de supprimer les aretes dans l'interface sans réellement les effacer dans la map edge
     bool m_actif = true;
 
 public:
@@ -355,31 +355,48 @@ private :
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<GraphInterface> m_interface = nullptr;
 
-    /// un tableau d'adjacece
+    /// un tableau dynamique de 2 dimensions pour l'adjacence
     std::vector<std::vector<int>> m_tab_adj;
 
-    /// tableau de forte connexe
+    /// tableau dynamique de 2 dimensions pour la forte connexe
     std::vector<std::vector<int>> m_tab_forte_connexite;
 
+    /// le nombre de sommets d'un graphe
     int m_ordre;
+
     bool m_restaurer_graph = false;
+
     bool m_sauver = false;
+
     bool m_quiter = false;
+
     bool m_SuprEdge = false;
+
     bool m_AjoutVertex = false;
+
     bool m_AjoutEdge = false;
+
     bool m_montrerComposantesConnexe = false;
+
     bool m_graphReduit = false;
+
     bool m_stopGraphReduit = false;
+
     bool m_mouse_prec = false;
+
     int m_CurrentGraph;
 
     bool m_playEvolution = false;
+
     bool m_vitEvolutionPlus = false;
+
     bool m_vitEvolutionMoins = false;
 
+    /// tableau dynamique de 2 dimensions pour l'adjacence en supposant que le graphe est non orienté
     std::vector<std::vector<int>> m_tab_adj_sym;
+    /// tableau dynamique indiquant depuis un sommet de référence s'il est connexe ou pas aux autres sommets (binaire 0 ou 1)
     std::vector<int> m_tab_connexe;
+    /// tableau dynamique indiquant quels sommets qu'on pourra supprimer pour rendre le graphe non connexe
     std::vector <std::string> m_tabCombin;
 
 
@@ -412,8 +429,9 @@ public:
     ///methode pour remplir le tableau d'adjaence
     void remplir_tab_adj();
 
-    /// methode pour la forte connexité
+    /// methode permettant de trouver une compsante fortement connexe
     std::vector<int> uneComposanteFortementConnexe(int s);
+    /// methode permettant de trouver toutes les compsantes fortement connexe
     void toutesLesComposantesFortementConnexes();
     void affichageTableauForteConnexite();
 
@@ -424,6 +442,7 @@ public:
     void menu_ajout_edge();
 
 
+    /// methode pour recupérer l'ordre à un instant t
     void ordredebase();
     /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
     void update();
@@ -461,15 +480,23 @@ public:
     bool get_vitEvolutionPlus() {return m_vitEvolutionPlus;}
     int get_current_graph() {return m_CurrentGraph;}
 
+    /// methode pour remplir le tableau d'adjacence symétrique
     void remplir_tab_adj_sym();
+    /// methode pour remplir le tableau de connexité
     std::vector<int> remplir_tab_connexe(int s);
+    /// methode pour savoir si le graphe est connexe ou pas en retournant 0 ou 1
     bool Graphe_connexe();
+    /// methode pour trouver un sommet de reference qui existe dans l'interface d'une maniere arbitraire
     int chercher_sommet_actif();
+    /// methode pour trouver toutes les combinaisons possibles d'un k precis
     void getCombinFork(const std::string &serie, size_t i, std::string result,int* compteur);
+    /// methode pour trouver toutes les combianaisons possibles de tous les k possibles en appelant le sous programma au dessus
     void getAllCombin(std::string serie);
     std::string get_serie();
 
+    /// on affiche le tableau conteant les sommets de k-connexité
     void affichage_tab_combin();
+    /// on initialise ce tableau
     void initialise_tab_combine();
 };
 
