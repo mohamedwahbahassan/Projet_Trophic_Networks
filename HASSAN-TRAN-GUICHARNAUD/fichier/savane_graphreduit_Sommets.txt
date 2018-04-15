@@ -1,0 +1,13 @@
+
+0 88.5714 407 455 0.25 0.03 savane/vegetaux.jpg
+1 0 31 457 0.06 1 savane/elephant.jpg
+2 24.8108 175 256 0.08 0.01 savane/buffle.jpg
+3 0 359 258 0.08 0.01 savane/gnou.jpg
+4 51.2224 20 244 0.08 0.01 savane/zebre.jpg
+5 72.4265 518 260 0.08 0.01 savane/phacochere.jpg
+6 85.2341 679 265 0.08 0.01 savane/gazelle.jpg
+7 0 724 437 0.08 0.01 savane/fourmi.jpg
+8 62.3604 132 4 0.06 1 savane/lion.jpg
+9 23.4618 607 16 0.06 1 savane/guepard.jpg
+10 52.44 369 6 0.06 1 savane/leopard.jpg
+11 57.627 765 18 0.06 1 savane/hyene.jpg

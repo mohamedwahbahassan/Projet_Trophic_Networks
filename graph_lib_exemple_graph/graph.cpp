@@ -2,14 +2,12 @@
 #include <fstream>
 #include <iostream>
 
-
-
 /// eidx index of edge to remove
 void Graph::remove_edge(int eidx,int cas)
 {
 /// référence vers le Edge à enlever
     Edge &supr=m_edges[eidx];
-//std::cout << "Removing edge " << eidx << " " << remed.m_from << "->" << remed.m_to << " " << remed.m_weight << std::endl;
+//std::cout << std::endl << "Removing edge " << eidx ;
 
 /// Tester la cohérence : nombre d'arc entrants et sortants des sommets 1 et 2
 //std::cout << m_vertices[remed.m_from].m_in.size() << " " << m_vertices[remed.m_from].m_out.size() << std::endl;
@@ -50,7 +48,6 @@ void Graph::remove_vertex(int vdx,int cas)
 {
     ///Reference vers le sommet (vertex) a enlever
     Vertex supr=m_vertices[vdx];
-
     if(cas ==1)
     {
 
@@ -67,7 +64,7 @@ void Graph::remove_vertex(int vdx,int cas)
         ///on supprime tous les elements interfacés
         if (m_interface && supr.m_interface)
         {
-            std::cout << "je supprime un sommet" << std::endl;
+            //std::cout << "je supprime un sommet" << std::endl;
             m_interface->m_main_box.remove_child( supr.m_interface->m_top_box );
         }
         ///on supprime le sommet
@@ -78,11 +75,8 @@ void Graph::remove_vertex(int vdx,int cas)
         m_vertices[vdx].m_actif=false;
 
         std::cout<<"ON SUPPRIME LE VERTEX "<< vdx << std::endl;
-
     }
-
 }
-
 
 
 void Graph::add_vertex(std::string image)
@@ -92,9 +86,7 @@ void Graph::add_vertex(std::string image)
     {
         indice = a->first;
     }
-
     add_interfaced_vertex(indice + 1, 30, 100, 100, image);
-
 }
 
 void Graph::add_edge(int from, int to)
@@ -114,6 +106,7 @@ void Graph::vider_graph()
     while (m_vertices.size() != 0)
     {
         //  std ::cout << "\n" << m_vertices.begin()->first;
+
         remove_vertex(m_vertices.begin()->first,1);
     }
 }
