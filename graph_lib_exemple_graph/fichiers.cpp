@@ -3,19 +3,14 @@
 #include <iostream>
 
 
-
-
-
-
 /************************************************************************
 Type : Méthode
 Utilité : charge les sommets et les arettes a partir d'un fichier
 Créateur :Léo
 Statut : fini
 ***********************************************************************/
-void Graph::chargerFichier(int ordre,bool restauration)
+void Graph::chargerFichier(int ordre,int restauration)
 {
-
     std::string nomFichier;
     if (ordre == 0)
     {
@@ -29,10 +24,14 @@ void Graph::chargerFichier(int ordre,bool restauration)
     else if(ordre == 3)
         nomFichier = "savane";
 
-    if (restauration == true)
+    if (restauration == 1)
         nomFichier = nomFichier+"_restauration";
+        if (restauration == 2)
+        nomFichier = nomFichier+"_graphreduit";
 
-    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+    m_interface = std::make_shared<GraphInterface>(50, ordre, 750, 600);
+
+
     nomFichier = "fichier/" + nomFichier;
     std::string fichier;
     int idx,x,y,vert1,vert2;
@@ -110,15 +109,13 @@ void Graph::chargerFichier(int ordre,bool restauration)
     }
 }
 
-
-
 /************************************************************************
 Type : Méthode
 Utilité : sauve les sommets et les arettes dans un fichier
 Créateur :Léo
 Statut : fini
 ***********************************************************************/
-void Graph::sauverFichier(int ordre,bool restauration)
+void Graph::sauverFichier(int ordre,int restauration)
 {
     std::string nomFichier;
 
@@ -129,10 +126,12 @@ void Graph::sauverFichier(int ordre,bool restauration)
     else if(ordre == 3)
         nomFichier = "savane";
 
-    if (restauration == true)
+    if (restauration == 1)
         nomFichier = nomFichier+"_restauration";
+        if (restauration == 2)
+        nomFichier = nomFichier+"_graphreduit";
 
-    m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
+
     nomFichier = "fichier/" + nomFichier;
     std::string fichier;
 
@@ -148,8 +147,8 @@ void Graph::sauverFichier(int ordre,bool restauration)
             fsommets << "\n";
             fsommets << it->first << " " ;
             fsommets << it->second.m_value << " ";
-            fsommets << it->second.m_interface->m_top_box.get_posx() +2 << " ";
-            fsommets << it->second.m_interface->m_top_box.get_posy() +2 << " ";
+            fsommets << it->second.m_interface->m_top_box.get_posx() +3 << " ";
+            fsommets << it->second.m_interface->m_top_box.get_posy() +3 << " ";
 
             //std::cout << "\n rythme " << it->second.m_rythmeCroissance;
 
@@ -162,7 +161,6 @@ void Graph::sauverFichier(int ordre,bool restauration)
         }
         fsommets.close();
     }
-
     else
     {
         std::cout << "impossible de ouvrir le fichier" << std::endl;
@@ -193,19 +191,5 @@ void Graph::sauverFichier(int ordre,bool restauration)
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

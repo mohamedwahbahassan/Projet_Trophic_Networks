@@ -71,7 +71,6 @@ int Graph::chercher_sommet_actif()
     }
 }
 
-
 std::vector<int> Graph::remplir_tab_connexe(int s)
 {
     std::vector<int> c; /// tableau dynamique contenant les composantes connexes
@@ -97,7 +96,6 @@ std::vector<int> Graph::remplir_tab_connexe(int s)
       {
           std::cout << "la valeur de "<< i <<" est " << actif[i] << std::endl;
       }*/
-
 
     for(x=0; x<m_ordre; x++)
     {
@@ -185,7 +183,7 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
 
     std::string combinaison="";
 
-    std::vector<std::string> m_tabCombin;
+
     int cpt;
 
     for(size_t j=0; j<serie.size(); ++j) ///avec i= k = le nombre d'élements dans n ///j:la taille de la série
@@ -228,14 +226,14 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
             {
                 std::cout<< " le graphe est toujours connexe"<< std::endl;
             }
-            for(auto &e: m_vertices)
+            for(auto e=m_vertices.begin() ; e!=m_vertices.end(); e++)
             {
-                e.second.m_actif = true;
-                std::cout << "j active " << e.first << std::endl;
+                e->second.m_actif = true;
+                std::cout << "j active " << e->first << std::endl;
             }
-            for(auto &e:m_edges)
+            for(auto e=m_vertices.begin() ; e!=m_vertices.end(); e++)
             {
-                e.second.m_actif = true;
+                e->second.m_actif = true;
             }
 
             combinaison="";
@@ -246,7 +244,6 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
         /// Si la série ne possède pas assez d'élément (on envoie k>n), la fonction crache
         if(serie.size()-j<i)
         {
-
             std::cout << "il n'existe pas assez d'elements" << std::endl;
             return;
         }
@@ -255,18 +252,6 @@ void Graph::getCombinFork(const std::string &serie, size_t i, std::string result
         getCombinFork(serie.substr(j+1), i-1, result+serie[j],compteur);
     }
 
-
-
-    for(int i=0; i<m_tabCombin.size(); i++)
-    {
-        //int convert;
-        // convert=atoi(m_tabCombin[i].c_str());
-        std::cout << m_tabCombin[i] << std::endl;
-        //  m_vertices[convert].m_actif=false;
-        //  std::cout << "je desactive le sommet d indice  " << convert << " " << m_vertices[convert].m_actif << std::endl;
-
-    }
-    m_tabCombin.clear();
 
 
 
@@ -293,30 +278,25 @@ void Graph::getAllCombin(std::string serie)
     }
 
 
-    for(int i=0; i<m_ordre; i++)
+  /*  for(int i=0; i<m_ordre; i++)
     {
         for(int j=0; j<m_ordre; j++)
         {
             std::cout << m_tab_adj_sym[i][j] << " ";
         }
         std::cout << std::endl;
-    }
+    }*/
 
  /*   for(int i=0; i<m_ordre; i++)
     {
         stdm_tab_connexe[i]
     }
 */
+
+
+
     m_tab_adj_sym.clear();
     m_tab_connexe.clear();
-
-
-
-
-
-
-
-
 
     /* for(auto &e: m_vertices)
      {
@@ -344,27 +324,17 @@ std::string Graph::get_serie()
     return serie;
 }
 
-/*
+
 void Graph::affichage_tab_combin()
 {
     for(int i=0; i<m_tabCombin.size(); i++)
     {
         std::cout << m_tabCombin[i] << std::endl;
     }
-
 }
-
 
 
 void Graph::initialise_tab_combine()
 {
-    for(int i=0; i<=m_tabCombin.size(); i++)
-    {
-        m_tabCombin.erase(m_tabCombin.begin()+i);
-    }
+m_tabCombin.clear();
 }
-
-
-*/
-
-

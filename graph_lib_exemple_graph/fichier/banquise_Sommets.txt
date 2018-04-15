@@ -1,8 +1,9 @@
 
-0 0 271 464 1 1 desert/vegetaux.jpg
-1 37.1429 9 192 1 1 desert/dromadaire.jpg
-2 30 542 171 1 1 desert/gazelle.jpg
-3 0 376 212 1 1 desert/adax.jpg
-4 37.1429 209 223 1 1 desert/fourmi.jpg
-5 30 439 20 1 1 desert/guepard.jpg
-6 30 155 42 1 1 desert/scorpion.jpg
+0 95.5882 629 420 0.25 0.3 banquise/krill.jpg
+1 97.1429 232 404 0.15 0.2 banquise/poisson.jpg
+2 27.1429 552 177 0.08 0.1 banquise/morse.jpg
+3 31.4286 202 179 0.08 0.1 banquise/phoque.jpg
+4 27.1429 391 136 0.08 0.1 banquise/macareux.jpg
+5 0 26 81 0.08 0.1 banquise/pingouin.jpg
+6 4.28571 542 3 0.06 1 banquise/ours.jpg
+7 2.85714 248 1 0.06 1 banquise/renard.jpg

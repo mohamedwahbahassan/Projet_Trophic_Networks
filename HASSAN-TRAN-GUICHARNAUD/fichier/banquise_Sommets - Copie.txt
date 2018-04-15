@@ -1,0 +1,9 @@
+
+0 0 250 487 1 1 banquise/krill.jpg
+1 0 254 349 0.8 1 banquise/poisson.jpg
+2 0 554 179 0.1 1 banquise/morse.jpg
+3 0 171 183 0.8 1 banquise/phoque.jpg
+4 0 364 179 0.8 1 banquise/macareux.jpg
+5 0 9 185 0.8 1 banquise/pingouin.jpg
+6 0 544 5 0.7 1 banquise/ours.jpg
+7 0 250 3 0.7 1 banquise/renard.jpg

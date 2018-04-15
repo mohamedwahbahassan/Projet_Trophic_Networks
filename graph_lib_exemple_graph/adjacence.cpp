@@ -3,12 +3,7 @@
 #include <iostream>
 
 
-
-
-
-
-
-/// Tableau d'adjance remlpi à partir des maps de sommets et d'arrêtes, modifiable en cours d'execution du code
+/// Tableau ddjance remlpi à partir des maps de sommets et d'arrêtes, modifiable en cours d'execution du code
 void Graph::remplir_tab_adj()
 {
     int i=0, j=0;
@@ -49,7 +44,6 @@ void Graph::remplir_tab_adj()
                 }
 
             }
-
             /// sinon si i = j alors tableau d'adjance = 1 car un sommet est forcément adjacent à lui même
             else
             {
@@ -59,8 +53,6 @@ void Graph::remplir_tab_adj()
     }
 
 }
-
-
 
 
 std::vector <int> Graph::uneComposanteFortementConnexe(int s)
@@ -140,11 +132,7 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
 
             }
         }
-
-
     }
-
-
     for(x=0; x<m_ordre; x++)
     {
         c[x]= c1[x] & c2[x];
@@ -189,38 +177,17 @@ void Graph::toutesLesComposantesFortementConnexes()
 
 }
 
-
-/*
-void Graph::affichageTableauForteConnexite()
-{
-    std::cout << " Tableau de forte connexité" << std::endl;
-    for(int i=0; i<m_ordre; i++)
-    {
-        for(int j=0; j<m_ordre; j++)
-        {
-            std::cout << m_tab_forte_connexite[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-*/
-
-
-
-
 void Graph::ordredebase()
 {
     int indice;
-    for(auto a=m_vertices.begin(); a!=m_vertices.end(); a++)
+    for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
     {
         indice = a->first;
     }
-    m_ordre=indice+1;
+
+    m_ordre = indice +1;
+    //std::cout << "ordre est " << m_ordre << std::endl;
 }
-
-
-
-
 
 
 

@@ -3,11 +3,6 @@
 #include <iostream>
 
 
-
-
-
-
-
 /***************************************************
                     VERTEX
 ****************************************************/
@@ -17,18 +12,14 @@ void Vertex::pre_update()
     if (!m_interface)
         return;
 
-     //   std::cout << "VERTEX" << std::endl;
-
     /// Copier la valeur locale de la donnée m_value vers le slider associé
     m_interface->m_slider_value.set_value(m_value);
  //   std::cout << "VERTEX" << std::endl;
 
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
-   //m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
-   // std::cout << "VERTEX" << std::endl;
+    m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
 
 }
-
 
 /// Gestion du Vertex après l'appel à l'interface
 void Vertex::post_update()
@@ -39,8 +30,6 @@ void Vertex::post_update()
     /// Reprendre la valeur du slider dans la donnée m_value locale
 
     m_value = m_interface->m_slider_value.get_value();
-
-
 }
 
 
@@ -53,7 +42,6 @@ void Edge::pre_update()
 {
     if (!m_interface)
         return;
-
 
     /// Copier la valeur locale de la donnée m_weight vers le slider associé
     m_interface->m_slider_weight.set_value(m_weight);
@@ -73,12 +61,7 @@ void Edge::post_update()
 
     /// Reprendre la valeur du slider dans la donnée m_weight locale
     m_weight = m_interface->m_slider_weight.get_value();
-
-
 }
-
-
-
 
 /***************************************************
                     GRAPH
@@ -87,9 +70,7 @@ void Edge::post_update()
 /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
 void Graph::update()
 {
-
-    int cas=1;
-
+    int cas=2;
     int indice = -1;
     if (!m_interface)
         return;
@@ -111,13 +92,10 @@ void Graph::update()
     for (auto &elt : m_edges)
         elt.second.m_autorisation_supr_edge = true;
 
-
     m_interface->m_top_box.update(); /// a placer au milieu
-
 
     for (auto &elt : m_edges)
         elt.second.post_update();
-
 
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
@@ -127,17 +105,13 @@ void Graph::update()
             indice = elt->first;
             cas=1;
         }
-
     }
-
 
     if(indice != -1)
     {
         remove_edge(indice,cas);
         indice = -1;
     }
-
-
     for (auto &elt : m_vertices)
     {
         elt.second.post_update();
@@ -145,34 +119,14 @@ void Graph::update()
         {
             indice = elt.first;
             cas=1;
-
         }
     }
     if (indice != -1)
     {
-
         remove_vertex(indice,cas);
         indice = -1;
     }
-
-    remplir_tab_adj_sym();
-
-
-
+     remplir_tab_adj_sym();
  //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,0 +1,7 @@
+
+0 0 299 428 1.2 1 desert/vegetaux.jpg
+1 37.1429 104 194 1 1 desert/dromadaire.jpg
+2 34.2857 348 196 1 1 desert/adax.jpg
+3 37.1429 602 189 1 1 desert/fourmi.jpg
+4 92.9448 348 39 1 1 desert/guepard.jpg
+5 20 599 32 1 1 desert/scorpion.jpg
