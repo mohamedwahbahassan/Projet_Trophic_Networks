@@ -500,12 +500,19 @@ void Graph::affichageForteConnexiteInterface(bool actif)
 }
 
 
+/************************************************************************
+Type :
+Utilité : création du graph réduit
+Return : none
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 void Graph::GraphReduit()
 {
-    sauverFichier(get_current_graph(),2);
-    vider_graph();
-    chargerFichier(get_current_graph(),2);
-    int idx,from,to,weight;
+    sauverFichier(get_current_graph(),2); // on sauve le fichier pour garder en memoire quand on lache le bouton
+    vider_graph(); // on clear le graph
+    chargerFichier(get_current_graph(),2); // on ouvre a nouveau le fichier
+    int idx,from,to,weight; // variables utilisées pour l'algo
 
     for(int i=0; i<m_ordre-1; i++)
     {
@@ -513,19 +520,19 @@ void Graph::GraphReduit()
         {
             if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
             {
-                for (auto it=m_edges.begin(); it!=m_edges.end() ; it++)
+                for (auto it=m_edges.begin(); it!=m_edges.end() ; it++) // cas de forte connexité entre 2 sommets
                 {
-                    if(it->second.get_from() == j && it->second.get_to() == i)
+                    if(it->second.get_from() == j && it->second.get_to() == i) // si un des 2 sommets a déja été visité
                     {
                         remove_edge(it->first,1);
                      //   std::cout << "\ncas n1 : " << it->first;
                     }
-                    else if (it->second.get_from() == i && it->second.get_to() == j)
+                    else if (it->second.get_from() == i && it->second.get_to() == j) // si l'autre l'a été
                     {
                         remove_edge(it->first,1);
                    //     std::cout << "\ncas n2 " << it->first;
                     }
-                    else if (  it->second.get_from() == j )
+                    else if (  it->second.get_from() == j ) // si aucun des 2 n'a ete visité on en supprime un, et on mets ses marqueurs a vrai
                     {
                       ///  std::cout << "\ncas n3 "  << it->first;
                         idx = it->first;
@@ -548,7 +555,7 @@ void Graph::GraphReduit()
 
                    // std::cout << "\nedge : " << it->first << " from : " << it->second.get_from() << " to : " << it->second.get_to() ;
                 }
-                                for (auto it=m_edges.begin(); it!=m_edges.end() ; it++)
+                                for (auto it=m_edges.begin(); it!=m_edges.end() ; it++) // on reconnemce au cas ou certains sommets on été sauté
                 {
                     if(it->second.get_from() == j && it->second.get_to() == i)
                     {
@@ -585,7 +592,7 @@ void Graph::GraphReduit()
                 }
 
                // std::cout << "\nremoving vertex n" <<j;
-                remove_vertex(j,1);
+                remove_vertex(j,1); // si un sommets est fortement connexe, on le supprime
             }
         }
     }

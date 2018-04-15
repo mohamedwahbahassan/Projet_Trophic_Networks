@@ -4,24 +4,30 @@
 #include <iostream>
 
 
-
+/************************************************************************
+Type : Méthode
+Utilité : menu de choix du graph
+Return : booléen de sortie du programme ou non
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 bool Graph::MenuPrincipal()
 {
-    BITMAP* buffer = create_bitmap(SCREEN_W,SCREEN_H);
-    BITMAP* images[NB_IMAGES_MENU];
-    BITMAP* menu = charger_image("pics/menu/ecran_d'accueil.bmp");
-    BITMAP* menu_coli = charger_image("pics/menu/menu_carte_coli.bmp");
-    chargement_images_menu(images);
+    BITMAP* buffer = create_bitmap(SCREEN_W,SCREEN_H); // buffer de fond
+    BITMAP* images[NB_IMAGES_MENU];//tableau d'image pour l'animation menu
+    BITMAP* menu = charger_image("pics/menu/ecran_d'accueil.bmp");//image de menu de base
+    BITMAP* menu_coli = charger_image("pics/menu/menu_carte_coli.bmp");//carte de colision
+    chargement_images_menu(images);//chargement des images
 
-    bool fin = false;
+    bool fin = false; //booléen
 
     blit(menu,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
-    while(!fin)
+    while(!fin) // tant que on ne clique pas su le bouton "quit"
     {
         blit(menu,buffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
-        if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
+        if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT) // en fonction de la position de la souris, l'image du menu change
             blit(images[0],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
         if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
             blit(images[1],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -30,27 +36,27 @@ bool Graph::MenuPrincipal()
         if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
             blit(images[3],buffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
-        if (mouse_b&1)
+        if (mouse_b&1) // tenqt de clique
         {
-            if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT)
+            if (getpixel(menu_coli,mouse_x,mouse_y) == DESERT) //si on clique sur le bontion desert, charge le fichier desert
             {
                 chargerFichier(2,0);
                 set_current_graph(2);
                 fin = true;
             }
-            if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)
+            if (getpixel(menu_coli,mouse_x,mouse_y) == SAVANE)//si on clique sur le bontion savanne, charge le fichier savanne
             {
                 chargerFichier(3,0);
                 set_current_graph(3);
                 fin = true;
             }
-            if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)
+            if (getpixel(menu_coli,mouse_x,mouse_y) == BANQUISE)//si on clique sur le bontion banquise, charge le fichier banquise
             {
                 chargerFichier(1,0);
                 set_current_graph(1);
                 fin = true;
             }
-            if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)
+            if (getpixel(menu_coli,mouse_x,mouse_y) == QUIT)//si on clique sur le bontion quiter, fin change pour quiter
                 return true;
         }
 
@@ -61,6 +67,13 @@ bool Graph::MenuPrincipal()
 }
 
 
+/************************************************************************
+Type : Méthode
+Utilité : menu d'execution des boutons de la boite a outils
+Return : booléen de sortie du programme ou non
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 bool Graph::boutons()
 {
     if (get_quiter() == true) /// on a appuyé suir le bouton quiter
@@ -120,34 +133,41 @@ bool Graph::boutons()
 }
 
 
+/************************************************************************
+Type : void
+Utilité : gestion de la vitesse d'évolition
+Return : none
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 void Graph::evolution(bool* pause, int*rest_evolution, int* t1)
 {
 /// SIMULATION DE L'EVOLUTION DES POPULATIONS
     std::string nomFichier;
-    if (m_AjoutVertex)
+    if (m_AjoutVertex) //bouton ajouter sommet
     {
         menu_ajout_vertex();
         m_AjoutVertex = false;
     }
-    if (m_AjoutEdge)
+    if (m_AjoutEdge) //bouton ajouter arete
     {
         menu_ajout_edge();
         m_AjoutEdge = false;
     }
 
-    if(m_playEvolution && *pause == true)
+    if(m_playEvolution && *pause == true) /// quand on clique, change l'état du boolen play/pause
     {
         *pause = false;
         m_playEvolution = false;
         std::cout << "\npause";
     }
-    else if (m_playEvolution)
+    else if (m_playEvolution) // lancement de l'enregistrement des valeurs pour le graphique
     {
         *pause = true;
         m_playEvolution = false;
         std::cout << "\nplay";
 
-        if (m_CurrentGraph == 1)
+        if (m_CurrentGraph == 1) //chargement du bon fichier
             nomFichier = "banquise";
         else if (m_CurrentGraph == 2)
             nomFichier = "desert";
@@ -165,7 +185,7 @@ void Graph::evolution(bool* pause, int*rest_evolution, int* t1)
             fichier << m_vertices.size() << " ";
             for (auto &e : m_vertices)
             {
-                fichier << e.first << " ";
+                fichier << e.first << " "; // on efface tout le fichier, et on écrit les infos de base pour la lecture
             }
         }
         fichier.close();
@@ -186,7 +206,7 @@ void Graph::evolution(bool* pause, int*rest_evolution, int* t1)
 
     if (*t1 + *rest_evolution <= clock())
     {
-        if (*pause == true)
+        if (*pause == true) // on écrit l'écolution
         {
             CalculPop();
             EnregistrementGraph();
@@ -195,56 +215,69 @@ void Graph::evolution(bool* pause, int*rest_evolution, int* t1)
     }
 }
 
+/************************************************************************
+Type : Méthode
+Utilité : menu de choix de l'arete
+Return : none
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 void Graph::menu_ajout_edge()
 {
-    int from,to;
-    bool fin = false;
-    bool bfrom = false,bto = false;
+    int from,to; // entiers de départ et d'arrivée de l'arete
+    bool fin = false; // boolée de sortie de la boucle
+    bool bfrom = false,bto = false; // booleen de verification de sommet
     int idx;
-    for (auto a=m_edges.begin() ; a != m_edges.end(); a++)
+    for (auto a=m_edges.begin() ; a != m_edges.end(); a++) // on mets l'indice du sommet la ou un indice n'existe pas encore
     {
         idx = a->first;
     }
     idx = idx + 1 ;
     std::cout << std::endl << std::endl << "Vous voulez ajouter une arete. Saisisez 2 fois la meme valeur pour sortir";
-    while (fin == false)
+    while (fin == false) // tant que la vérification n'est pas validé
     {
         std::cout << std::endl << " Veuillez saisir l'indice du sommet de depart : ";
-        std::cin >> from;
+        std::cin >> from;//on demande le sommet de départ
         std::cout << std::endl << "Veuillez maintenant saisir l'indice du sommet d'arrive : ";
-        std::cin >> to;
-        if (from == to)
+        std::cin >> to;//et le sommet d'arrivé
+        if (from == to) // on vérifie que le sommet de départ et l'arrive ne sont pas les memes : si c'est le cas, on sors sans ajouter d'arete
         {
             fin = true;
         }
         else
         {
-            for (auto&it : m_vertices)
+            for (auto&it : m_vertices) // on verifie que le sommet existe bien
             {
                 if (it.first == from)
                     bfrom = true;
             }
-            for (auto&it : m_vertices)
+            for (auto&it : m_vertices) // on verifie que le sommet existe bien
             {
                 if (it.first == to)
                     bto = true;
             }
-            if (bto == true && bfrom == true)
+            if (bto == true && bfrom == true) // si les 2 sommets existent bien, on valide la sortie
                 fin = true;
             else
             {
-                bto = false;
-                bfrom = false;
+                bto = false; // RAZ
+                bfrom = false;//RAZ
                 std::cout << std::endl << "un ou plusieurs des sommets que vous avez saisis n'existent pas";
             }
         }
     }
     if (bto == true && bfrom == true)
-        add_interfaced_edge(idx,from,to,0);
+        add_interfaced_edge(idx,from,to,0); // si les sommets on été validé, on ajoute le sommet
 
 }
 
-
+/************************************************************************
+Type : Méthode
+Utilité : menu de choix du sommet
+Return : none
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 void Graph::menu_ajout_vertex()
 {
     /*
@@ -255,16 +288,16 @@ void Graph::menu_ajout_vertex()
     */
     //std::cout << "\najout de vertex";
 
-    bool fin = false;
-    int color;
-    int idx ;
-    for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
+    bool fin = false; // boolée de fin
+    int color; // recuperation de la couleur de la carte de coli
+    int idx ; // index
+    for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++) // on mets l'index la ou il n'en existe pas deja
     {
         idx = a->first;
     }
     idx = idx + 1 ;
 
-    BITMAP* menu = charger_image("pics/menu/choix_de_vertex.bmp");
+    BITMAP* menu = charger_image("pics/menu/choix_de_vertex.bmp"); // on charges les bonnes immages
     BITMAP* menu_coli = charger_image("pics/menu/choix_de_vertex_coli.bmp");
     blit(menu,screen,0,0,0,0,SCREEN_W,SCREEN_H);
     while (!fin)
@@ -272,7 +305,9 @@ void Graph::menu_ajout_vertex()
         //std::cout << "\n" << getpixel(menu_coli,mouse_x,mouse_y);
         if (mouse_b&1)
         {
-            color = getpixel(menu_coli,mouse_x,mouse_y);
+            color = getpixel(menu_coli,mouse_x,mouse_y); // si on clique on récupère la couleur de la carte de coli
+
+            /// On la compare avec la database
 
             ///DESERT
             if (color == makecol(0,0,0))
@@ -330,15 +365,8 @@ void Graph::menu_ajout_vertex()
             if (color == makecol(200,191,231))
                 add_interfaced_vertex(idx,50,0,0,"banquise/renard.jpg",0,0.06,1);
 
-
-            ///HOMME
-            if (color == makecol(64,128,128))
-                {add_interfaced_vertex(idx,50,0,0,"savane/homme.jpg",0,0,0);
-                //std::cout << "\nhomme";
-                }
-
-            while(mouse_b&1) {}
-            fin = true;
+            while(mouse_b&1) {} // on bloque le temps du clique
+            fin = true; // on sors
         }
     }
 }

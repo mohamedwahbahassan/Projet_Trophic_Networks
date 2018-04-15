@@ -14,9 +14,11 @@ void Vertex::pre_update()
 
     /// Copier la valeur locale de la donnée m_value vers le slider associé
     m_interface->m_slider_value.set_value(m_value);
+ //   std::cout << "VERTEX" << std::endl;
 
     /// Copier la valeur locale de la donnée m_value vers le label sous le slider
     m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
+
 }
 
 /// Gestion du Vertex après l'appel à l'interface
@@ -74,26 +76,33 @@ void Graph::update()
         return;
 
     WraperBoutons();
+    //std::cout << "UPDATE" << std::endl;
+
 
     for (auto &elt : m_vertices)
-        elt.second.pre_update();
+    {//std::cout << "UPDATE" << std::endl;
+         elt.second.pre_update();
+
+
+    }
+
 
     for (auto &elt : m_edges)
-        elt.second.pre_update();
+        elt.second.pre_update(); // pré udate
     for (auto &elt : m_edges)
-        elt.second.m_autorisation_supr_edge = true;
+        elt.second.m_autorisation_supr_edge = true; // pré update
 
     m_interface->m_top_box.update(); /// a placer au milieu
 
     for (auto &elt : m_edges)
-        elt.second.post_update();
+        elt.second.post_update(); // post update
 
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
 
         if (elt->second.m_interface->m_box_Edge_close.get_value() == true && elt->second.m_actif == true)
         {
-            indice = elt->first;
+            indice = elt->first; // on remet
             cas=1;
         }
     }
@@ -115,11 +124,8 @@ void Graph::update()
     if (indice != -1)
     {
         remove_vertex(indice,cas);
-        // std::cout << "couccou leo" << std::endl;
-
         indice = -1;
     }
-    /// on actualise le remplissage de tableau d'adjace à chaque tour de boucle
      remplir_tab_adj_sym();
  //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }

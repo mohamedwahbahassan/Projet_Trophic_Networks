@@ -1,6 +1,7 @@
 #include <allegro.h>
 #include "utilitaire.h"
 
+ //un wraper pour charger les images du menu
 void chargement_images_menu(BITMAP*images[NB_IMAGES_MENU] )
 {
     images[0] = charger_image("pics/menu/ecran_d'accueil_0.bmp");
@@ -8,7 +9,13 @@ void chargement_images_menu(BITMAP*images[NB_IMAGES_MENU] )
     images[2] = charger_image("pics/menu/ecran_d'accueil_2.bmp");
     images[3] = charger_image("pics/menu/ecran_d'accueil_3.bmp");
 }
-
+/************************************************************************
+Type : Méthode
+Utilité : charger une image proprement
+Return : image chargé
+Créateur :Léo
+Statut : fini
+***********************************************************************/
 BITMAP* charger_image(char nom_fic[50])
 {
     BITMAP* bmp;

@@ -15,16 +15,16 @@ void Graph::chargerFichier(int ordre,int restauration)
     if (ordre == 0)
     {
         std::cout << "chargement : quel est le nom de votre fichier : ";
-        std::cin >> nomFichier;
+        std::cin >> nomFichier; // on choisis le fichier
     }
-    else if (ordre == 1)
+    else if (ordre == 1) // on ouvre le bon fichier
         nomFichier = "banquise";
     else if (ordre == 2)
         nomFichier = "desert";
     else if(ordre == 3)
         nomFichier = "savane";
 
-    if (restauration == 1)
+    if (restauration == 1) // si utlisé pour restauration ou graph réduit
         nomFichier = nomFichier+"_restauration";
         if (restauration == 2)
         nomFichier = nomFichier+"_graphreduit";
@@ -68,11 +68,11 @@ void Graph::chargerFichier(int ordre,int restauration)
             //std::cout << " c = " << c;
 
             ///add by jojo
-            //std::cout << r << "\n";
-            //std::cout << c << "\n";
+            std::cout << r << "\n";
+            std::cout << c << "\n";
 
             fsommets>> picture_name;
-            // std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
+             std::cout << "\n" << idx << " " <<  value<< " " << x<<" " << y;
 
             add_interfaced_vertex(idx, value, x, y, picture_name,idx,r,c); ///Changed by jojo
 
@@ -94,10 +94,11 @@ void Graph::chargerFichier(int ordre,int restauration)
         while(!farettes.eof())
         {
             farettes>>idx;
+
             farettes>>vert1;
             farettes>>vert2;
             farettes>>value;
-
+            std::cout << "idx " << idx<<" " << vert1  <<" " << vert2 << " " << value<< std::endl;
             add_interfaced_edge(idx, vert1, vert2, value);
         }
         farettes.close();
@@ -118,14 +119,14 @@ void Graph::sauverFichier(int ordre,int restauration)
 {
     std::string nomFichier;
 
-    if (ordre == 1)
+    if (ordre == 1) // on selectionne le bon graph
         nomFichier = "banquise";
     else if (ordre == 2)
         nomFichier = "desert";
     else if(ordre == 3)
         nomFichier = "savane";
 
-    if (restauration == 1)
+    if (restauration == 1) // cas de restauration ou de graph réduit
         nomFichier = nomFichier+"_restauration";
         if (restauration == 2)
         nomFichier = nomFichier+"_graphreduit";

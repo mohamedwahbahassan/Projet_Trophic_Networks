@@ -961,3 +961,71 @@
 	<fstream>
 	<iostream>
 
+1523803810 source:c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\adjacence.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523803811 c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	"grman/grman.h"
+
+1523803811 c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1523803811 c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\grman_couleurs.h
+
+1523803811 c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\coords.h
+	<cmath>
+
+1523803811 c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1523803811 source:c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\coords.cpp
+	"coords.h"
+
+1523803811 source:c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1523803811 source:c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\grman\widget.cpp
+	"widget.h"
+
+1523803810 source:c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\k-connexite.cpp
+	"graph.h"
+	<fstream>
+	<iostream>
+
+1523803811 source:c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\main.cpp
+	"grman/grman.h"
+	"graph.h"
+	"utilitaire.h"
+	<time.h>
+
+1523803812 c:\users\léo\projet_trophic_networks\hassan-tran-guicharnaud\utilitaire.h
+	<fstream>
+	<iostream>
+	<time.h>
+

@@ -13,15 +13,13 @@
 void Graph::CalculPop()
 {
 
-float capaciteEnvironnement=500;
     for (auto &e : m_vertices)
     {
         e.second.m_capacite=0;
         e.second.m_quantiteConsomme=0;
-/*
-        std::cout << "SOMMET"<< e.first << std::endl;
-        std::cout << "valeur initiale" << e.second.m_value;
-        */
+
+       // std::cout << "SOMMET"<< e.first << std::endl;
+       // std::cout << "valeur initiale" << e.second.m_value<< std::endl;
 
 ///Calcul de la capacité de portage de l'environnement
 
@@ -66,9 +64,8 @@ float capaciteEnvironnement=500;
         double valueinit= e.second.m_value;
         float MortVieillesse= 0.05*e.second.m_value; /// 10 % de la population meurt chq année
 
-        if(e.second.m_capacite!=0  && e.second.m_coeffPondere!=0)
+        if(e.second.m_capacite!=0)
         {
-                //std::cout << "   Je suis un Animal\n" ;
 
             e.second.m_value = e.second.m_value
                                + e.second.m_rythmeCroissance * e.second.m_value * (1-(e.second.m_value/e.second.m_capacite)) ///R * N (1 - N/K)
@@ -78,28 +75,12 @@ float capaciteEnvironnement=500;
         }
 
         ///si la capacité de portage est égale à 0 et que ce n'est pas un végétal (on ne peut pas diviser par 0)
-        if ((e.second.m_capacite==0) && e.first!=0 && (e.second.m_coeffPondere!=0))
+        if ((e.second.m_capacite==0) && e.first!=0)
         {
-           // std::cout << "Je suis un Animal qui meurt de faim" << std::endl;
             ///Si la capacité de portage de l'environnement est égale à 0, l'espèce meurt
            // std::cout << e.second.m_capacite << std::endl;
             e.second.m_value = 0;
-        }///Si la capacité de portage est égale à 0 et que c'est un végétal -> Ma capacité de portage dépend de l'environnement
-        if((e.second.m_capacite==0)&& e.first==0 && (e.second.m_coeffPondere!=0))
-        {
-            //std::cout<< "Je suis un Vegetal" << std::endl;
-
-            e.second.m_value = e.second.m_value
-                               + e.second.m_rythmeCroissance * e.second.m_value * (1-(e.second.m_value/capaciteEnvironnement)) ///R * N (1 - N/K)
-                               - e.second.m_quantiteConsomme * e.second.m_coeffPondere ///R2*CoeffPondere
-                               - MortVieillesse; ///Mort de Vieillesse
         }
-
-///Si c'est un Homme : coeffPondere=0
-if(e.second.m_coeffPondere==0)
-{
-   //std::cout << "Je suis un Homme" << std::endl;
-}
 
         ///Si on obtient une population négative, value=0
 
@@ -111,7 +92,7 @@ if(e.second.m_coeffPondere==0)
 
         ///AFFICHAGE DES CALCULS
         /*
-       // std::cout << "\ncalcul nouvelle valeur:" << valueinit << " + " << e.second.m_rythmeCroissance << " * " << valueinit << " * "
+        std::cout << "\ncalcul nouvelle valeur:" << valueinit << " + " << e.second.m_rythmeCroissance << " * " << valueinit << " * "
                   << "(1-" << valueinit << " / " << e.second.m_capacite<<" ) " <<" - " << e.second.m_quantiteConsomme << " * " << e.second.m_coeffPondere<< " - " << MortVieillesse <<" = " << e.second.m_value << std::endl;
         std::cout << "1: capacite: " << e.second.m_capacite << std::endl;
         std::cout << "2: quantite consomme: " << e.second.m_quantiteConsomme<< std::endl;
@@ -154,10 +135,10 @@ void Graph::AffPop(){
 
 
     std::string nomFichier;
-    BITMAP*buffer1 = charger_image("pics/fondgraph.bmp");
+    BITMAP*buffer1 = charger_image("pics/fondgraph.bmp"); // on mets le fond
     float var,nb;
 
-    if (m_CurrentGraph == 1)
+    if (m_CurrentGraph == 1) // on ouvre le bon fichier
         nomFichier = "banquise";
     else if (m_CurrentGraph == 2)
         nomFichier = "desert";
@@ -172,7 +153,7 @@ void Graph::AffPop(){
 if(!fichier)
     std::cerr << "pb lors de l'ouverture de fichier" << std::endl;
     else{
-            fichier >> var;
+            fichier >> var; // on enrefistre les valeurs de lecture dans un vecteur a 2 dimentions
             for (int i = 0 ; i < var ; i ++)
                 vec.push_back( std::vector <float> ()) ;
 
@@ -183,28 +164,27 @@ if(!fichier)
         {
             for (int i = 0 ; i < var ; i ++)
             {
-                fichier >> nb;
+                fichier >> nb; // on enregistre les valeurs du graph a la suite du vecteur a 2 dimentions
                 vec[i].push_back(nb);
             }
         }
     }
-    fichier.close();
+    fichier.close(); // on ferme le fivhier (propreté quand meme ^^ )
 
-for (int j = 0 ; j < var ; j++){
-        textprintf_ex(buffer1,font, 80 ,545 - vec[j][2]*5,vec[j][0] , -1, "%d",(int)vec[j][1]);
+for (int j = 0 ; j < var ; j++){ // affiche le graph par dessus l'image de fond
 for (int i = 2; i < vec[2].size()-3;i++)
-{
+{ // on quadriple les lignes pour avoir une ligne plus épaisse
     line (buffer1, 91 + i*900/vec[0].size()  ,  545 - vec[j][i]*5  ,  91 + (i+1)*900/vec[j].size()  ,  545 - vec[j][i+1]*5  ,  vec[j][0]);
     line (buffer1, 90 + i*900/vec[0].size()  ,  544 - vec[j][i]*5  ,  90 + (i+1)*900/vec[j].size()  ,  544 - vec[j][i+1]*5  ,  vec[j][0]);
     line (buffer1, 91 + i*900/vec[0].size()  ,  544 - vec[j][i]*5  ,  91 + (i+1)*900/vec[j].size()  ,  544 - vec[j][i+1]*5  ,  vec[j][0]);
     line (buffer1, 90 + i*900/vec[0].size()  ,  545 - vec[j][i]*5  ,  90 + (i+1)*900/vec[j].size()  ,  545 - vec[j][i+1]*5  ,  vec[j][0]);
 }
+
 }
     blit(buffer1,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-while(mouse_b&1){}
+while(mouse_b&1){} // on bloque tant que on reste appuyé sur la souris
 
 }
-
 
 
 /*void Graph::simulate_Kconnexite(std::vector<std::string> tabCombin)
@@ -223,3 +203,4 @@ for(unsigned int i=0; i<tabCombin[choix].size();i++)
 }
     CalculPop();
 }*/
+
