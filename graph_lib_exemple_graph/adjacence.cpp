@@ -177,9 +177,16 @@ void Graph::toutesLesComposantesFortementConnexes()
 
 }
 
+/************************************************************************
+Type :
+Utilité : mets l'ordre a la bonne valeur
+Return : none
+Créateur :Mohamed
+Statut : fini
+***********************************************************************/
 void Graph::ordredebase()
 {
-    int indice;
+    int indice; // mets la valeur indide sur le denier indice
     for (auto a=m_vertices.begin() ; a != m_vertices.end(); a++)
     {
         indice = a->first;

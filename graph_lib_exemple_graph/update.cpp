@@ -88,21 +88,21 @@ void Graph::update()
 
 
     for (auto &elt : m_edges)
-        elt.second.pre_update();
+        elt.second.pre_update(); // pré udate
     for (auto &elt : m_edges)
-        elt.second.m_autorisation_supr_edge = true;
+        elt.second.m_autorisation_supr_edge = true; // pré update
 
     m_interface->m_top_box.update(); /// a placer au milieu
 
     for (auto &elt : m_edges)
-        elt.second.post_update();
+        elt.second.post_update(); // post update
 
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
 
         if (elt->second.m_interface->m_box_Edge_close.get_value() == true && elt->second.m_actif == true)
         {
-            indice = elt->first;
+            indice = elt->first; // on remet
             cas=1;
         }
     }

@@ -135,10 +135,10 @@ void Graph::AffPop(){
 
 
     std::string nomFichier;
-    BITMAP*buffer1 = charger_image("pics/fondgraph.bmp");
+    BITMAP*buffer1 = charger_image("pics/fondgraph.bmp"); // on mets le fond
     float var,nb;
 
-    if (m_CurrentGraph == 1)
+    if (m_CurrentGraph == 1) // on ouvre le bon fichier
         nomFichier = "banquise";
     else if (m_CurrentGraph == 2)
         nomFichier = "desert";
@@ -153,7 +153,7 @@ void Graph::AffPop(){
 if(!fichier)
     std::cerr << "pb lors de l'ouverture de fichier" << std::endl;
     else{
-            fichier >> var;
+            fichier >> var; // on enrefistre les valeurs de lecture dans un vecteur a 2 dimentions
             for (int i = 0 ; i < var ; i ++)
                 vec.push_back( std::vector <float> ()) ;
 
@@ -164,16 +164,16 @@ if(!fichier)
         {
             for (int i = 0 ; i < var ; i ++)
             {
-                fichier >> nb;
+                fichier >> nb; // on enregistre les valeurs du graph a la suite du vecteur a 2 dimentions
                 vec[i].push_back(nb);
             }
         }
     }
-    fichier.close();
+    fichier.close(); // on ferme le fivhier (propreté quand meme ^^ )
 
-for (int j = 0 ; j < var ; j++){
+for (int j = 0 ; j < var ; j++){ // affiche le graph par dessus l'image de fond
 for (int i = 2; i < vec[2].size()-3;i++)
-{
+{ // on quadriple les lignes pour avoir une ligne plus épaisse
     line (buffer1, 91 + i*900/vec[0].size()  ,  545 - vec[j][i]*5  ,  91 + (i+1)*900/vec[j].size()  ,  545 - vec[j][i+1]*5  ,  vec[j][0]);
     line (buffer1, 90 + i*900/vec[0].size()  ,  544 - vec[j][i]*5  ,  90 + (i+1)*900/vec[j].size()  ,  544 - vec[j][i+1]*5  ,  vec[j][0]);
     line (buffer1, 91 + i*900/vec[0].size()  ,  544 - vec[j][i]*5  ,  91 + (i+1)*900/vec[j].size()  ,  544 - vec[j][i+1]*5  ,  vec[j][0]);
@@ -182,7 +182,7 @@ for (int i = 2; i < vec[2].size()-3;i++)
 
 }
     blit(buffer1,screen,0,0,0,0,SCREEN_W,SCREEN_H);
-while(mouse_b&1){}
+while(mouse_b&1){} // on bloque tant que on reste appuyé sur la souris
 
 }
 
