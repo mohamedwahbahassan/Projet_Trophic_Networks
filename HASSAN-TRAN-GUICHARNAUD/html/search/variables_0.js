@@ -25,6 +25,5 @@ var searchData=
   ['m_5ftop_5fedge',['m_top_edge',['../class_edge_interface.html#ac16db8ff7428c915c3b289df05f9c5f6',1,'EdgeInterface']]],
   ['m_5fvalue',['m_value',['../class_vertex.html#a366a2ce5705bff31754fdc878494f8c8',1,'Vertex']]],
   ['m_5fvertices',['m_vertices',['../class_graph.html#a52afc25370799d38d09dbadfada935f7',1,'Graph']]],
-  ['m_5fweight',['m_weight',['../class_edge.html#a842b567b9fb250168d0e3931e77df850',1,'Edge']]],
-  ['menu_5fajout_5fvertex',['menu_ajout_vertex',['../class_graph.html#a387b4364cdf604f82523e079a1d39f91',1,'Graph']]]
+  ['m_5fweight',['m_weight',['../class_edge.html#a842b567b9fb250168d0e3931e77df850',1,'Edge']]]
 ];

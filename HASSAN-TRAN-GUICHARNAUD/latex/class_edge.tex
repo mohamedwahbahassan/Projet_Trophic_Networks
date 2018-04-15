@@ -1,6 +1,6 @@
-\hypertarget{class_edge}{}\section{Edge Class Reference}
+\hypertarget{class_edge}{}\section{RÃ©fÃ©rence de la classe Edge}
 \label{class_edge}\index{Edge@{Edge}}
-\subsection*{Public Member Functions}
+\subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_edge_aacbf2530aa6f79fe273354bfbafa0c62}{Edge}} (double weight=0, \mbox{\hyperlink{class_edge_interface}{Edge\+Interface}} $\ast$interface=nullptr)
@@ -18,7 +18,28 @@ int {\bfseries get\+\_\+to} ()
 \mbox{\Hypertarget{class_edge_aed30938f18682b09826a7920d14bf37d}\label{class_edge_aed30938f18682b09826a7920d14bf37d}} 
 int {\bfseries get\+\_\+weight} ()
 \end{DoxyCompactItemize}
-\subsection*{Friends}
+\subsection*{Attributs privÃ©s}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_edge_a60b1e5b8c7aac4603043895d83bf06ca}\label{class_edge_a60b1e5b8c7aac4603043895d83bf06ca}} 
+int \mbox{\hyperlink{class_edge_a60b1e5b8c7aac4603043895d83bf06ca}{m\+\_\+from}}
+\begin{DoxyCompactList}\small\item\em indice du sommet de départ de l\textquotesingle{}arc \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_af8d4783d36f14b2a94832957c35dda89}\label{class_edge_af8d4783d36f14b2a94832957c35dda89}} 
+int \mbox{\hyperlink{class_edge_af8d4783d36f14b2a94832957c35dda89}{m\+\_\+to}}
+\begin{DoxyCompactList}\small\item\em indice du sommet d\textquotesingle{}arrivée de l\textquotesingle{}arc \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_a842b567b9fb250168d0e3931e77df850}\label{class_edge_a842b567b9fb250168d0e3931e77df850}} 
+double \mbox{\hyperlink{class_edge_a842b567b9fb250168d0e3931e77df850}{m\+\_\+weight}}
+\begin{DoxyCompactList}\small\item\em un exemple de donnée associée à l\textquotesingle{}arc, on peut en ajouter d\textquotesingle{}autres... \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_a823cab117e4b0fc1db82a87038ccb063}\label{class_edge_a823cab117e4b0fc1db82a87038ccb063}} 
+bool {\bfseries m\+\_\+autorisation\+\_\+supr\+\_\+edge} = false
+\item 
+\mbox{\Hypertarget{class_edge_ab7a4a8fdb27bb0e387c0846e0bac07a6}\label{class_edge_ab7a4a8fdb27bb0e387c0846e0bac07a6}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_edge_interface}{Edge\+Interface}} $>$ \mbox{\hyperlink{class_edge_ab7a4a8fdb27bb0e387c0846e0bac07a6}{m\+\_\+interface}} = nullptr
+\begin{DoxyCompactList}\small\item\em le P\+O\+I\+N\+T\+E\+UR sur l\textquotesingle{}interface associée, nullptr -\/$>$ pas d\textquotesingle{}interface \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_edge_a7215c63f2e459b81ce0e0f75edf1d0e2}\label{class_edge_a7215c63f2e459b81ce0e0f75edf1d0e2}} 
+bool \mbox{\hyperlink{class_edge_a7215c63f2e459b81ce0e0f75edf1d0e2}{m\+\_\+actif}} = true
+\begin{DoxyCompactList}\small\item\em un booléen qui permet de supprimer les aretes dans l\textquotesingle{}interface sans réellement les effacer dans la map edge \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Amis}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_edge_afab89afd724f1b07b1aaad6bdc61c47a}\label{class_edge_afab89afd724f1b07b1aaad6bdc61c47a}} 
@@ -32,7 +53,7 @@ class {\bfseries Vertex}
 \end{DoxyCompactItemize}
 
 
-\subsection{Constructor \& Destructor Documentation}
+\subsection{Documentation des constructeurs et destructeur}
 \mbox{\Hypertarget{class_edge_aacbf2530aa6f79fe273354bfbafa0c62}\label{class_edge_aacbf2530aa6f79fe273354bfbafa0c62}} 
 \index{Edge@{Edge}!Edge@{Edge}}
 \index{Edge@{Edge}!Edge@{Edge}}
@@ -41,7 +62,7 @@ class {\bfseries Vertex}
 
 Les constructeurs sont à compléter selon vos besoin... Ici on ne donne qu\textquotesingle{}un seul constructeur qui peut utiliser une interface 
 
-\subsection{Member Function Documentation}
+\subsection{Documentation des fonctions membres}
 \mbox{\Hypertarget{class_edge_a4d172425eac4e94c78ab1bd66ba48d50}\label{class_edge_a4d172425eac4e94c78ab1bd66ba48d50}} 
 \index{Edge@{Edge}!post\+\_\+update@{post\+\_\+update}}
 \index{post\+\_\+update@{post\+\_\+update}!Edge@{Edge}}
@@ -66,7 +87,7 @@ Gestion du \mbox{\hyperlink{class_edge}{Edge}} avant l\textquotesingle{}appel à 
 
 Copier la valeur locale de la donnée m\+\_\+weight vers le label sous le slider 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+La documentation de cette classe a Ã©tÃ© gÃ©nÃ©rÃ©e Ã  partir des fichiers suivants \+:\begin{DoxyCompactItemize}
 \item 
 graph.\+h\item 
 update.\+cpp\end{DoxyCompactItemize}

@@ -106,6 +106,12 @@ C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:189: warn
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:262: warning: Member get_from() (function) of class Edge is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:263: warning: Member get_to() (function) of class Edge is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:264: warning: Member get_weight() (function) of class Edge is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:243: warning: Member m_autorisation_supr_edge (variable) of class Edge is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:204: warning: Member m_box_edge (variable) of class EdgeInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:207: warning: Member m_slider_weight (variable) of class EdgeInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:210: warning: Member m_label_weight (variable) of class EdgeInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:213: warning: Member m_box_Edge_close (variable) of class EdgeInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:215: warning: Member m_autor_supr (variable) of class EdgeInterface is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:415: warning: Member sauverFichier(int ordre, int restauration) (function) of class Graph is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:420: warning: Member vider_graph() (function) of class Graph is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:422: warning: Member add_vertex(std::string image) (function) of class Graph is not documented.
@@ -124,8 +130,53 @@ C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:461: warn
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:462: warning: Member RAZ_vitEvolution() (function) of class Graph is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:463: warning: Member RAZ_montrerComposantesFortementConnexe() (function) of class Graph is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:464: warning: Member RAZ_graphReduit() (function) of class Graph is not documented.
-C:/Users/Wahba/ProjeGenerating docs for compound GraphInterface...
-Generating docs for compound Vertex...
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:469: warning: Member set_current_graph(int var) (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:472: warning: Member get_autorisation_supr_edge() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:473: warning: Member get_restaurer_graph() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:474: warning: Member get_sauver() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:475: warning: Member get_quiter() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:476: warning: Member get_montrerComposantesFortementConnexe() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:477: warning: Member get_graphReduit() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:478: warning: Member get_playEvolution() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:479: warning: Member get_vitEvolutionMoins() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:480: warning: Member get_vitEvolutionPlus() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:481: warning: Member get_current_graph() (function) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:367: warning: Member m_restaurer_graph (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:369: warning: Member m_sauver (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:371: warning: Member m_quiter (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:373: warning: Member m_SuprEdge (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:375: warning: Member m_AjoutVertex (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:377: warning: Member m_AjoutEdge (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:379: warning: Member m_montrerComposantesConnexe (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:381: warning: Member m_graphReduit (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:383: warning: Member m_stopGraphReduit (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_NetwoGenerating docs for compound GraphInterface...
+rks/HASSAN-TRAN-GUICHARNAUD/graph.h:385: warning: Member m_mouse_prec (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:387: warning: Member m_CurrentGraph (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:389: warning: Member m_playEvolution (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:391: warning: Member m_vitEvolutionPlus (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:393: warning: Member m_vitEvolutionMoins (variable) of class Graph is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:339: warning: Member m_fond (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:293: warning: Member m_Button_Save (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:294: warning: Member m_Text_Save (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:296: warning: Member m_Button_Restaurer (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:297: warning: Member m_Text_Restaurer (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:299: warning: Member m_Button_Quit (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:300: warning: Member m_Text_Quit (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:302: warning: Member m_Button_Graph_Pop (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:303: warning: Member m_Text_Graph_Pop (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:305: warning: Member m_Button_Ajout_Vertex (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:306: warning: Member m_Text_Ajout_Vertex (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:308: warning: Member m_Button_K_Connexite (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:309: warning: Member m_Text_K_Connexite (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:311: warning: Member m_Button_Ajout_Edge (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:312: warning: Member m_Text_Ajout_Edge (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:314: warning: Member m_Button_Montrer_Composantes_Connexe (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:315: warning: Member m_Text_Montrer_Composantes_Connexe (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:317: warning: Member m_Button_Graph_Reduit (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:318: warning: Member m_Text_Graph_Reduit (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:320: warning: Member m_Button_Supr_Arette (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHAGenerating docs for compound Vertex...
 Generating docs for compound VertexInterface...
 Generating namespace index...
 Generating graph info page...
@@ -147,23 +198,25 @@ finalizing index lists...
 writing tag file...
 Running dot...
 Running dot for graph 1/1
-lookup cache used 207/65536 hits=1159 misses=211
+lookup cache used 187/65536 hits=950 misses=191
 finished...
-t_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:469: warning: Member set_current_graph(int var) (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:472: warning: Member get_autorisation_supr_edge() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:473: warning: Member get_restaurer_graph() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:474: warning: Member get_sauver() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:475: warning: Member get_quiter() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:476: warning: Member get_montrerComposantesFortementConnexe() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:477: warning: Member get_graphReduit() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:478: warning: Member get_playEvolution() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:479: warning: Member get_vitEvolutionMoins() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:480: warning: Member get_vitEvolutionPlus() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:481: warning: Member get_current_graph() (function) of class Graph is not documented.
-C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:339: warning: Member m_fond (variable) of class GraphInterface is not documented.
+RNAUD/graph.h:321: warning: Member m_Text_Supr_arette (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:323: warning: Member m_Button_Vit_Evolution (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:324: warning: Member m_Text_Vit_Evolution (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:325: warning: Member m_Button_Vit_Evolution_plus (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:326: warning: Member m_Text_Vit_Evolution_plus (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:327: warning: Member m_Button_Vit_Evolution_moins (variable) of class GraphInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:328: warning: Member m_Text_Vit_Evolution_moins (variable) of class GraphInterface is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:175: warning: Member get_deja_fortement_connexe() (function) of class Vertex is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:176: warning: Member get_borderColor() (function) of class Vertex is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:178: warning: Member set_deja_fortement_connexe(bool val) (function) of class Vertex is not documented.
 C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:179: warning: Member set_borderColor(int val) (function) of class Vertex is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:147: warning: Member m_borderColor (variable) of class Vertex is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:101: warning: Member m_slider_value (variable) of class VertexInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:104: warning: Member m_label_value (variable) of class VertexInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:107: warning: Member m_img (variable) of class VertexInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:110: warning: Member m_label_idx (variable) of class VertexInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:113: warning: Member m_box_label_idx (variable) of class VertexInterface is not documented.
+C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/graph.h:115: warning: Member m_box_close (variable) of class VertexInterface is not documented.
 error: Problems running dot: exit code=-1, command='dot', arguments='"C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/html/graph_legend.dot" -Tpng -o "C:/Users/Wahba/Projet_Trophic_Networks/HASSAN-TRAN-GUICHARNAUD/html/graph_legend.png"'
 *** Doxygen has finished

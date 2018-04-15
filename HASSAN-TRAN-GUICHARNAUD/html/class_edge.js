@@ -8,5 +8,11 @@ var class_edge =
     [ "pre_update", "class_edge.html#ab9f1fdf7c47051d419ea5b73bed0e21d", null ],
     [ "EdgeInterface", "class_edge.html#a8e1edfb3728013ee10d1d7fb1fb89585", null ],
     [ "Graph", "class_edge.html#afab89afd724f1b07b1aaad6bdc61c47a", null ],
-    [ "Vertex", "class_edge.html#a1251d18f08324022e8e73506c3768f3c", null ]
+    [ "Vertex", "class_edge.html#a1251d18f08324022e8e73506c3768f3c", null ],
+    [ "m_actif", "class_edge.html#a7215c63f2e459b81ce0e0f75edf1d0e2", null ],
+    [ "m_autorisation_supr_edge", "class_edge.html#a823cab117e4b0fc1db82a87038ccb063", null ],
+    [ "m_from", "class_edge.html#a60b1e5b8c7aac4603043895d83bf06ca", null ],
+    [ "m_interface", "class_edge.html#ab7a4a8fdb27bb0e387c0846e0bac07a6", null ],
+    [ "m_to", "class_edge.html#af8d4783d36f14b2a94832957c35dda89", null ],
+    [ "m_weight", "class_edge.html#a842b567b9fb250168d0e3931e77df850", null ]
 ];

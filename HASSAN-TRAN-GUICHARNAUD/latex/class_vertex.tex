@@ -1,6 +1,6 @@
-\hypertarget{class_vertex}{}\section{Vertex Class Reference}
+\hypertarget{class_vertex}{}\section{RÃ©fÃ©rence de la classe Vertex}
 \label{class_vertex}\index{Vertex@{Vertex}}
-\subsection*{Public Member Functions}
+\subsection*{Fonctions membres publiques}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_vertex_a801e6c6705cf039d2036579a1ae39c5e}{Vertex}} (double value=0, \mbox{\hyperlink{class_vertex_interface}{Vertex\+Interface}} $\ast$interface=nullptr, float rythme\+Croissance=0, float coeff\+Pondere=0)
@@ -21,7 +21,43 @@ void {\bfseries set\+\_\+deja\+\_\+fortement\+\_\+connexe} (bool val)
 \mbox{\Hypertarget{class_vertex_a469d5e5c001fe449529a94a73260b5e4}\label{class_vertex_a469d5e5c001fe449529a94a73260b5e4}} 
 void {\bfseries set\+\_\+border\+Color} (int val)
 \end{DoxyCompactItemize}
-\subsection*{Friends}
+\subsection*{Attributs privÃ©s}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_vertex_aa3bb0f769afb251845c6329bf60eec2d}\label{class_vertex_aa3bb0f769afb251845c6329bf60eec2d}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_vertex_aa3bb0f769afb251845c6329bf60eec2d}{m\+\_\+in}}
+\begin{DoxyCompactList}\small\item\em liste des indices des arcs arrivant au sommet \+: accès aux prédécesseurs \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_a7c313e06540fa85329a1844d3a1fafcf}\label{class_vertex_a7c313e06540fa85329a1844d3a1fafcf}} 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_vertex_a7c313e06540fa85329a1844d3a1fafcf}{m\+\_\+out}}
+\begin{DoxyCompactList}\small\item\em liste des indices des arcs partant du sommet \+: accès aux successeurs \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_a366a2ce5705bff31754fdc878494f8c8}\label{class_vertex_a366a2ce5705bff31754fdc878494f8c8}} 
+double \mbox{\hyperlink{class_vertex_a366a2ce5705bff31754fdc878494f8c8}{m\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em un exemple de donnée associée au sommet, changed by jojo \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_a92fed5d4f786fdea26ea09d30423eaa7}\label{class_vertex_a92fed5d4f786fdea26ea09d30423eaa7}} 
+double \mbox{\hyperlink{class_vertex_a92fed5d4f786fdea26ea09d30423eaa7}{m\+\_\+capacite}}
+\begin{DoxyCompactList}\small\item\em N\+: nombre d\textquotesingle{}individus dans la population. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_a3202e93b297e5aec4cd8ba6dd29ca7db}\label{class_vertex_a3202e93b297e5aec4cd8ba6dd29ca7db}} 
+double \mbox{\hyperlink{class_vertex_a3202e93b297e5aec4cd8ba6dd29ca7db}{m\+\_\+quantite\+Consomme}}
+\begin{DoxyCompactList}\small\item\em K\+: capacité de portage de l\textquotesingle{}environnement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_afe6db2d28f8b0d569d3cffe5b56a7fb7}\label{class_vertex_afe6db2d28f8b0d569d3cffe5b56a7fb7}} 
+float \mbox{\hyperlink{class_vertex_afe6db2d28f8b0d569d3cffe5b56a7fb7}{m\+\_\+rythme\+Croissance}}
+\begin{DoxyCompactList}\small\item\em K2\+: quantité de N consommée par les autres espèces. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_ad3e1bfea855aeac2b580ac1d019840a0}\label{class_vertex_ad3e1bfea855aeac2b580ac1d019840a0}} 
+float \mbox{\hyperlink{class_vertex_ad3e1bfea855aeac2b580ac1d019840a0}{m\+\_\+coeff\+Pondere}}
+\begin{DoxyCompactList}\small\item\em r\+: rythme de croissance differente pour chaque population \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_ad8d6ef57256f6c1afe250d2113de03b7}\label{class_vertex_ad8d6ef57256f6c1afe250d2113de03b7}} 
+bool \mbox{\hyperlink{class_vertex_ad8d6ef57256f6c1afe250d2113de03b7}{m\+\_\+deja\+Fortement\+Conexe}} = false
+\begin{DoxyCompactList}\small\item\em ar le modèle proposé n\textquotesingle{}est pas étalonné sur des échelles homogènes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_a0b975ea5ee20999106a4a3014b9bc98e}\label{class_vertex_a0b975ea5ee20999106a4a3014b9bc98e}} 
+int {\bfseries m\+\_\+border\+Color} = V\+E\+RT
+\item 
+\mbox{\Hypertarget{class_vertex_a1cef509b08f1fd673dfcd0e4308ba4b1}\label{class_vertex_a1cef509b08f1fd673dfcd0e4308ba4b1}} 
+bool \mbox{\hyperlink{class_vertex_a1cef509b08f1fd673dfcd0e4308ba4b1}{m\+\_\+actif}} = true
+\begin{DoxyCompactList}\small\item\em pour k-\/connexité qui permet de supprimer un sommet pour essayer la connexité sans le supprimer depuis la map vertice \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_vertex_a248dd465e7f1b50f85a74023e643800a}\label{class_vertex_a248dd465e7f1b50f85a74023e643800a}} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_vertex_interface}{Vertex\+Interface}} $>$ \mbox{\hyperlink{class_vertex_a248dd465e7f1b50f85a74023e643800a}{m\+\_\+interface}} = nullptr
+\begin{DoxyCompactList}\small\item\em le P\+O\+I\+N\+T\+E\+UR sur l\textquotesingle{}interface associée, nullptr -\/$>$ pas d\textquotesingle{}interface \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Amis}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_vertex_afab89afd724f1b07b1aaad6bdc61c47a}\label{class_vertex_afab89afd724f1b07b1aaad6bdc61c47a}} 
@@ -38,7 +74,7 @@ class {\bfseries Edge\+Interface}
 \end{DoxyCompactItemize}
 
 
-\subsection{Constructor \& Destructor Documentation}
+\subsection{Documentation des constructeurs et destructeur}
 \mbox{\Hypertarget{class_vertex_a801e6c6705cf039d2036579a1ae39c5e}\label{class_vertex_a801e6c6705cf039d2036579a1ae39c5e}} 
 \index{Vertex@{Vertex}!Vertex@{Vertex}}
 \index{Vertex@{Vertex}!Vertex@{Vertex}}
@@ -51,7 +87,7 @@ Constructeur changed by jojo.
 
 Les constructeurs sont à compléter selon vos besoin... Ici on ne donne qu\textquotesingle{}un seul constructeur qui peut utiliser une interface 
 
-\subsection{Member Function Documentation}
+\subsection{Documentation des fonctions membres}
 \mbox{\Hypertarget{class_vertex_a68b740256d930792dccb31072e96f85f}\label{class_vertex_a68b740256d930792dccb31072e96f85f}} 
 \index{Vertex@{Vertex}!post\+\_\+update@{post\+\_\+update}}
 \index{post\+\_\+update@{post\+\_\+update}!Vertex@{Vertex}}
@@ -76,7 +112,7 @@ Gestion du \mbox{\hyperlink{class_vertex}{Vertex}} avant l\textquotesingle{}appe
 
 Copier la valeur locale de la donnée m\+\_\+value vers le label sous le slider 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+La documentation de cette classe a Ã©tÃ© gÃ©nÃ©rÃ©e Ã  partir des fichiers suivants \+:\begin{DoxyCompactItemize}
 \item 
 graph.\+h\item 
 update.\+cpp\end{DoxyCompactItemize}
