@@ -12,7 +12,7 @@
 void Graph::remplir_tab_adj()
 {
     int i=0, j=0;
-    std::cout << "ordre est " << m_ordre << std::endl;
+    //std::cout << "ordre est " << m_ordre << std::endl;
     bool ok = true;
 
     m_tab_adj.resize(m_ordre);
@@ -26,18 +26,14 @@ void Graph::remplir_tab_adj()
     }
 
     /// 1er parcours du map de sommets
-    i=0;
     for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
     {
-        j=0;
-        /// alloué le tableau d'adjance
         /// 2eme parcours du map de sommets
         for(auto im=m_vertices.begin(); im!=m_vertices.end(); im++)
         {
-            /// alloué le tableau d'adjance d'indice i
 
             /// si le sommet de partant n'est pas le même que celui d'arrivée
-            if(i!=j)
+            if(it->first!=im->first)
             {
                 for(int n=0; n<it->second.m_out.size(); n++)
                 {
@@ -46,8 +42,8 @@ void Graph::remplir_tab_adj()
                         if(it->second.m_out[n]==im->second.m_in[g])
                         {
                             m_tab_adj[it->first][im->first]=1;
-                            n=it->second.m_out.size();
-                            g=im->second.m_in.size();
+                           // n=it->second.m_out.size();
+                           // g=im->second.m_in.size();
 
                         }
                     }
@@ -60,20 +56,8 @@ void Graph::remplir_tab_adj()
             {
                 m_tab_adj[it->first][im->first]=1;
             }
-            j++;
         }
-        i++;
     }
-
-    for(i=0; i<m_ordre; i++)
-    {
-        for(j=0; j<m_ordre; j++)
-        {
-            std::cout<< m_tab_adj[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-
 
 
 }
@@ -131,6 +115,7 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
             }
         }
     }
+
     ajoute = 1;
     for(x=0; x<m_ordre; x++)
     {
@@ -162,8 +147,6 @@ std::vector <int> Graph::uneComposanteFortementConnexe(int s)
     }
 
 
-
-
     for(x=0; x<m_ordre; x++)
     {
         c[x]= c1[x] & c2[x];
@@ -179,7 +162,6 @@ void Graph::toutesLesComposantesFortementConnexes()
     std::vector<int> marque; /// tableau dynamique indiquant si les sommets sont marqués ou non
     int x,y;  /// numéros de sommets intermédiaires des composantes connexes
 
-    std::cout << "l'ordre est " << m_ordre << std::endl;
     marque.resize(m_ordre);
     tabc.resize(m_ordre);
     for(x=0; x<m_ordre; x++)
@@ -209,6 +191,8 @@ void Graph::toutesLesComposantesFortementConnexes()
 
 }
 
+
+/*
 void Graph::affichageTableauForteConnexite()
 {
     std::cout << " Tableau de forte connexité" << std::endl;
@@ -221,36 +205,7 @@ void Graph::affichageTableauForteConnexite()
         std::cout << std::endl;
     }
 }
-
-
-
-void Graph::affichageForteConnexiteInterface()
-{
-    int i,j;
-    for(auto it=m_vertices.begin(); it!=m_vertices.end(); it++)
-    {
-        it -> second.m_interface->m_top_box.set_border_color(VERT);
-    }
-
-
-    for(int i=0; i<m_ordre-1; i++)
-    {
-        for(j=i+1; j<m_ordre; j++)
-        {
-            if(m_tab_forte_connexite[i]==m_tab_forte_connexite[j])
-            {
-                m_vertices[i].m_interface->m_top_box.set_border_color(ROUGE);
-                m_vertices[j].m_interface->m_top_box.set_border_color(ROUGE);
-            }
-
-        }
-
-
-    }
-}
-
-
-
+*/
 
 
 
@@ -258,7 +213,7 @@ void Graph::affichageForteConnexiteInterface()
 void Graph::ordredebase()
 {
     m_ordre = m_vertices.size();
-    std::cout << "ordre est " << m_ordre << std::endl;
+    //std::cout << "ordre est " << m_ordre << std::endl;
 }
 
 

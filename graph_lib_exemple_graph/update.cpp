@@ -58,6 +58,8 @@ void Edge::pre_update()
     m_interface->m_top_edge.modifierTaille(m_weight);
     /// Copier la valeur locale de la donnée m_weight vers le label sous le slider
     m_interface->m_label_weight.set_message( std::to_string( (int)m_weight ) );
+
+    m_interface->m_autor_supr = false;
 }
 
 /// Gestion du Edge après l'appel à l'interface
@@ -68,6 +70,8 @@ void Edge::post_update()
 
     /// Reprendre la valeur du slider dans la donnée m_weight locale
     m_weight = m_interface->m_slider_weight.get_value();
+
+
 }
 
 
@@ -81,6 +85,7 @@ void Edge::post_update()
 void Graph::update()
 {
 
+    int cas=2;
 
     int indice = -1;
     if (!m_interface)
@@ -93,11 +98,11 @@ void Graph::update()
 
     for (auto &elt : m_edges)
         elt.second.pre_update();
+    for (auto &elt : m_edges)
+        elt.second.m_autorisation_supr_edge = true;
 
 
     m_interface->m_top_box.update(); /// a placer au milieu
-
-
 
 
     for (auto &elt : m_edges)
@@ -107,16 +112,18 @@ void Graph::update()
     for (auto elt = m_edges.begin() ; elt != m_edges.end() ; ++elt)
     {
 
-        if (elt->second.m_interface->m_box_Edge_close.get_value() == true)
+        if (elt->second.m_interface->m_box_Edge_close.get_value() == true && elt->second.m_actif == true)
         {
             indice = elt->first;
+            cas=1;
         }
+
     }
 
 
     if(indice != -1)
     {
-        remove_edge(indice);
+        remove_edge(indice,cas);
         indice = -1;
     }
 
@@ -124,31 +131,31 @@ void Graph::update()
     for (auto &elt : m_vertices)
     {
         elt.second.post_update();
-        if (elt.second.m_interface->m_box_close.get_value() == true)
+        if (elt.second.m_interface->m_box_close.get_value() == true && elt.second.m_actif == true)
         {
             indice = elt.first;
+            cas=1;
 
         }
     }
     if (indice != -1)
     {
-        remove_vertex(indice);
 
+        remove_vertex(indice,cas);
 
         // std::cout << "couccou leo" << std::endl;
 
         indice = -1;
     }
 
-    remplir_tab_adj();
 
-    toutesLesComposantesFortementConnexes();
-    affichageTableauForteConnexite();
-    affichageForteConnexiteInterface();
+     remplir_tab_adj_sym();
 
 
 
 
+
+ //   std::cout << "bool connexe:"   << Graphe_connexe()  << std::endl;
 }
 
 

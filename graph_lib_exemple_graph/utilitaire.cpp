@@ -1,8 +1,16 @@
+#include <allegro.h>
 #include "utilitaire.h"
 
 
+void chargement_images_menu(BITMAP*images[NB_IMAGES_MENU] )
+{
 
+    images[0] = charger_image("pics/menu/ecran_d'accueil_0.bmp");
+    images[1] = charger_image("pics/menu/ecran_d'accueil_1.bmp");
+    images[2] = charger_image("pics/menu/ecran_d'accueil_2.bmp");
+  images[3] = charger_image("pics/menu/ecran_d'accueil_3.bmp");
 
+}
 
 
 
@@ -17,9 +25,10 @@ BITMAP* charger_image(char nom_fic[50])
         allegro_exit();
         exit(EXIT_FAILURE);
     }
-    else printf ("\n%s charge avec succes", nom_fic);
+    //else std::cout << "\n" << nom_fic << "charge avec succes" <<  nom_fic;
     return bmp;
 }
+
 
 
 

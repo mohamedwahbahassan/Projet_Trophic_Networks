@@ -149,6 +149,12 @@ private :
     float m_coeffPondere; /// ar le modèle proposé n'est pas étalonné sur des échelles homogènes
 
 
+    bool m_dejaFortementConexe = false;
+    int m_borderColor = VERT;
+    /// pour k-connexité
+    bool m_actif= true;
+
+
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<VertexInterface> m_interface = nullptr;
@@ -175,6 +181,15 @@ public:
     /// Voir l'implémentation Graph::update dans le .cpp
     void pre_update();
     void post_update();
+
+
+
+    bool get_deja_fortement_connexe(){return m_dejaFortementConexe;}
+    int get_borderColor() {return m_borderColor;}
+
+
+    void set_deja_fortement_connexe(bool val) {m_dejaFortementConexe = val;}
+    void set_borderColor(int val) {m_borderColor = val;}
 
 };
 
@@ -212,6 +227,8 @@ private :
     //box de fermeture de arete
     grman::WidgetCheckBox m_box_Edge_close;
 
+    bool m_autor_supr;
+
 
 public :
 
@@ -239,10 +256,13 @@ private :
     /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
     double m_weight;
 
-    bool m_suprEdge = false;
+    bool m_autorisation_supr_edge = false;
+
 
     /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
     std::shared_ptr<EdgeInterface> m_interface = nullptr;
+
+    bool m_actif = true;
 
 
 public:
@@ -257,11 +277,6 @@ public:
     /// Voir l'implémentation Graph::update dans le .cpp
     void pre_update();
     void post_update();
-
-    bool supr_edge()
-    {
-        return m_suprEdge;
-    }
 
 };
 
@@ -301,10 +316,25 @@ private :
     grman::WidgetButton m_Button_Save; //bouton sauver
     grman::WidgetText m_Text_Save; //test "sauver
 
-    grman::WidgetButton m_Button_Supr_Arette;
-    grman::WidgetText m_Text_Supr_arette;
+    grman::WidgetButton m_Button_Restaurer; //bouton restaurer
+    grman::WidgetText m_Text_Restaurer; //texte restaurer
 
-    grman::WidgetButton m_Button_Vit_Evolution;
+    grman::WidgetButton m_Button_Quit; //bouton quiter
+    grman::WidgetText m_Text_Quit; //texte restaurer
+
+    grman::WidgetButton m_Button_Ajout_Vertex; //bouton ajouter vertex
+    grman::WidgetText m_Text_Ajout_Vertex; //texte ajouter vertex
+
+    grman::WidgetButton m_Button_Ajout_Edge; //bouton ajouter edge
+    grman::WidgetText m_Text_Ajout_Edge; //texter ajouter edge
+
+    grman::WidgetButton m_Button_Montrer_Composantes_Connexe; //bouton ajouter edge
+    grman::WidgetText m_Text_Montrer_Composantes_Connexe; //texter ajouter edge
+
+    grman::WidgetButton m_Button_Supr_Arette;//bouton supprimer arete
+    grman::WidgetText m_Text_Supr_arette;//texte supprimer arete
+
+    grman::WidgetButton m_Button_Vit_Evolution;//Boutons d'évolition
     grman::WidgetText m_Text_Vit_Evolution;
     grman::WidgetButton m_Button_Vit_Evolution_plus;
     grman::WidgetText m_Text_Vit_Evolution_plus;
@@ -314,6 +344,9 @@ private :
 
     // A compléter éventuellement par des widgets de décoration ou
     // d'édition (boutons ajouter/enlever ...)
+
+
+
 
 public :
 
@@ -349,7 +382,25 @@ private :
     std::vector<std::vector<int>> m_tab_forte_connexite;
 
     int m_ordre;
+    bool m_restaurer_graph = false;
+    bool m_sauver = false;
+    bool m_quiter = false;
+    bool m_SuprEdge = false;
+    bool m_AjoutVertex = false;
+    bool m_AjoutEdge = false;
+    bool m_montrerComposantesConnexe = false;
+    int m_CurrentGraph;
 
+    bool m_playEvolution = false;
+    bool m_vitEvolutionPlus = false;
+    bool m_vitEvolutionMoins = false;
+
+
+    std::vector<std::vector<int>> m_tab_adj_sym;
+
+    std::vector<int> m_tab_connexe;
+
+    std::vector <std::string> m_tabCombin;
 
 
 
@@ -366,11 +417,13 @@ public:
     void add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name="", int pic_idx=0, float rythmeCroissance = 0, float coeffPondere = 0);  ///changed by jojo
     void add_interfaced_edge(int idx, int vert1, int vert2, double weight=0);
 
-    void chargerFichier(int ordre);
-    void sauverFichier(int ordre);
+    void chargerFichier(int ordre,bool restauration);
+    void sauverFichier(int ordre,bool restauration);
 
-    void remove_edge(int eidx);
-    void remove_vertex(int eidx);
+    void remove_edge(int eidx, int cas);
+    void remove_vertex(int eidx, int cas);
+
+    void vider_graph();
 
     void add_vertex(std::string image);
     void add_edge(int from, int to);
@@ -387,15 +440,58 @@ public:
 
     void affichageForteConnexiteInterface();
 
+    void menu_ajout_vertex();
+    void menu_ajout_edge();
+
+
+
 
     ///
     void ordredebase();
 
     /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
     void update();
+    bool boutons();
+    bool MenuPrincipal();
 
     ///Fonction qui calcul la population en fonction des populations des autres sommets et coefficients des autres arcs
     void CalculPop();
+
+
+    //RAZ
+    void RAZ_quiter(){m_quiter = false;}
+    void RAZ_restaurer_graph(){m_restaurer_graph = false;}
+    void RAZ_sauver(){m_sauver = false;}
+    void RAZ_playEvolution() {m_playEvolution = false;}
+    void RAZ_vitEvolution() {m_vitEvolutionMoins = false; m_vitEvolutionPlus = false;}
+    void RAZ_montrerComposantesFortementConnexe(){m_montrerComposantesConnexe = false;}
+
+    void evolution(bool* pause, int*rest_evolution, int* t1);
+
+    //geters
+    void set_current_graph(int var) {m_CurrentGraph = var;}
+
+    //getters
+    bool get_autorisation_supr_edge() {return m_SuprEdge;}
+    bool get_restaurer_graph () {return m_restaurer_graph;}
+    bool get_sauver () {return m_sauver;}
+    bool get_quiter () {return m_quiter;}
+    bool get_montrerComposantesFortementConnexe () {return m_montrerComposantesConnexe;}
+    bool get_playEvolution() {return m_playEvolution;}
+    bool get_vitEvolutionMoins() {return m_vitEvolutionMoins;}
+    bool get_vitEvolutionPlus() {return m_vitEvolutionPlus;}
+    int get_current_graph() {return m_CurrentGraph;}
+
+    void remplir_tab_adj_sym();
+    std::vector<int> remplir_tab_connexe(int s);
+    bool Graphe_connexe();
+    int chercher_sommet_actif();
+    void getCombinFork(const std::string &serie, size_t i, std::string result,int* compteur);
+    void getAllCombin(std::string serie);
+    std::string get_serie();
+
+    void affichage_tab_combin();
+    void initialise_tab_combine();
 
 };
 
